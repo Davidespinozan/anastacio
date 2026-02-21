@@ -38,6 +38,7 @@ body{background:var(--dark);color:var(--cream);font-family:"Cormorant Garamond",
 /* HERO */
 .hero{position:relative;height:100svh;min-height:500px;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;}
 .hero-bg{position:absolute;inset:0;background-image:url("https://res.cloudinary.com/dp9l5i19b/image/upload/q_auto,f_auto,w_1400/IMG_9816_if2blm.png");background-size:55% auto;background-position:center 20%;filter:saturate(1.1);}
+@media(max-width:768px){.hero-bg{background-size:cover;background-position:center center;}}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(13,13,13,0) 0%,rgba(13,13,13,.10) 40%,rgba(13,13,13,.60) 100%);}
 .hero-content{position:relative;z-index:2;text-align:center;padding:1.5rem;display:flex;flex-direction:column;align-items:center;}
 .hero-logo{width:clamp(80px,14vw,130px);height:auto;margin-bottom:1rem;animation:fadeUp 1.2s ease both;}
