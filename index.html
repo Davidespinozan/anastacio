@@ -1149,6 +1149,25 @@ window.addEventListener('load', function(){
   ['mezcalita_nhmtez','tachosour_uohegy','ballenita_eqqo6e','batanga_yqy8yi','ositorojo1_ip3u9c','picaflor_ioxxld'].forEach(preloadImg);
   document.querySelectorAll('.card-img-wrap img').forEach(function(img){ var hi = new Image(); hi.src = img.src.replace('w_800','w_1400'); });
 });
+
+// ── PRELOAD LIGHTBOX IMAGES ──
+window.addEventListener('load', function() {
+  var toPreload = [
+    'https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/tacodonarturo_is8qhw.png',
+    'https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/tacotiojuanito_pbeszs.png',
+    'https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/tacofresa_edtqjl.png',
+    'https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/aguachiledepapada_tmgv5g.png',
+    'https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/camaronesroca_x0bgfj.png',
+    'https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/mezcalita_nhmtez.png',
+    'https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/tachosour_uohegy.png',
+    'https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/ballenita_eqqo6e.png',
+    'https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/batanga_yqy8yi.png',
+  ];
+  toPreload.forEach(function(src) {
+    var img = new Image();
+    img.src = src;
+  });
+});
 </script>
 </body>
 </html>
