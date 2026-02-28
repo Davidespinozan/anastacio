@@ -356,6 +356,25 @@ body{background:var(--dark);color:var(--cream);font-family:"Cormorant Garamond",
 @keyframes camPulse{0%,100%{opacity:.4;transform:scale(1);}50%{opacity:.9;transform:scale(1.15);}}
 @media(max-width:768px){html{font-size:112%;}.hero-bg{background-size:auto 100%;background-position:center center;background-repeat:no-repeat;}.hero-title{font-size:clamp(4.95rem,18vw,9.9rem);}.hero-sub{font-size:clamp(1rem,4vw,1.45rem);}.hero-cta{font-size:.95rem;}.card-desc{font-size:.92rem;}.item-desc{font-size:.92rem;}.cc-desc{font-size:.9rem;}}
 </style>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1564615811495027');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1564615811495027&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
 </head>
 <body data-lang="es">
 
@@ -380,7 +399,7 @@ body{background:var(--dark);color:var(--cream);font-family:"Cormorant Garamond",
     <h1 class="hero-title">ANASTACIO</h1>
     <div class="hero-sub"><span class="es">marisquería de barrio</span><span class="en">neighborhood seafood</span></div>
     <div class="hero-line"></div>
-    <a href="#menu" class="hero-cta"><span class="es">Ver Menú</span><span class="en">View Menu</span></a>
+    <a href="#menu" class="hero-cta" onclick="fbq('track','ViewContent',{content_name:'Menu'})"><span class="es">Ver Menú</span><span class="en">View Menu</span></a>
   </div>
   <div class="scroll-hint">↓ <span class="es">Desliza</span><span class="en">Scroll</span></div>
 </section>
@@ -755,7 +774,7 @@ body{background:var(--dark);color:var(--cream);font-family:"Cormorant Garamond",
   <div class="footer-text">© 2025 · ANASTACIO · MARISQUERÍA DE BARRIO · GUADALAJARA</div>
 </footer>
 
-<a href="https://instagram.com/anastacio_gdl" class="ig-float" target="_blank" aria-label="Instagram">
+<a href="https://instagram.com/anastacio_gdl" class="ig-float" target="_blank" aria-label="Instagram" onclick="fbq('track','Contact',{content_name:'Instagram'})">
   <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
     <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
     <circle cx="12" cy="12" r="4.5"/>
@@ -850,6 +869,7 @@ function captureLead(e) {
   e.target.reset();
   var lang = document.body.getAttribute("data-lang");
   showToast(lang === "es" ? "Gracias " + name + "! Te mandamos las mejores promos." : "Thanks " + name + "! We will send you the best deals.");
+  fbq('track', 'Lead', {content_name: 'Promo Bar', content_category: 'lead_capture'});
 }
 
 function submitPromo(e) {
@@ -862,6 +882,7 @@ function submitPromo(e) {
   closeModal("promo-modal");
   var lang = document.body.getAttribute("data-lang");
   showToast(lang === "es" ? "Bienvenido al club Anastacio!" : "Welcome to the Anastacio club!");
+  fbq('track', 'CompleteRegistration', {content_name: 'Promo Modal', content_category: 'club_signup'});
 }
 
 (function() {
@@ -879,6 +900,7 @@ var WA_NUMBER = "523318916060";
 
 function addToCart(name, price) {
   var existing = cart.find(function(i) { return i.name === name; });
+  fbq('track', 'AddToCart', {content_name: name, value: price, currency: 'MXN'});
   if (existing) {
     existing.qty += 1;
   } else {
@@ -1013,6 +1035,8 @@ document.addEventListener("click", function(e) {
 
 function sendToWhatsApp() {
   if (cart.length === 0) return;
+  fbq('track', 'InitiateCheckout', {value: getTotal(), currency: 'MXN', num_items: cart.length});
+  fbq('track', 'Contact', {content_name: 'WhatsApp Order'});
   var lang = document.body.getAttribute("data-lang");
   var isEn = lang === "en";
 
@@ -1169,5 +1193,52 @@ window.addEventListener('load', function() {
   });
 });
 </script>
+<!-- Meta Pixel Advanced Tracking -->
+<script>
+// Scroll depth tracking - fires at 25%, 50%, 75%, 100%
+(function(){
+  var fired = {};
+  window.addEventListener('scroll', function(){
+    var scrollPct = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+    [25,50,75,100].forEach(function(threshold){
+      if(scrollPct >= threshold && !fired[threshold]){
+        fired[threshold] = true;
+        fbq('trackCustom', 'ScrollDepth', {percent: threshold});
+      }
+    });
+  });
+})();
+
+// Time on site tracking - fires at 30s, 60s, 120s
+(function(){
+  var milestones = [30,60,120];
+  var firedTime = {};
+  setInterval(function(){
+    var elapsed = Math.floor((Date.now() - performance.timing.navigationStart) / 1000);
+    milestones.forEach(function(sec){
+      if(elapsed >= sec && !firedTime[sec]){
+        firedTime[sec] = true;
+        fbq('trackCustom', 'TimeOnSite', {seconds: sec});
+      }
+    });
+  }, 5000);
+})();
+
+// Track menu section views
+(function(){
+  var sections = document.querySelectorAll('.menu-section');
+  var firedSections = {};
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting && !firedSections[entry.target.id]){
+        firedSections[entry.target.id] = true;
+        fbq('trackCustom', 'MenuSectionView', {section: entry.target.id});
+      }
+    });
+  }, {threshold: 0.3});
+  sections.forEach(function(s){ observer.observe(s); });
+})();
+</script>
+
 </body>
 </html>
