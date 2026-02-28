@@ -27,7 +27,7 @@ body>*{position:relative;z-index:1;}
 
 /* TOP NAV */
 .top-nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:.6rem 1.2rem;transition:background .4s;}
-.top-nav.scrolled{background:rgba(7,24,38,.97);backdrop-filter:blur(16px);border-bottom:1px solid rgba(201,162,77,.1);box-shadow:0 4px 20px rgba(0,0,0,.4);}
+.top-nav.scrolled{background:#071826;backdrop-filter:none;border-bottom:1px solid rgba(201,162,77,.1);box-shadow:0 4px 20px rgba(0,0,0,.4);}
 .nav-logo{height:48px;width:auto;}
 .nav-right{display:flex;align-items:center;gap:.5rem;}
 .lang-toggle{display:flex;border:1px solid rgba(244,180,0,.4);overflow:hidden;border-radius:8px;}
@@ -60,8 +60,7 @@ body>*{position:relative;z-index:1;}
 .lead-bar button:hover{transform:translateY(-1px);box-shadow:0 4px 15px rgba(0,0,0,.4);}
 
 /* MENU NAV */
-.menu-nav{position:fixed;top:56px;left:0;right:0;z-index:150;background:#0A1F33;border-top:2px solid rgba(201,162,77,.15);border-bottom:1px solid rgba(201,162,77,.06);display:flex;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;box-shadow:0 6px 20px rgba(0,0,0,.5);transform:translateY(-120%);transition:transform .3s ease;}
-.menu-nav.visible{transform:translateY(0);}
+.menu-nav{position:fixed;top:-60px;left:0;right:0;z-index:150;background:#071826;border-bottom:1px solid rgba(201,162,77,.08);display:flex;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;box-shadow:0 4px 15px rgba(0,0,0,.4);transition:top .3s ease;}
 .menu-nav::-webkit-scrollbar{display:none;}
 .menu-nav a{flex-shrink:0;padding:.85rem 1rem;color:var(--muted);text-decoration:none;font-family:"Bebas Neue",sans-serif;font-size:.85rem;letter-spacing:.08em;border-bottom:2px solid transparent;transition:all .3s;white-space:nowrap;}
 .menu-nav a:hover,.menu-nav a.active{color:var(--gold);border-bottom-color:var(--gold);text-shadow:0 0 12px rgba(244,180,0,.3);}
@@ -861,13 +860,16 @@ var savedLang = localStorage.getItem("anastacio_lang");
 if (savedLang) setLang(savedLang);
 
 window.addEventListener("scroll", function() {
-  document.getElementById("top-nav").classList.toggle("scrolled", window.scrollY > 60);
+  var topNav = document.getElementById("top-nav");
+  topNav.classList.toggle("scrolled", window.scrollY > 60);
   var menuNav = document.querySelector(".menu-nav");
   var lightZone = document.querySelector(".light-zone");
   if(menuNav && lightZone){
+    var navHeight = topNav.offsetHeight;
     var zoneTop = lightZone.getBoundingClientRect().top;
     var zoneBottom = lightZone.getBoundingClientRect().bottom;
-    menuNav.classList.toggle("visible", zoneTop <= 56 && zoneBottom > 100);
+    var inMenu = zoneTop <= navHeight && zoneBottom > navHeight + 60;
+    menuNav.style.top = inMenu ? navHeight + "px" : "-60px";
   }
 });
 
