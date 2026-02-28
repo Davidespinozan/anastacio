@@ -1019,6 +1019,192 @@ src="https://www.facebook.com/tr?id=1564615811495027&ev=PageView&noscript=1"
 
 <div class="toast" id="toast"></div>
 
+<!-- MAIN SCRIPT MOVED TO END -->
+
+<button class="scroll-top" id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">↑</button>
+<!-- CART BUBBLE -->
+<div class="cart-bubble" id="cart-bubble" onclick="openCart()">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+  <span id="cart-label">Ver orden</span>
+  <div class="cart-count" id="cart-count">0</div>
+</div>
+
+<!-- CART DRAWER -->
+<div class="cart-overlay" id="cart-overlay" onclick="handleOverlayClick(event)">
+  <div class="cart-drawer">
+    <div class="cart-header">
+      <h3 id="cart-title">🛒 Tu Orden</h3>
+      <button class="cart-close" onclick="closeCart()">×</button>
+    </div>
+
+    <!-- 2️⃣ ORDER TYPE: 3 MODES -->
+    <div class="order-type">
+      <button class="order-type-btn" id="btn-domicilio" onclick="setOrderType('domicilio')">
+        <span class="ot-icon">🛵</span>
+        <span class="es">Domicilio</span><span class="en">Delivery</span>
+      </button>
+      <button class="order-type-btn" id="btn-recoger" onclick="setOrderType('recoger')">
+        <span class="ot-icon">🥡</span>
+        <span class="es">Recoger</span><span class="en">Pickup</span>
+      </button>
+      <button class="order-type-btn active" id="btn-mesa" onclick="setOrderType('mesa')">
+        <span class="ot-icon">🍽</span>
+        <span class="es">Mesa</span><span class="en">Table</span>
+      </button>
+    </div>
+
+    <!-- 2️⃣ DYNAMIC FORM: DOMICILIO -->
+    <div class="dynamic-form" id="form-domicilio">
+      <label><span class="es">DATOS PARA ENVÍO</span><span class="en">DELIVERY INFO</span></label>
+      <input type="text" id="del-name" placeholder="Tu nombre / Your name">
+      <input type="tel" id="del-phone" placeholder="WhatsApp">
+      <input type="text" id="del-address" placeholder="Dirección completa / Full address">
+    </div>
+
+    <!-- 2️⃣ DYNAMIC FORM: RECOGER -->
+    <div class="dynamic-form" id="form-recoger">
+      <label><span class="es">DATOS PARA RECOGER</span><span class="en">PICKUP INFO</span></label>
+      <input type="text" id="pick-name" placeholder="Tu nombre / Your name">
+      <input type="tel" id="pick-phone" placeholder="WhatsApp">
+      <input type="time" id="pick-time" placeholder="Hora de recogida / Pickup time">
+    </div>
+
+    <!-- 2️⃣ DYNAMIC FORM: MESA -->
+    <div class="dynamic-form show" id="form-mesa">
+      <label><span class="es">¿EN QUÉ MESA ESTÁS?</span><span class="en">WHAT TABLE ARE YOU AT?</span></label>
+      <input type="text" id="mesa-num" placeholder="Número de mesa / Table number" inputmode="numeric">
+    </div>
+
+    <div class="cart-body" id="cart-body">
+      <div class="cart-empty" id="cart-empty">
+        <span class="es">Tu orden está vacía.<br>Agrega platillos desde el menú.</span>
+        <span class="en">Your order is empty.<br>Add items from the menu.</span>
+      </div>
+    </div>
+
+    <div class="cart-footer">
+      <!-- 5️⃣ CHECKOUT SUMMARY -->
+      <div class="checkout-summary" id="checkout-summary">
+        <div class="checkout-mode-badge mesa" id="checkout-badge">
+          <span class="es">🍽 Pedido en mesa</span><span class="en">🍽 Table order</span>
+        </div>
+        <div class="checkout-detail" id="checkout-detail"></div>
+      </div>
+      <div class="cart-total">
+        <span class="es">TOTAL</span><span class="en">TOTAL</span>
+        <span id="cart-total-amount">$0</span>
+      </div>
+      <button class="checkout-btn mesa-mode" id="checkout-btn" onclick="sendToWhatsApp()" disabled>
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <span id="checkout-btn-text"><span class="es">Enviar pedido a cocina</span><span class="en">Send order to kitchen</span></span>
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="if(event.target===this)closeLightbox()">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" onclick="closeLightbox()">×</button>
+    <img id="lightbox-img" src="" alt="">
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+  </div>
+</div>
+<script>
+var imgCache = {};
+function preloadImg(id) {
+  var base = 'https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_1400/';
+  if (!imgCache[id]) { var img = new Image(); img.src = base + id + '.png'; imgCache[id] = img; }
+}
+function openLightbox(id, alt) {
+  var base = 'https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_1400/';
+  var src = (typeof id === 'string' && id.startsWith('http')) ? id : base + id + '.png';
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox-caption').textContent = alt || '';
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeLightbox(); });
+document.querySelectorAll('.card-img-wrap img').forEach(function(img){
+  img.style.cursor = 'zoom-in';
+  img.addEventListener('click', function(){ openLightbox(this.src.replace('w_800','w_1400'), this.alt); });
+});
+window.addEventListener('load', function(){
+  ['mezcalita_nhmtez','tachosour_uohegy','ballenita_eqqo6e','batanga_yqy8yi','ositorojo1_ip3u9c','picaflor_ioxxld'].forEach(preloadImg);
+  document.querySelectorAll('.card-img-wrap img').forEach(function(img){ var hi = new Image(); hi.src = img.src.replace('w_800','w_1400'); });
+});
+
+// ── PRELOAD LIGHTBOX IMAGES ──
+window.addEventListener('load', function() {
+  var toPreload = [
+    'https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/tacodonarturo_is8qhw.png',
+    'https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/tacotiojuanito_pbeszs.png',
+    'https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/tacofresa_edtqjl.png',
+    'https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/aguachiledepapada_tmgv5g.png',
+    'https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/camaronesroca_x0bgfj.png',
+    'https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/mezcalita_nhmtez.png',
+    'https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/tachosour_uohegy.png',
+    'https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/ballenita_eqqo6e.png',
+    'https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/batanga_yqy8yi.png',
+  ];
+  toPreload.forEach(function(src) {
+    var img = new Image();
+    img.src = src;
+  });
+});
+</script>
+<!-- Meta Pixel Advanced Tracking -->
+<script>
+// Scroll depth tracking - fires at 25%, 50%, 75%, 100%
+(function(){
+  var fired = {};
+  window.addEventListener('scroll', function(){
+    var scrollPct = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+    [25,50,75,100].forEach(function(threshold){
+      if(scrollPct >= threshold && !fired[threshold]){
+        fired[threshold] = true;
+        fbq('trackCustom', 'ScrollDepth', {percent: threshold});
+      }
+    });
+  });
+})();
+
+// Time on site tracking - fires at 30s, 60s, 120s
+(function(){
+  var milestones = [30,60,120];
+  var firedTime = {};
+  setInterval(function(){
+    var elapsed = Math.floor((Date.now() - performance.timing.navigationStart) / 1000);
+    milestones.forEach(function(sec){
+      if(elapsed >= sec && !firedTime[sec]){
+        firedTime[sec] = true;
+        fbq('trackCustom', 'TimeOnSite', {seconds: sec});
+      }
+    });
+  }, 5000);
+})();
+
+// Track menu section views
+(function(){
+  var sections = document.querySelectorAll('.menu-section');
+  var firedSections = {};
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting && !firedSections[entry.target.id]){
+        firedSections[entry.target.id] = true;
+        fbq('trackCustom', 'MenuSectionView', {section: entry.target.id});
+      }
+    });
+  }, {threshold: 0.3});
+  sections.forEach(function(s){ observer.observe(s); });
+})();
+</script>
+
 <script>
 // Safety: ensure fbq exists
 if(typeof fbq==='undefined'){window.fbq=function(){};}
@@ -1467,190 +1653,5 @@ window.addEventListener("scroll", function() {
   document.getElementById("scroll-top").classList.toggle("visible", window.scrollY > 400);
 });
 </script>
-
-<button class="scroll-top" id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">↑</button>
-<!-- CART BUBBLE -->
-<div class="cart-bubble" id="cart-bubble" onclick="openCart()">
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-  <span id="cart-label">Ver orden</span>
-  <div class="cart-count" id="cart-count">0</div>
-</div>
-
-<!-- CART DRAWER -->
-<div class="cart-overlay" id="cart-overlay" onclick="handleOverlayClick(event)">
-  <div class="cart-drawer">
-    <div class="cart-header">
-      <h3 id="cart-title">🛒 Tu Orden</h3>
-      <button class="cart-close" onclick="closeCart()">×</button>
-    </div>
-
-    <!-- 2️⃣ ORDER TYPE: 3 MODES -->
-    <div class="order-type">
-      <button class="order-type-btn" id="btn-domicilio" onclick="setOrderType('domicilio')">
-        <span class="ot-icon">🛵</span>
-        <span class="es">Domicilio</span><span class="en">Delivery</span>
-      </button>
-      <button class="order-type-btn" id="btn-recoger" onclick="setOrderType('recoger')">
-        <span class="ot-icon">🥡</span>
-        <span class="es">Recoger</span><span class="en">Pickup</span>
-      </button>
-      <button class="order-type-btn active" id="btn-mesa" onclick="setOrderType('mesa')">
-        <span class="ot-icon">🍽</span>
-        <span class="es">Mesa</span><span class="en">Table</span>
-      </button>
-    </div>
-
-    <!-- 2️⃣ DYNAMIC FORM: DOMICILIO -->
-    <div class="dynamic-form" id="form-domicilio">
-      <label><span class="es">DATOS PARA ENVÍO</span><span class="en">DELIVERY INFO</span></label>
-      <input type="text" id="del-name" placeholder="Tu nombre / Your name">
-      <input type="tel" id="del-phone" placeholder="WhatsApp">
-      <input type="text" id="del-address" placeholder="Dirección completa / Full address">
-    </div>
-
-    <!-- 2️⃣ DYNAMIC FORM: RECOGER -->
-    <div class="dynamic-form" id="form-recoger">
-      <label><span class="es">DATOS PARA RECOGER</span><span class="en">PICKUP INFO</span></label>
-      <input type="text" id="pick-name" placeholder="Tu nombre / Your name">
-      <input type="tel" id="pick-phone" placeholder="WhatsApp">
-      <input type="time" id="pick-time" placeholder="Hora de recogida / Pickup time">
-    </div>
-
-    <!-- 2️⃣ DYNAMIC FORM: MESA -->
-    <div class="dynamic-form show" id="form-mesa">
-      <label><span class="es">¿EN QUÉ MESA ESTÁS?</span><span class="en">WHAT TABLE ARE YOU AT?</span></label>
-      <input type="text" id="mesa-num" placeholder="Número de mesa / Table number" inputmode="numeric">
-    </div>
-
-    <div class="cart-body" id="cart-body">
-      <div class="cart-empty" id="cart-empty">
-        <span class="es">Tu orden está vacía.<br>Agrega platillos desde el menú.</span>
-        <span class="en">Your order is empty.<br>Add items from the menu.</span>
-      </div>
-    </div>
-
-    <div class="cart-footer">
-      <!-- 5️⃣ CHECKOUT SUMMARY -->
-      <div class="checkout-summary" id="checkout-summary">
-        <div class="checkout-mode-badge mesa" id="checkout-badge">
-          <span class="es">🍽 Pedido en mesa</span><span class="en">🍽 Table order</span>
-        </div>
-        <div class="checkout-detail" id="checkout-detail"></div>
-      </div>
-      <div class="cart-total">
-        <span class="es">TOTAL</span><span class="en">TOTAL</span>
-        <span id="cart-total-amount">$0</span>
-      </div>
-      <button class="checkout-btn mesa-mode" id="checkout-btn" onclick="sendToWhatsApp()" disabled>
-        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        <span id="checkout-btn-text"><span class="es">Enviar pedido a cocina</span><span class="en">Send order to kitchen</span></span>
-      </button>
-    </div>
-  </div>
-</div>
-
-
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox" onclick="if(event.target===this)closeLightbox()">
-  <div class="lightbox-inner">
-    <button class="lightbox-close" onclick="closeLightbox()">×</button>
-    <img id="lightbox-img" src="" alt="">
-    <div class="lightbox-caption" id="lightbox-caption"></div>
-  </div>
-</div>
-<script>
-var imgCache = {};
-function preloadImg(id) {
-  var base = 'https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_1400/';
-  if (!imgCache[id]) { var img = new Image(); img.src = base + id + '.png'; imgCache[id] = img; }
-}
-function openLightbox(id, alt) {
-  var base = 'https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_1400/';
-  var src = (typeof id === 'string' && id.startsWith('http')) ? id : base + id + '.png';
-  document.getElementById('lightbox-img').src = src;
-  document.getElementById('lightbox-caption').textContent = alt || '';
-  document.getElementById('lightbox').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeLightbox() {
-  document.getElementById('lightbox').classList.remove('open');
-  document.body.style.overflow = '';
-}
-document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeLightbox(); });
-document.querySelectorAll('.card-img-wrap img').forEach(function(img){
-  img.style.cursor = 'zoom-in';
-  img.addEventListener('click', function(){ openLightbox(this.src.replace('w_800','w_1400'), this.alt); });
-});
-window.addEventListener('load', function(){
-  ['mezcalita_nhmtez','tachosour_uohegy','ballenita_eqqo6e','batanga_yqy8yi','ositorojo1_ip3u9c','picaflor_ioxxld'].forEach(preloadImg);
-  document.querySelectorAll('.card-img-wrap img').forEach(function(img){ var hi = new Image(); hi.src = img.src.replace('w_800','w_1400'); });
-});
-
-// ── PRELOAD LIGHTBOX IMAGES ──
-window.addEventListener('load', function() {
-  var toPreload = [
-    'https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/tacodonarturo_is8qhw.png',
-    'https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/tacotiojuanito_pbeszs.png',
-    'https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/tacofresa_edtqjl.png',
-    'https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/aguachiledepapada_tmgv5g.png',
-    'https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/camaronesroca_x0bgfj.png',
-    'https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/mezcalita_nhmtez.png',
-    'https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/tachosour_uohegy.png',
-    'https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/ballenita_eqqo6e.png',
-    'https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/batanga_yqy8yi.png',
-  ];
-  toPreload.forEach(function(src) {
-    var img = new Image();
-    img.src = src;
-  });
-});
-</script>
-<!-- Meta Pixel Advanced Tracking -->
-<script>
-// Scroll depth tracking - fires at 25%, 50%, 75%, 100%
-(function(){
-  var fired = {};
-  window.addEventListener('scroll', function(){
-    var scrollPct = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
-    [25,50,75,100].forEach(function(threshold){
-      if(scrollPct >= threshold && !fired[threshold]){
-        fired[threshold] = true;
-        fbq('trackCustom', 'ScrollDepth', {percent: threshold});
-      }
-    });
-  });
-})();
-
-// Time on site tracking - fires at 30s, 60s, 120s
-(function(){
-  var milestones = [30,60,120];
-  var firedTime = {};
-  setInterval(function(){
-    var elapsed = Math.floor((Date.now() - performance.timing.navigationStart) / 1000);
-    milestones.forEach(function(sec){
-      if(elapsed >= sec && !firedTime[sec]){
-        firedTime[sec] = true;
-        fbq('trackCustom', 'TimeOnSite', {seconds: sec});
-      }
-    });
-  }, 5000);
-})();
-
-// Track menu section views
-(function(){
-  var sections = document.querySelectorAll('.menu-section');
-  var firedSections = {};
-  var observer = new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if(entry.isIntersecting && !firedSections[entry.target.id]){
-        firedSections[entry.target.id] = true;
-        fbq('trackCustom', 'MenuSectionView', {section: entry.target.id});
-      }
-    });
-  }, {threshold: 0.3});
-  sections.forEach(function(s){ observer.observe(s); });
-})();
-</script>
-
 </body>
 </html>
