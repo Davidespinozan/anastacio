@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
-:root{--dark:#071826;--dark3:#0A1F33;--grad1:#071826;--grad2:#0A1F33;--accent:#C9A24D;--accent2:#E6C76B;--cta:#F26B1D;--gold:#C9A24D;--gold-l:#E6C76B;--text:#F5F5F5;--beige:#F3E6D6;--red:#C9442B;--textDim:rgba(245,245,245,.78);--muted:#A0B4C0;--cream:#F5F5F5;--sand:#F3E6D6;--orange:#F26B1D;--warm:rgba(242,107,29,.06);--shimmer:linear-gradient(110deg,rgba(244,180,0,0) 0%,rgba(244,180,0,.08) 45%,rgba(244,180,0,.15) 50%,rgba(244,180,0,.08) 55%,rgba(244,180,0,0) 100%);}
+:root{--dark:#071826;--dark2:#071826;--dark3:#0A1F33;--grad1:#071826;--grad2:#0A1F33;--accent:#C9A24D;--accent2:#E6C76B;--cta:#F26B1D;--gold:#C9A24D;--gold-l:#E6C76B;--text:#F5F5F5;--beige:#F3E6D6;--red:#C9442B;--textDim:rgba(245,245,245,.78);--muted:#A0B4C0;--cream:#F5F5F5;--sand:#F3E6D6;--orange:#F26B1D;--warm:rgba(242,107,29,.06);--shimmer:linear-gradient(110deg,rgba(244,180,0,0) 0%,rgba(244,180,0,.08) 45%,rgba(244,180,0,.15) 50%,rgba(244,180,0,.08) 55%,rgba(244,180,0,0) 100%);}
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;overflow-x:hidden;}
 body{background:linear-gradient(180deg,#071826 0%,#0A1F33 100%);color:var(--text);font-family:"Montserrat",sans-serif;overflow-x:hidden;position:relative;min-height:100vh;width:100%;max-width:100vw;}
@@ -100,9 +100,6 @@ body>*{position:relative;z-index:1;}
 .dynamic-form label{display:block;font-size:.7rem;letter-spacing:.1em;color:var(--gold);font-family:"Bebas Neue",sans-serif;margin-bottom:.3rem;}
 .dynamic-form input{width:100%;padding:.6rem .85rem;background:transparent;border:1px solid rgba(244,180,0,.18);color:var(--cream);font-family:"Montserrat",sans-serif;font-size:.9rem;margin-bottom:.5rem;outline:none;border-radius:10px;}
 .dynamic-form input:focus{border-color:var(--gold);box-shadow:0 0 10px rgba(244,180,0,.12);}
-.dynamic-form select{width:100%;padding:.6rem .85rem;background:var(--dark);border:1px solid rgba(244,180,0,.18);color:var(--cream);font-family:"Montserrat",sans-serif;font-size:.9rem;margin-bottom:.5rem;outline:none;border-radius:10px;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C9A24D' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .85rem center;cursor:pointer;}
-.dynamic-form select:focus{border-color:var(--gold);box-shadow:0 0 10px rgba(244,180,0,.12);}
-.dynamic-form select option{background:var(--dark);color:var(--cream);}
 
 /* ═══ 5️⃣ CHECKOUT SUMMARY ═══ */
 .checkout-summary{padding:.6rem 0;margin-bottom:.5rem;}
@@ -117,6 +114,7 @@ body>*{position:relative;z-index:1;}
 .checkout-btn.recoger-mode:hover{background:var(--gold-l);box-shadow:0 4px 25px rgba(201,162,77,.45);}
 
 /* ═══ ORDER TYPE 3 MODES ═══ */
+.order-type-btn{display:flex;flex-direction:column;align-items:center;gap:.15rem;min-height:48px;justify-content:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
 .order-type-btn .ot-icon{font-size:1rem;line-height:1;}
 
 .scroll-hint{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);color:rgba(245,245,245,.35);font-size:.6rem;letter-spacing:.45em;text-transform:uppercase;animation:bounce 2s infinite;z-index:2;white-space:nowrap;}
@@ -183,10 +181,6 @@ body>*{position:relative;z-index:1;}
 .drink-row{display:flex;align-items:center;padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:.88rem;gap:.4rem;}
 .drink-row span:first-child{flex:1;color:var(--cream);}
 .drink-row span:last-child{color:var(--gold);font-family:"Bebas Neue";font-size:.98rem;padding-left:.5rem;flex-shrink:0;}
-.drink-btns{display:flex;gap:.5rem;flex-shrink:0;align-items:center;}
-.drink-btns button{all:unset;cursor:pointer;padding:.4rem 0;width:5.5rem;background:var(--cta);color:white;font-family:"Bebas Neue",sans-serif;font-size:.82rem;letter-spacing:.06em;border-radius:8px;white-space:nowrap;text-align:center;transition:all .2s;box-shadow:0 2px 10px rgba(242,107,29,.3);-webkit-tap-highlight-color:transparent;display:inline-flex;align-items:center;justify-content:center;gap:.25rem;}
-.drink-btns button:hover{background:#E05A10;transform:scale(1.05);}
-@media(max-width:768px){.drink-btns button{font-size:.75rem;width:5rem;padding:.35rem 0;}}
 
 /* PHOTO STRIP */
 .photo-strip{display:flex;gap:8px;height:160px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:0 4px;}
@@ -264,11 +258,11 @@ body>*{position:relative;z-index:1;}
   touch-action:manipulation;
   min-width:46px;
   box-shadow:0 4px 15px rgba(242,107,29,.3);
-  position:relative;
 }
 .add-btn::before {
   content:""; position:absolute; top:-4px; left:-4px; right:-4px; bottom:-4px;
 }
+.add-btn { position:relative; }
 .add-btn:hover { background:#E05A10; transform:scale(1.12); box-shadow:0 6px 25px rgba(242,107,29,.5); }
 .add-btn:active { transform:scale(.95); }
 .item-row { display:flex; align-items:center; justify-content:space-between; gap:.6rem; }
@@ -330,9 +324,6 @@ body>*{position:relative;z-index:1;}
   background:transparent; color:var(--muted);
   font-family:"Bebas Neue",sans-serif; font-size:.78rem;
   letter-spacing:.06em; cursor:pointer; transition:all .25s; border-radius:10px;
-  display:flex; flex-direction:column; align-items:center; gap:.15rem;
-  min-height:48px; justify-content:center;
-  -webkit-tap-highlight-color:transparent; touch-action:manipulation;
 }
 .order-type-btn.active { background:var(--gold); color:var(--dark); border-color:var(--gold); box-shadow:0 2px 12px rgba(244,180,0,.3); }
 
@@ -508,22 +499,13 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 fbq('init', '1564615811495027');
 fbq('track', 'PageView');
 </script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1564615811495027&ev=PageView&noscript=1"
+/></noscript>
 <!-- End Meta Pixel Code -->
-
-<!-- Supabase SDK -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.3/dist/umd/supabase.min.js"></script>
-<script>
-var SUPABASE_URL = 'https://hqrwjlrqzslkwhwqcmnh.supabase.co';
-var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhxcndqbHJxenNsa3dod3FjbW5oIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIzMDYwMTcsImV4cCI6MjA4Nzg4MjAxN30.tNyO18E7lDNEYH28P_DGxSg9pf1yYysVpJuMwboJOoU';
-var supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-</script>
 
 </head>
 <body data-lang="es">
-<!-- Meta Pixel noscript fallback -->
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1564615811495027&ev=PageView&noscript=1"
-alt=""></noscript>
 
 <header class="top-nav" id="top-nav">
   <img src="https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto/logooficial_cys7ex.webp" alt="Anastacio" class="nav-logo">
@@ -548,15 +530,15 @@ alt=""></noscript>
     <!-- 1️⃣ HERO DECISION BUTTONS -->
     <div class="hero-order-modes">
       <button class="hero-mode-btn" data-mode="domicilio" onclick="selectOrderMode('domicilio')">
-        <span class="mode-icon" aria-hidden="true">🛵</span>
+        <span class="mode-icon">🛵</span>
         <span class="es">Pedir a Domicilio</span><span class="en">Delivery</span>
       </button>
       <button class="hero-mode-btn" data-mode="recoger" onclick="selectOrderMode('recoger')">
-        <span class="mode-icon" aria-hidden="true">🥡</span>
+        <span class="mode-icon">🥡</span>
         <span class="es">Recoger en Local</span><span class="en">Pickup</span>
       </button>
       <button class="hero-mode-btn" data-mode="mesa" onclick="selectOrderMode('mesa')">
-        <span class="mode-icon" aria-hidden="true">🍽</span>
+        <span class="mode-icon">🍽</span>
         <span class="es">Pedir desde Mesa</span><span class="en">Order at Table</span>
       </button>
     </div>
@@ -630,7 +612,6 @@ alt=""></noscript>
   </form>
 </div>
 
-<main>
 <div class="light-zone">
 
 <!-- 3️⃣ LO MÁS PEDIDO HOY -->
@@ -648,32 +629,32 @@ alt=""></noscript>
     <div class="trending-card">
       <div class="card-img-wrap"><img src="https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/cevichemitotero2_zor22h.png" alt="Aguachile Mitotero" loading="lazy"></div>
       <div class="card-body"><div class="card-name"><span class="es">Aguachile Mitotero</span><span class="en">Mitotero Aguachile</span></div>
-      <div class="card-footer"><div class="card-price">$230</div><button class="add-btn" style="width:36px;height:36px;min-width:36px;font-size:1.2rem;border-radius:10px;" aria-label="Agregar Aguachile Mitotero" onclick="addToCart('Aguachile Mitotero',230)">+</button></div></div>
+      <div class="card-footer"><div class="card-price">$230</div><button class="add-btn" style="width:36px;height:36px;min-width:36px;font-size:1.2rem;border-radius:10px;" onclick="addToCart('Aguachile Mitotero',230)">+</button></div></div>
     </div>
     <div class="trending-card">
       <div class="card-img-wrap"><img src="https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/tunamatcha_wezskg.png" alt="Tuna Macha" loading="lazy"></div>
       <div class="card-body"><div class="card-name">Tuna Macha</div>
-      <div class="card-footer"><div class="card-price">$160</div><button class="add-btn" style="width:36px;height:36px;min-width:36px;font-size:1.2rem;border-radius:10px;" aria-label="Agregar Tuna Macha" onclick="addToCart('Tuna Macha',160)">+</button></div></div>
+      <div class="card-footer"><div class="card-price">$160</div><button class="add-btn" style="width:36px;height:36px;min-width:36px;font-size:1.2rem;border-radius:10px;" onclick="addToCart('Tuna Macha',160)">+</button></div></div>
     </div>
     <div class="trending-card">
       <div class="card-img-wrap"><img src="https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/aguachiledepican%CC%83a_yxtzyn.png" alt="Aguachile de Picaña" loading="lazy"></div>
       <div class="card-body"><div class="card-name"><span class="es">Aguachile de Picaña</span><span class="en">Picanha Aguachile</span></div>
-      <div class="card-footer"><div class="card-price">$245</div><button class="add-btn" style="width:36px;height:36px;min-width:36px;font-size:1.2rem;border-radius:10px;" aria-label="Agregar Aguachile de Picaña" onclick="addToCart('Aguachile de Picaña',245)">+</button></div></div>
+      <div class="card-footer"><div class="card-price">$245</div><button class="add-btn" style="width:36px;height:36px;min-width:36px;font-size:1.2rem;border-radius:10px;" onclick="addToCart('Aguachile de Picaña',245)">+</button></div></div>
     </div>
     <div class="trending-card">
       <div class="card-img-wrap"><img src="https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/tacotiojuanito_pbeszs.png" alt="Tío Juanito" loading="lazy"></div>
       <div class="card-body"><div class="card-name">Tío Juanito</div>
-      <div class="card-footer"><div class="card-price">$145</div><button class="add-btn" style="width:36px;height:36px;min-width:36px;font-size:1.2rem;border-radius:10px;" aria-label="Agregar Tío Juanito" onclick="addToCart('Tío Juanito',145)">+</button></div></div>
+      <div class="card-footer"><div class="card-price">$145</div><button class="add-btn" style="width:36px;height:36px;min-width:36px;font-size:1.2rem;border-radius:10px;" onclick="addToCart('Tío Juanito',145)">+</button></div></div>
     </div>
     <div class="trending-card">
       <div class="card-img-wrap"><img src="https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/diva_s1vcn0.png" alt="Diva" loading="lazy"></div>
       <div class="card-body"><div class="card-name">Diva</div>
-      <div class="card-footer"><div class="card-price">$185</div><button class="add-btn" style="width:36px;height:36px;min-width:36px;font-size:1.2rem;border-radius:10px;" aria-label="Agregar Diva" onclick="addToCart('Diva',185)">+</button></div></div>
+      <div class="card-footer"><div class="card-price">$185</div><button class="add-btn" style="width:36px;height:36px;min-width:36px;font-size:1.2rem;border-radius:10px;" onclick="addToCart('Diva',185)">+</button></div></div>
     </div>
     <div class="trending-card">
       <div class="card-img-wrap"><img src="https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/camaronesroca_x0bgfj.png" alt="Camarones Roca" loading="lazy"></div>
       <div class="card-body"><div class="card-name"><span class="es">Camarones Roca</span><span class="en">Rock Shrimp</span></div>
-      <div class="card-footer"><div class="card-price">$175</div><button class="add-btn" style="width:36px;height:36px;min-width:36px;font-size:1.2rem;border-radius:10px;" aria-label="Agregar Camarones Roca" onclick="addToCart('Camarones Roca',175)">+</button></div></div>
+      <div class="card-footer"><div class="card-price">$175</div><button class="add-btn" style="width:36px;height:36px;min-width:36px;font-size:1.2rem;border-radius:10px;" onclick="addToCart('Camarones Roca',175)">+</button></div></div>
     </div>
   </div>
 </div>
@@ -704,7 +685,7 @@ alt=""></noscript>
         <div class="card-name"><span class="es">Aguachile Mitotero</span><span class="en">Mitotero Aguachile</span></div>
         <div class="card-desc es">Camarón crudo y cocido, atún, pulpo, pepino, cebolla morada, salsa negra y chiltepín.</div>
         <div class="card-desc en">Raw and cooked shrimp, tuna, octopus, cucumber, red onion, black sauce and chiltepín.</div>
-        <div class="card-footer"><div class="card-price">$230</div><button class="add-btn" aria-label="Agregar Aguachile Mitotero" onclick="addToCart('Aguachile Mitotero',230)">+</button></div>
+        <div class="card-footer"><div class="card-price">$230</div><button class="add-btn" onclick="addToCart('Aguachile Mitotero',230)">+</button></div>
       </div>
     </div>
   </div>
@@ -715,7 +696,7 @@ alt=""></noscript>
         <div class="item-desc es">Camarón crudo y cocido, pepino, cebolla morada, salsa negra, aguacate y chiltepín.</div>
         <div class="item-desc en">Raw and cooked shrimp, cucumber, red onion, house black sauce, avocado and chiltepín.</div>
       </div>
-      <div class="item-row"><div class="item-price">$230</div><button class="add-btn" aria-label="Agregar Aguachile Mixto" onclick="addToCart('Aguachile Mixto',230)">+</button></div>
+      <div class="item-row"><div class="item-price">$230</div><button class="add-btn" onclick="addToCart('Aguachile Mixto',230)">+</button></div>
     </div>
     <div class="menu-item">
       <div class="item-info">
@@ -723,7 +704,7 @@ alt=""></noscript>
         <div class="item-desc es">Camarón cocido, cubos de atún, mango, cebolla morada, pepino, aguacate y salsa negra.</div>
         <div class="item-desc en">Cooked shrimp, tuna, mango, red onion, cucumber, avocado and house black sauce.</div>
       </div>
-      <div class="item-row"><div class="item-price">$230</div><button class="add-btn" aria-label="Agregar Aguachile Tropical" onclick="addToCart('Aguachile Tropical',230)">+</button></div>
+      <div class="item-row"><div class="item-price">$230</div><button class="add-btn" onclick="addToCart('Aguachile Tropical',230)">+</button></div>
     </div>
     
   </div>
@@ -744,7 +725,7 @@ alt=""></noscript>
         <div class="card-name">Vaquita</div>
         <div class="card-desc es">Taco de New York en tortilla de harina con costra de queso, pico de gallo, cebolla asada, guacamole y tatemada.</div>
         <div class="card-desc en">New York taco on flour tortilla with cheese crust, pico de gallo, grilled onion, guacamole and tatemada sauce.</div>
-        <div class="card-footer"><div class="card-price">$150</div><button class="add-btn" aria-label="Agregar Vaquita" onclick="addToCart('Vaquita',150)">+</button></div>
+        <div class="card-footer"><div class="card-price">$150</div><button class="add-btn" onclick="addToCart('Vaquita',150)">+</button></div>
       </div>
     </div>
     <div class="featured-card">
@@ -753,16 +734,16 @@ alt=""></noscript>
         <div class="card-name">Volvancito</div>
         <div class="card-desc es">Tortilla dorada con cama de aguacate, carne prime de res gratinada con queso chihuahua.</div>
         <div class="card-desc en">Fried tortilla with avocado base, prime beef au gratin with chihuahua cheese.</div>
-        <div class="card-footer"><div class="card-price">$150</div><button class="add-btn" aria-label="Agregar Volvancito" onclick="addToCart('Volvancito',150)">+</button></div>
+        <div class="card-footer"><div class="card-price">$150</div><button class="add-btn" onclick="addToCart('Volvancito',150)">+</button></div>
       </div>
     </div>
-    <div class="featured-card"><div class="card-img-wrap"><img src="https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/tacodonarturo_is8qhw.png" alt="Don Arturo" loading="lazy"></div><div class="card-body"><div class="card-name">Don Arturo</div><div class="card-desc es">Taco dorado de camarón con paté de camarón artesanal coronado con camarón en aguachile.</div><div class="card-desc en">Crispy shrimp taco with house shrimp pate, topped with aguachile shrimp.</div><div class="card-footer"><div class="card-price">$145</div><button class="add-btn" aria-label="Agregar Don Arturo" onclick="addToCart('Don Arturo',145)">+</button></div></div></div>
-    <div class="featured-card"><div class="card-img-wrap"><img src="https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/tacotiojuanito_pbeszs.png" alt="Tío Juanito" loading="lazy"></div><div class="card-body"><div class="card-name">Tío Juanito</div><div class="card-desc es">Tortilla de harina sonorense encostrada con camarones endiablados de Tijuana.</div><div class="card-desc en">Sonoran flour tortilla with Tijuana-style spicy shrimp.</div><div class="card-footer"><div class="card-price">$145</div><button class="add-btn" aria-label="Agregar Tío Juanito" onclick="addToCart('Tío Juanito',145)">+</button></div></div></div>
-    <div class="featured-card"><div class="card-img-wrap"><img src="https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/tacofresa_edtqjl.png" alt="Fresa" loading="lazy"></div><div class="card-body"><div class="card-name">Fresa</div><div class="card-desc es">Tortilla de harina, chile húngaro, relleno de marlín, queso, envuelto en tocino, pico de gallo y aguacate.</div><div class="card-desc en">Flour tortilla, Hungarian chile, marlin filling, cheese, wrapped in bacon, pico de gallo and avocado.</div><div class="card-footer"><div class="card-price">$155</div><button class="add-btn" aria-label="Agregar Fresa" onclick="addToCart('Fresa',155)">+</button></div></div></div>
+    <div class="featured-card"><div class="card-img-wrap"><img src="https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/tacodonarturo_is8qhw.png" alt="Don Arturo" loading="lazy"></div><div class="card-body"><div class="card-name">Don Arturo</div><div class="card-desc es">Taco dorado de camarón con paté de camarón artesanal coronado con camarón en aguachile.</div><div class="card-desc en">Crispy shrimp taco with house shrimp pate, topped with aguachile shrimp.</div><div class="card-footer"><div class="card-price">$145</div><button class="add-btn" onclick="addToCart('Don Arturo',145)">+</button></div></div></div>
+    <div class="featured-card"><div class="card-img-wrap"><img src="https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/tacotiojuanito_pbeszs.png" alt="Tío Juanito" loading="lazy"></div><div class="card-body"><div class="card-name">Tío Juanito</div><div class="card-desc es">Tortilla de harina sonorense encostrada con camarones endiablados de Tijuana.</div><div class="card-desc en">Sonoran flour tortilla with Tijuana-style spicy shrimp.</div><div class="card-footer"><div class="card-price">$145</div><button class="add-btn" onclick="addToCart('Tío Juanito',145)">+</button></div></div></div>
+    <div class="featured-card"><div class="card-img-wrap"><img src="https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/tacofresa_edtqjl.png" alt="Fresa" loading="lazy"></div><div class="card-body"><div class="card-name">Fresa</div><div class="card-desc es">Tortilla de harina, chile húngaro, relleno de marlín, queso, envuelto en tocino, pico de gallo y aguacate.</div><div class="card-desc en">Flour tortilla, Hungarian chile, marlin filling, cheese, wrapped in bacon, pico de gallo and avocado.</div><div class="card-footer"><div class="card-price">$155</div><button class="add-btn" onclick="addToCart('Fresa',155)">+</button></div></div></div>
   </div>
 <div class="menu-list">
-    <div class="menu-item"><div class="item-info"><div class="item-name">Quesito</div><div class="item-desc es">Costra de queso con camarón roca, salsa spicy y aguacate.</div><div class="item-desc en">Cheese crust with rock shrimp, spicy sauce and avocado.</div></div><div class="item-row"><div class="item-price">$135</div><button class="add-btn" aria-label="Agregar Quesito" onclick="addToCart('Quesito',135)">+</button></div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name">Crujiente</div><div class="item-desc es">Tortilla de maíz, camarones crujientes, ensalada de col, pico de gallo y aguacate.</div><div class="item-desc en">Corn tortilla, crispy shrimp, coleslaw, pico de gallo and avocado.</div></div><div class="item-row"><div class="item-price">$65</div><button class="add-btn" aria-label="Agregar Crujiente" onclick="addToCart('Crujiente',65)">+</button></div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name">Quesito</div><div class="item-desc es">Costra de queso con camarón roca, salsa spicy y aguacate.</div><div class="item-desc en">Cheese crust with rock shrimp, spicy sauce and avocado.</div></div><div class="item-row"><div class="item-price">$135</div><button class="add-btn" onclick="addToCart('Quesito',135)">+</button></div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name">Crujiente</div><div class="item-desc es">Tortilla de maíz, camarones crujientes, ensalada de col, pico de gallo y aguacate.</div><div class="item-desc en">Corn tortilla, crispy shrimp, coleslaw, pico de gallo and avocado.</div></div><div class="item-row"><div class="item-price">$65</div><button class="add-btn" onclick="addToCart('Crujiente',65)">+</button></div></div>
     
   </div>
 </section>
@@ -782,7 +763,7 @@ alt=""></noscript>
         <div class="card-name">Tataki</div>
         <div class="card-desc es">Sashimi de atún, spicy, aguacate y crocante de poro con salsa ponzu.</div>
         <div class="card-desc en">Tuna sashimi, spicy, avocado and crispy leek with ponzu sauce.</div>
-        <div class="card-footer"><div class="card-price">$175</div><button class="add-btn" aria-label="Agregar Tataki" onclick="addToCart('Tataki',175)">+</button></div>
+        <div class="card-footer"><div class="card-price">$175</div><button class="add-btn" onclick="addToCart('Tataki',175)">+</button></div>
       </div>
     </div>
     <div class="featured-card">
@@ -791,7 +772,7 @@ alt=""></noscript>
         <div class="card-name">Diva</div>
         <div class="card-desc es">Paté de camarón artesanal coronado con camarones roca, ponzu y serranito.</div>
         <div class="card-desc en">House shrimp pate topped with rock shrimp, ponzu and serrano.</div>
-        <div class="card-footer"><div class="card-price">$185</div><button class="add-btn" aria-label="Agregar Diva" onclick="addToCart('Diva',185)">+</button></div>
+        <div class="card-footer"><div class="card-price">$185</div><button class="add-btn" onclick="addToCart('Diva',185)">+</button></div>
       </div>
     </div>
     <div class="featured-card">
@@ -800,7 +781,7 @@ alt=""></noscript>
         <div class="card-name">Tuna Macha</div>
         <div class="card-desc es">Cubos de atún, aguacate, cebolla morada con baño de salsa macha.</div>
         <div class="card-desc en">Tuna cubes, avocado and red onion with macha sauce.</div>
-        <div class="card-footer"><div class="card-price">$160</div><button class="add-btn" aria-label="Agregar Tuna Macha" onclick="addToCart('Tuna Macha',160)">+</button></div>
+        <div class="card-footer"><div class="card-price">$160</div><button class="add-btn" onclick="addToCart('Tuna Macha',160)">+</button></div>
       </div>
     </div>
     <div class="featured-card">
@@ -809,16 +790,16 @@ alt=""></noscript>
         <div class="card-name">Doña Julia</div>
         <div class="card-desc es">Camarón en aguachile, camarón cocido y pulpo en salsa de chiltepín molcajeteada.</div>
         <div class="card-desc en">Aguachile and cooked shrimp with octopus in molcajete chiltepín sauce.</div>
-        <div class="card-footer"><div class="card-price">$175</div><button class="add-btn" aria-label="Agregar Doña Julia" onclick="addToCart('Doña Julia',175)">+</button></div>
+        <div class="card-footer"><div class="card-price">$175</div><button class="add-btn" onclick="addToCart('Doña Julia',175)">+</button></div>
       </div>
     </div>
   </div>
 <div class="menu-list">
     
-    <div class="menu-item"><div class="item-info"><div class="item-name">Chava</div><div class="item-desc es">Camarón en aguachile bañado en salsa tatemada de serrano con cebolla morada.</div><div class="item-desc en">Aguachile shrimp with roasted serrano sauce and red onion.</div></div><div class="item-row"><div class="item-price">$160</div><button class="add-btn" aria-label="Agregar Chava" onclick="addToCart('Chava',160)">+</button></div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name">Chava</div><div class="item-desc es">Camarón en aguachile bañado en salsa tatemada de serrano con cebolla morada.</div><div class="item-desc en">Aguachile shrimp with roasted serrano sauce and red onion.</div></div><div class="item-row"><div class="item-price">$160</div><button class="add-btn" onclick="addToCart('Chava',160)">+</button></div></div>
     
     
-    <div class="menu-item"><div class="item-info"><div class="item-name"><span class="es">La de Ceviche</span><span class="en">The Ceviche</span></div><div class="item-desc es">Ceviche tradicional de pescado, cebolla, tomate, pepino y aguacate.</div><div class="item-desc en">Traditional fish ceviche, onion, tomato, cucumber and avocado.</div></div><div class="item-row"><div class="item-price">$160</div><button class="add-btn" aria-label="Agregar La de Ceviche" onclick="addToCart('La de Ceviche',160)">+</button></div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name"><span class="es">La de Ceviche</span><span class="en">The Ceviche</span></div><div class="item-desc es">Ceviche tradicional de pescado, cebolla, tomate, pepino y aguacate.</div><div class="item-desc en">Traditional fish ceviche, onion, tomato, cucumber and avocado.</div></div><div class="item-row"><div class="item-price">$160</div><button class="add-btn" onclick="addToCart('La de Ceviche',160)">+</button></div></div>
   </div>
 </section>
 <div class="gold-sep"></div>
@@ -837,8 +818,8 @@ alt=""></noscript>
         <div class="card-name"><span class="es">Las Costillonas <span class="badge">Must Try</span></span><span class="en">The Ribs <span class="badge">Must Try</span></span></div>
         <div class="card-desc es">Costillas de cerdo en barril peruano con salsa de piña y habanero. Media orden $490</div>
         <div class="card-desc en">Pork ribs in a Peruvian barrel with pineapple-habanero sauce. Half order $490</div>
-        <div class="card-footer"><div class="card-price"><span class="es">½ Orden</span><span class="en">½ Order</span> $490</div><button class="add-btn" aria-label="Agregar Las Costillonas ½" onclick="addToCart('Las Costillonas ½',490)">+</button></div>
-        <div class="card-footer" style="margin-top:.2rem;"><div class="card-price"><span class="es">Orden</span><span class="en">Full</span> $890</div><button class="add-btn" aria-label="Agregar Las Costillonas" onclick="addToCart('Las Costillonas',890)">+</button></div>
+        <div class="card-footer"><div class="card-price"><span class="es">½ Orden</span><span class="en">½ Order</span> $490</div><button class="add-btn" onclick="addToCart('Las Costillonas ½',490)">+</button></div>
+        <div class="card-footer" style="margin-top:.2rem;"><div class="card-price"><span class="es">Orden</span><span class="en">Full</span> $890</div><button class="add-btn" onclick="addToCart('Las Costillonas',890)">+</button></div>
       </div>
     </div>
     <div class="featured-card">
@@ -847,18 +828,18 @@ alt=""></noscript>
         <div class="card-name"><span class="es">Aguachile de Picaña</span><span class="en">Picanha Aguachile</span></div>
         <div class="card-desc es">Picaña de res con cebolla, pepino y salsas de la casa coronado con chiltepín.</div>
         <div class="card-desc en">Beef picanha with onion, cucumber and house sauces, topped with chiltepín.</div>
-        <div class="card-footer"><div class="card-price">$245</div><button class="add-btn" aria-label="Agregar Aguachile de Picaña" onclick="addToCart('Aguachile de Picaña',245)">+</button></div>
+        <div class="card-footer"><div class="card-price">$245</div><button class="add-btn" onclick="addToCart('Aguachile de Picaña',245)">+</button></div>
       </div>
     </div>
   </div>
   <div class="featured-grid" style="margin-top:1rem;">
-    <div class="featured-card"><div class="card-img-wrap"><img src="https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/aguachiledepapada_tmgv5g.png" alt="Aguachile de Papada" loading="lazy"></div><div class="card-body"><div class="card-name"><span class="es">Aguachile de Papada</span><span class="en">Pork Jowl Aguachile</span></div><div class="card-desc es">Papada de cerdo con cebolla, pepino y salsas de la casa coronado con chiltepín.</div><div class="card-desc en">Pork jowl with onion, cucumber and house sauces topped with chiltepín.</div><div class="card-footer"><div class="card-price">$220</div><button class="add-btn" aria-label="Agregar Aguachile de Papada" onclick="addToCart('Aguachile de Papada',220)">+</button></div></div></div>
-    <div class="featured-card"><div class="card-img-wrap"><img src="https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/camaronesroca_x0bgfj.png" alt="Camarones Roca" loading="lazy"></div><div class="card-body"><div class="card-name"><span class="es">Camarones Roca</span><span class="en">Rock Shrimp</span></div><div class="card-desc es">Camarones roca en spicy con ajonjolí tostado y ponzú.</div><div class="card-desc en">Rock shrimp in spicy sauce with toasted sesame and ponzu.</div><div class="card-footer"><div class="card-price">$175</div><button class="add-btn" aria-label="Agregar Camarones Roca" onclick="addToCart('Camarones Roca',175)">+</button></div></div></div>
+    <div class="featured-card"><div class="card-img-wrap"><img src="https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/aguachiledepapada_tmgv5g.png" alt="Aguachile de Papada" loading="lazy"></div><div class="card-body"><div class="card-name"><span class="es">Aguachile de Papada</span><span class="en">Pork Jowl Aguachile</span></div><div class="card-desc es">Papada de cerdo con cebolla, pepino y salsas de la casa coronado con chiltepín.</div><div class="card-desc en">Pork jowl with onion, cucumber and house sauces topped with chiltepín.</div><div class="card-footer"><div class="card-price">$220</div><button class="add-btn" onclick="addToCart('Aguachile de Papada',220)">+</button></div></div></div>
+    <div class="featured-card"><div class="card-img-wrap"><img src="https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/camaronesroca_x0bgfj.png" alt="Camarones Roca" loading="lazy"></div><div class="card-body"><div class="card-name"><span class="es">Camarones Roca</span><span class="en">Rock Shrimp</span></div><div class="card-desc es">Camarones roca en spicy con ajonjolí tostado y ponzú.</div><div class="card-desc en">Rock shrimp in spicy sauce with toasted sesame and ponzu.</div><div class="card-footer"><div class="card-price">$175</div><button class="add-btn" onclick="addToCart('Camarones Roca',175)">+</button></div></div></div>
   </div>
 <div class="menu-list">
-    <div class="menu-item"><div class="item-info"><div class="item-name">Ceviche Speak</div><div class="item-desc es">Atún, jícama, mango, aguacate y fritura de poro bañado con salsas negras.</div><div class="item-desc en">Tuna, jicama, mango, avocado and crispy leek with black sauces.</div></div><div class="item-row"><div class="item-price">$210</div><button class="add-btn" aria-label="Agregar Ceviche Speak" onclick="addToCart('Ceviche Speak',210)">+</button></div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name"><span class="es">Ceviche Mixto</span><span class="en">Mixed Ceviche</span></div><div class="item-desc es">Camarón crudo y cocido con cebolla, pepino, tomate, aguacate y caldito preparado.</div><div class="item-desc en">Raw and cooked shrimp, onion, cucumber, tomato and avocado in house broth.</div></div><div class="item-row"><div class="item-price">$190</div><button class="add-btn" aria-label="Agregar Ceviche Mixto" onclick="addToCart('Ceviche Mixto',190)">+</button></div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name"><span class="es">Alitas / Boneless</span><span class="en">Wings / Boneless</span></div><div class="item-desc es">Bañados en salsa especial de la casa, papas gajo al cajun y aderezo ranch.</div><div class="item-desc en">Tossed in house special sauce, cajun wedge fries and ranch dressing.</div></div><div class="item-row"><div class="item-price">$190</div><button class="add-btn" aria-label="Agregar Alitas / Boneless" onclick="addToCart('Alitas / Boneless',190)">+</button></div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name">Ceviche Speak</div><div class="item-desc es">Atún, jícama, mango, aguacate y fritura de poro bañado con salsas negras.</div><div class="item-desc en">Tuna, jicama, mango, avocado and crispy leek with black sauces.</div></div><div class="item-row"><div class="item-price">$210</div><button class="add-btn" onclick="addToCart('Ceviche Speak',210)">+</button></div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name"><span class="es">Ceviche Mixto</span><span class="en">Mixed Ceviche</span></div><div class="item-desc es">Camarón crudo y cocido con cebolla, pepino, tomate, aguacate y caldito preparado.</div><div class="item-desc en">Raw and cooked shrimp, onion, cucumber, tomato and avocado in house broth.</div></div><div class="item-row"><div class="item-price">$190</div><button class="add-btn" onclick="addToCart('Ceviche Mixto',190)">+</button></div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name"><span class="es">Alitas / Boneless</span><span class="en">Wings / Boneless</span></div><div class="item-desc es">Bañados en salsa especial de la casa, papas gajo al cajun y aderezo ranch.</div><div class="item-desc en">Tossed in house special sauce, cajun wedge fries and ranch dressing.</div></div><div class="item-row"><div class="item-price">$190</div><button class="add-btn" onclick="addToCart('Alitas / Boneless',190)">+</button></div></div>
   </div>
 </section>
 <div class="gold-sep"></div>
@@ -877,21 +858,21 @@ alt=""></noscript>
         <div class="card-name"><span class="es">Papas Salseadas</span><span class="en">Sauced Chips</span></div>
         <div class="card-desc es">Papas onduladas crujientes bañadas con la salsa especial de la casa.</div>
         <div class="card-desc en">Crispy wavy chips tossed in our special house sauce.</div>
-        <div class="card-footer"><div class="card-price">$70</div><button class="add-btn" aria-label="Agregar Papas Salseadas" onclick="addToCart('Papas Salseadas',70)">+</button></div>
+        <div class="card-footer"><div class="card-price">$70</div><button class="add-btn" onclick="addToCart('Papas Salseadas',70)">+</button></div>
       </div>
     </div>
   </div>
 <div class="menu-list">
-    <div class="menu-item"><div class="item-info"><div class="item-name"><span class="es">Orden de Papas</span><span class="en">French Fries</span></div><div class="item-desc es">Papas fritas tipo gajo al cajun con aderezo ranch.</div><div class="item-desc en">Cajun wedge fries with ranch dressing.</div></div><div class="item-row"><div class="item-price">$80</div><button class="add-btn" aria-label="Agregar Orden de Papas" onclick="addToCart('Orden de Papas',80)">+</button></div></div>
-    <div class="menu-item"><div class="item-info"><div class="item-name"><span class="es">Cacahuatadas</span><span class="en">Spiced Peanuts</span></div><div class="item-desc es">Cacahuates japoneses con salsa de la casa y clamato.</div><div class="item-desc en">Japanese peanuts with house sauce and clamato.</div></div><div class="item-row"><div class="item-price">$60</div><button class="add-btn" aria-label="Agregar Cacahuatadas" onclick="addToCart('Cacahuatadas',60)">+</button></div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name"><span class="es">Orden de Papas</span><span class="en">French Fries</span></div><div class="item-desc es">Papas fritas tipo gajo al cajun con aderezo ranch.</div><div class="item-desc en">Cajun wedge fries with ranch dressing.</div></div><div class="item-row"><div class="item-price">$80</div><button class="add-btn" onclick="addToCart('Orden de Papas',80)">+</button></div></div>
+    <div class="menu-item"><div class="item-info"><div class="item-name"><span class="es">Cacahuatadas</span><span class="en">Spiced Peanuts</span></div><div class="item-desc es">Cacahuates japoneses con salsa de la casa y clamato.</div><div class="item-desc en">Japanese peanuts with house sauce and clamato.</div></div><div class="item-row"><div class="item-price">$60</div><button class="add-btn" onclick="addToCart('Cacahuatadas',60)">+</button></div></div>
   </div>
   <div style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(244,180,0,.08);">
     <div class="section-label" style="text-align:center;margin-bottom:1rem;"><span class="es">Para los peques</span><span class="en">Kids menu</span></div>
     <div class="menu-list">
-      <div class="menu-item"><div class="item-info"><div class="item-name"><span class="es">Pollitos</span><span class="en">Chicken Strips</span></div><div class="item-desc es">Orden de pollos con papas.</div><div class="item-desc en">Chicken strips with fries.</div></div><div class="item-row"><div class="item-price">$120</div><button class="add-btn" aria-label="Agregar Pollitos" onclick="addToCart('Pollitos',120)">+</button></div></div>
-      <div class="menu-item"><div class="item-info"><div class="item-name"><span class="es">Hamburguesa</span><span class="en">Burger</span></div><div class="item-desc es">Hamburguesa de res con queso americano, tocino y papas.</div><div class="item-desc en">Beef burger with american cheese, bacon and fries.</div></div><div class="item-row"><div class="item-price">$140</div><button class="add-btn" aria-label="Agregar Hamburguesa" onclick="addToCart('Hamburguesa',140)">+</button></div></div>
-      <div class="menu-item"><div class="item-info"><div class="item-name">Mini Pizza</div><div class="item-desc es">Pizza de peperoni.</div><div class="item-desc en">Pepperoni pizza.</div></div><div class="item-row"><div class="item-price">$120</div><button class="add-btn" aria-label="Agregar Mini Pizza" onclick="addToCart('Mini Pizza',120)">+</button></div></div>
-      <div class="menu-item"><div class="item-info"><div class="item-name"><span class="es">Postre del Día</span><span class="en">Dessert of the Day</span></div></div><div class="item-row"><div class="item-price">$120</div><button class="add-btn" aria-label="Agregar Postre del Día" onclick="addToCart('Postre del Día',120)">+</button></div></div>
+      <div class="menu-item"><div class="item-info"><div class="item-name"><span class="es">Pollitos</span><span class="en">Chicken Strips</span></div><div class="item-desc es">Orden de pollos con papas.</div><div class="item-desc en">Chicken strips with fries.</div></div><div class="item-row"><div class="item-price">$120</div><button class="add-btn" onclick="addToCart('Pollitos',120)">+</button></div></div>
+      <div class="menu-item"><div class="item-info"><div class="item-name"><span class="es">Hamburguesa</span><span class="en">Burger</span></div><div class="item-desc es">Hamburguesa de res con queso americano, tocino y papas.</div><div class="item-desc en">Beef burger with american cheese, bacon and fries.</div></div><div class="item-row"><div class="item-price">$140</div><button class="add-btn" onclick="addToCart('Hamburguesa',140)">+</button></div></div>
+      <div class="menu-item"><div class="item-info"><div class="item-name">Mini Pizza</div><div class="item-desc es">Pizza de peperoni.</div><div class="item-desc en">Pepperoni pizza.</div></div><div class="item-row"><div class="item-price">$120</div><button class="add-btn" onclick="addToCart('Mini Pizza',120)">+</button></div></div>
+      <div class="menu-item"><div class="item-info"><div class="item-name"><span class="es">Postre del Día</span><span class="en">Dessert of the Day</span></div></div><div class="item-row"><div class="item-price">$120</div><button class="add-btn" onclick="addToCart('Postre del Día',120)">+</button></div></div>
     </div>
   </div>
 </section>
@@ -913,7 +894,7 @@ alt=""></noscript>
       <div class="card-body">
         <div class="card-name">Osito Rojo</div>
         <div class="card-desc"><span class="es">Gin, Limón, Frutos Rojos y Menta</span><span class="en">Gin, Lime, Red Berries and Mint</span></div>
-        <div class="card-footer"><div class="card-price">$140</div><button class="add-btn" aria-label="Agregar Osito Rojo" onclick="addToCart('Osito Rojo',140)">+</button></div>
+        <div class="card-footer"><div class="card-price">$140</div><button class="add-btn" onclick="addToCart('Osito Rojo',140)">+</button></div>
       </div>
     </div>
     <div class="featured-card">
@@ -921,19 +902,19 @@ alt=""></noscript>
       <div class="card-body">
         <div class="card-name">Pica Flor 🔥</div>
         <div class="card-desc"><span class="es">Whiskey, Limón, Maracuyá, Tónica y VITAFER</span><span class="en">Whiskey, Lime, Passion Fruit, Tonic and VITAFER</span></div>
-        <div class="card-footer"><div class="card-price">$195</div><button class="add-btn" aria-label="Agregar Pica Flor" onclick="addToCart('Pica Flor',195)">+</button></div>
+        <div class="card-footer"><div class="card-price">$195</div><button class="add-btn" onclick="addToCart('Pica Flor',195)">+</button></div>
       </div>
     </div>
-    <div class="featured-card"><div class="card-img-wrap"><img src="https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/mezcalita_nhmtez.png" alt="Mezcalita" loading="lazy"></div><div class="card-body"><div class="card-name">Mezcalita</div><div class="card-desc"><span class="es">Mezcal, Tamarindo, Naranja, Limón, IPA</span><span class="en">Mezcal, Tamarind, Orange, Lime, IPA</span></div><div class="card-footer"><div class="card-price">$150</div><button class="add-btn" aria-label="Agregar Mezcalita" onclick="addToCart('Mezcalita',150)">+</button></div></div></div>
-    <div class="featured-card"><div class="card-img-wrap"><img src="https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/tachosour_uohegy.png" alt="Tacho Sour" loading="lazy"></div><div class="card-body"><div class="card-name">Tacho Sour</div><div class="card-desc"><span class="es">Whiskey, Limón y Tamarindo</span><span class="en">Whiskey, Lime and Tamarind</span></div><div class="card-footer"><div class="card-price">$160</div><button class="add-btn" aria-label="Agregar Tacho Sour" onclick="addToCart('Tacho Sour',160)">+</button></div></div></div>
-    <div class="featured-card"><div class="card-img-wrap"><img src="https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/ballenita_eqqo6e.png" alt="Ballenita" loading="lazy"></div><div class="card-body"><div class="card-name">Ballenita</div><div class="card-desc"><span class="es">Tequila, Piña, Toronja y Tónica</span><span class="en">Tequila, Pineapple, Grapefruit and Tonic</span></div><div class="card-footer"><div class="card-price">$150</div><button class="add-btn" aria-label="Agregar Ballenita" onclick="addToCart('Ballenita',150)">+</button></div></div></div>
-    <div class="featured-card"><div class="card-img-wrap"><img src="https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/batanga_yqy8yi.png" alt="Batanga Anastacio" loading="lazy"></div><div class="card-body"><div class="card-name">Batanga Anastacio</div><div class="card-desc"><span class="es">Tequila, Limón, Tamarindo y Coca</span><span class="en">Tequila, Lime, Tamarind and Coke</span></div><div class="card-footer"><div class="card-price">$150</div><button class="add-btn" aria-label="Agregar Batanga Anastacio" onclick="addToCart('Batanga Anastacio',150)">+</button></div></div></div>
+    <div class="featured-card"><div class="card-img-wrap"><img src="https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/mezcalita_nhmtez.png" alt="Mezcalita" loading="lazy"></div><div class="card-body"><div class="card-name">Mezcalita</div><div class="card-desc"><span class="es">Mezcal, Tamarindo, Naranja, Limón, IPA</span><span class="en">Mezcal, Tamarind, Orange, Lime, IPA</span></div><div class="card-footer"><div class="card-price">$150</div><button class="add-btn" onclick="addToCart('Mezcalita',150)">+</button></div></div></div>
+    <div class="featured-card"><div class="card-img-wrap"><img src="https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/tachosour_uohegy.png" alt="Tacho Sour" loading="lazy"></div><div class="card-body"><div class="card-name">Tacho Sour</div><div class="card-desc"><span class="es">Whiskey, Limón y Tamarindo</span><span class="en">Whiskey, Lime and Tamarind</span></div><div class="card-footer"><div class="card-price">$160</div><button class="add-btn" onclick="addToCart('Tacho Sour',160)">+</button></div></div></div>
+    <div class="featured-card"><div class="card-img-wrap"><img src="https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/ballenita_eqqo6e.png" alt="Ballenita" loading="lazy"></div><div class="card-body"><div class="card-name">Ballenita</div><div class="card-desc"><span class="es">Tequila, Piña, Toronja y Tónica</span><span class="en">Tequila, Pineapple, Grapefruit and Tonic</span></div><div class="card-footer"><div class="card-price">$150</div><button class="add-btn" onclick="addToCart('Ballenita',150)">+</button></div></div></div>
+    <div class="featured-card"><div class="card-img-wrap"><img src="https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/batanga_yqy8yi.png" alt="Batanga Anastacio" loading="lazy"></div><div class="card-body"><div class="card-name">Batanga Anastacio</div><div class="card-desc"><span class="es">Tequila, Limón, Tamarindo y Coca</span><span class="en">Tequila, Lime, Tamarind and Coke</span></div><div class="card-footer"><div class="card-price">$150</div><button class="add-btn" onclick="addToCart('Batanga Anastacio',150)">+</button></div></div></div>
   </div>
 
   <div class="cocktails-grid">
-    <div class="cocktail-card"><div class="cc-name">Carajo</div><div class="cc-desc"><span class="es">Espresso con Mezcal, Tamarindo y Miel de Agave</span><span class="en">Espresso with Mezcal, Tamarind and Agave Honey</span></div><div class="card-footer" style="margin-top:.5rem"><div class="cc-price">$170</div><button class="add-btn" aria-label="Agregar Carajo" onclick="addToCart('Carajo',170)">+</button></div></div>
-    <div class="cocktail-card"><div class="cc-name">Carajillo Difunto</div><div class="cc-desc"><span class="es">Espresso con Whiskey y Sirope de Stout</span><span class="en">Espresso with Whiskey and Stout Syrup</span></div><div class="card-footer" style="margin-top:.5rem"><div class="cc-price">$170</div><button class="add-btn" aria-label="Agregar Carajillo Difunto" onclick="addToCart('Carajillo Difunto',170)">+</button></div></div>
-    <div class="cocktail-card"><div class="cc-name">Macktail</div><div class="cc-desc"><span class="es">Toronja, Frutos Rojos, Tamarindo, Naranja, Piña y Maracuyá</span><span class="en">Grapefruit, Red Berries, Tamarind, Orange, Pineapple and Passion Fruit</span></div><div class="card-footer" style="margin-top:.5rem"><div class="cc-price">$120</div><button class="add-btn" aria-label="Agregar Macktail" onclick="addToCart('Macktail',120)">+</button></div></div>
+    <div class="cocktail-card"><div class="cc-name">Carajo</div><div class="cc-desc"><span class="es">Espresso con Mezcal, Tamarindo y Miel de Agave</span><span class="en">Espresso with Mezcal, Tamarind and Agave Honey</span></div><div class="card-footer" style="margin-top:.5rem"><div class="cc-price">$170</div><button class="add-btn" onclick="addToCart('Carajo',170)">+</button></div></div>
+    <div class="cocktail-card"><div class="cc-name">Carajillo Difunto</div><div class="cc-desc"><span class="es">Espresso con Whiskey y Sirope de Stout</span><span class="en">Espresso with Whiskey and Stout Syrup</span></div><div class="card-footer" style="margin-top:.5rem"><div class="cc-price">$170</div><button class="add-btn" onclick="addToCart('Carajillo Difunto',170)">+</button></div></div>
+    <div class="cocktail-card"><div class="cc-name">Macktail</div><div class="cc-desc"><span class="es">Toronja, Frutos Rojos, Tamarindo, Naranja, Piña y Maracuyá</span><span class="en">Grapefruit, Red Berries, Tamarind, Orange, Pineapple and Passion Fruit</span></div><div class="card-footer" style="margin-top:.5rem"><div class="cc-price">$120</div><button class="add-btn" onclick="addToCart('Macktail',120)">+</button></div></div>
   </div>
 </section>
 
@@ -944,28 +925,28 @@ alt=""></noscript>
     <div class="section-line"></div>
   </div>
   <div class="drinks-cols">
-    <div class="drink-row"><span>Pacífico Clara</span><span>$50</span><button class="add-btn" aria-label="Agregar Pacífico Clara" onclick="addToCart('Pacífico Clara',50)">+</button></div>
-    <div class="drink-row"><span>Pacífico Suave</span><span>$50</span><button class="add-btn" aria-label="Agregar Pacífico Suave" onclick="addToCart('Pacífico Suave',50)">+</button></div>
-    <div class="drink-row"><span>Corona</span><span>$45</span><button class="add-btn" aria-label="Agregar Corona" onclick="addToCart('Corona',45)">+</button></div>
-    <div class="drink-row"><span>Modelo Especial</span><span>$55</span><button class="add-btn" aria-label="Agregar Modelo Especial" onclick="addToCart('Modelo Especial',55)">+</button></div>
-    <div class="drink-row"><span>Modelo Negra</span><span>$55</span><button class="add-btn" aria-label="Agregar Modelo Negra" onclick="addToCart('Modelo Negra',55)">+</button></div>
-    <div class="drink-row"><span>Caguama Familiar</span><span>$120</span><button class="add-btn" aria-label="Agregar Caguama Familiar" onclick="addToCart('Caguama Familiar',120)">+</button></div>
-    <div class="drink-row"><span>Bichola Lata</span><span>$70</span><button class="add-btn" aria-label="Agregar Bichola Lata" onclick="addToCart('Bichola Lata',70)">+</button></div>
-    <div class="drink-row"><span>Bichola Barril</span><span>$80</span><button class="add-btn" aria-label="Agregar Bichola Barril" onclick="addToCart('Bichola Barril',80)">+</button></div>
-    <div class="drink-row"><span>Misil Bichola</span><span>$200</span><button class="add-btn" aria-label="Agregar Misil Bichola" onclick="addToCart('Misil Bichola',200)">+</button></div>
-    <div class="drink-row"><span><span class="es">Artesanal</span><span class="en">Craft Beer</span> · IPA/Lager/Porter/Blonde</span><span>$90</span><button class="add-btn" aria-label="Agregar Artesanal · IPA/Lager/Porter/Blonde" onclick="addToCart('Artesanal · IPA/Lager/Porter/Blonde',90)">+</button></div>
+    <div class="drink-row"><span>Pacífico Clara</span><span>$50</span><button class="add-btn" onclick="addToCart('Pacífico Clara',50)">+</button></div>
+    <div class="drink-row"><span>Pacífico Suave</span><span>$50</span><button class="add-btn" onclick="addToCart('Pacífico Suave',50)">+</button></div>
+    <div class="drink-row"><span>Corona</span><span>$45</span><button class="add-btn" onclick="addToCart('Corona',45)">+</button></div>
+    <div class="drink-row"><span>Modelo Especial</span><span>$55</span><button class="add-btn" onclick="addToCart('Modelo Especial',55)">+</button></div>
+    <div class="drink-row"><span>Modelo Negra</span><span>$55</span><button class="add-btn" onclick="addToCart('Modelo Negra',55)">+</button></div>
+    <div class="drink-row"><span>Caguama Familiar</span><span>$120</span><button class="add-btn" onclick="addToCart('Caguama Familiar',120)">+</button></div>
+    <div class="drink-row"><span>Bichola Lata</span><span>$70</span><button class="add-btn" onclick="addToCart('Bichola Lata',70)">+</button></div>
+    <div class="drink-row"><span>Bichola Barril</span><span>$80</span><button class="add-btn" onclick="addToCart('Bichola Barril',80)">+</button></div>
+    <div class="drink-row"><span>Misil Bichola</span><span>$200</span><button class="add-btn" onclick="addToCart('Misil Bichola',200)">+</button></div>
+    <div class="drink-row"><span><span class="es">Artesanal</span><span class="en">Craft Beer</span> · IPA/Lager/Porter/Blonde</span><span>$90</span><button class="add-btn" onclick="addToCart('Artesanal · IPA/Lager/Porter/Blonde',90)">+</button></div>
   </div>
   <div style="margin-top:2rem;">
     <div class="section-label" style="text-align:center;margin-bottom:1rem;"><span class="es">Las Bebidas</span><span class="en">Non-Alcoholic</span></div>
     <div class="drinks-cols">
-      <div class="drink-row"><span>Limonada</span><span>$65</span><button class="add-btn" aria-label="Agregar Limonada" onclick="addToCart('Limonada',65)">+</button></div>
-      <div class="drink-row"><span><span class="es">Agua Natural</span><span class="en">Water</span></span><span>$45</span><button class="add-btn" aria-label="Agregar Agua Natural" onclick="addToCart('Agua Natural',45)">+</button></div>
-      <div class="drink-row"><span>Topochico</span><span>$50</span><button class="add-btn" aria-label="Agregar Topochico" onclick="addToCart('Topochico',50)">+</button></div>
-      <div class="drink-row"><span>Perrier</span><span>$75</span><button class="add-btn" aria-label="Agregar Perrier" onclick="addToCart('Perrier',75)">+</button></div>
-      <div class="drink-row"><span><span class="es">Refresco</span><span class="en">Soda</span></span><span>$45</span><button class="add-btn" aria-label="Agregar Refresco" onclick="addToCart('Refresco',45)">+</button></div>
-      <div class="drink-row"><span>Rusa</span><span>$65</span><button class="add-btn" aria-label="Agregar Rusa" onclick="addToCart('Rusa',65)">+</button></div>
-      <div class="drink-row"><span>Vaso Escarchado</span><span>$40</span><button class="add-btn" aria-label="Agregar Vaso Escarchado" onclick="addToCart('Vaso Escarchado',40)">+</button></div>
-      <div class="drink-row"><span>Vaso Michelado</span><span>$70</span><button class="add-btn" aria-label="Agregar Vaso Michelado" onclick="addToCart('Vaso Michelado',70)">+</button></div>
+      <div class="drink-row"><span>Limonada</span><span>$65</span><button class="add-btn" onclick="addToCart('Limonada',65)">+</button></div>
+      <div class="drink-row"><span><span class="es">Agua Natural</span><span class="en">Water</span></span><span>$45</span><button class="add-btn" onclick="addToCart('Agua Natural',45)">+</button></div>
+      <div class="drink-row"><span>Topochico</span><span>$50</span><button class="add-btn" onclick="addToCart('Topochico',50)">+</button></div>
+      <div class="drink-row"><span>Perrier</span><span>$75</span><button class="add-btn" onclick="addToCart('Perrier',75)">+</button></div>
+      <div class="drink-row"><span><span class="es">Refresco</span><span class="en">Soda</span></span><span>$45</span><button class="add-btn" onclick="addToCart('Refresco',45)">+</button></div>
+      <div class="drink-row"><span>Rusa</span><span>$65</span><button class="add-btn" onclick="addToCart('Rusa',65)">+</button></div>
+      <div class="drink-row"><span>Vaso Escarchado</span><span>$40</span><button class="add-btn" onclick="addToCart('Vaso Escarchado',40)">+</button></div>
+      <div class="drink-row"><span>Vaso Michelado</span><span>$70</span><button class="add-btn" onclick="addToCart('Vaso Michelado',70)">+</button></div>
     </div>
   </div>
 </section>
@@ -980,21 +961,20 @@ alt=""></noscript>
   </div>
   <p style="text-align:center;color:var(--muted);font-size:.75rem;margin-bottom:1.2rem;letter-spacing:.12em;"><span class="es">COPA 2oz · BOTELLA CON 4 SERVICIOS</span><span class="en">2oz POUR · BOTTLE WITH 4 SERVINGS</span></p>
   <div class="drinks-cols">
-    <div class="drink-row"><span>Bacardi</span><div class="drink-btns"><button aria-label="Agregar Bacardi copa" onclick="addToCart('Bacardi (copa)',70)">🥃 $70</button><button aria-label="Agregar Bacardi botella" onclick="addToCart('Bacardi (botella)',700)">🍾 $700</button></div></div>
-    <div class="drink-row"><span>Havana 7 <span class="es">años</span><span class="en">yr</span></span><div class="drink-btns"><button aria-label="Agregar Havana 7 años copa" onclick="addToCart('Havana 7 años (copa)',90)">🥃 $90</button><button aria-label="Agregar Havana 7 años botella" onclick="addToCart('Havana 7 años (botella)',960)">🍾 $960</button></div></div>
-    <div class="drink-row"><span>Cascahuin</span><div class="drink-btns"><button aria-label="Agregar Cascahuin copa" onclick="addToCart('Cascahuin (copa)',110)">🥃 $110</button><button aria-label="Agregar Cascahuin botella" onclick="addToCart('Cascahuin (botella)',1100)">🍾 $1,100</button></div></div>
-    <div class="drink-row"><span>Herradura</span><div class="drink-btns"><button aria-label="Agregar Herradura copa" onclick="addToCart('Herradura (copa)',130)">🥃 $130</button><button aria-label="Agregar Herradura botella" onclick="addToCart('Herradura (botella)',1400)">🍾 $1,400</button></div></div>
-    <div class="drink-row"><span>Maestro Dobel</span><div class="drink-btns"><button aria-label="Agregar Maestro Dobel copa" onclick="addToCart('Maestro Dobel (copa)',150)">🥃 $150</button><button aria-label="Agregar Maestro Dobel botella" onclick="addToCart('Maestro Dobel (botella)',1700)">🍾 $1,700</button></div></div>
-    <div class="drink-row"><span>400 Conejos</span><div class="drink-btns"><button aria-label="Agregar 400 Conejos copa" onclick="addToCart('400 Conejos (copa)',110)">🥃 $110</button><button aria-label="Agregar 400 Conejos botella" onclick="addToCart('400 Conejos (botella)',1100)">🍾 $1,100</button></div></div>
-    <div class="drink-row"><span>Montelobos Espadín</span><div class="drink-btns"><button aria-label="Agregar Montelobos copa" onclick="addToCart('Montelobos (copa)',120)">🥃 $120</button><button aria-label="Agregar Montelobos botella" onclick="addToCart('Montelobos (botella)',1300)">🍾 $1,300</button></div></div>
-    <div class="drink-row"><span>Buchanans 12</span><div class="drink-btns"><button aria-label="Agregar Buchanans 12 copa" onclick="addToCart('Buchanans 12 (copa)',200)">🥃 $200</button><button aria-label="Agregar Buchanans 12 botella" onclick="addToCart('Buchanans 12 (botella)',2200)">🍾 $2,200</button></div></div>
-    <div class="drink-row"><span>Etiqueta Negra</span><div class="drink-btns"><button aria-label="Agregar Etiqueta Negra copa" onclick="addToCart('Etiqueta Negra (copa)',220)">🥃 $220</button><button aria-label="Agregar Etiqueta Negra botella" onclick="addToCart('Etiqueta Negra (botella)',2600)">🍾 $2,600</button></div></div>
-    <div class="drink-row"><span>Macallan 12</span><div class="drink-btns"><button aria-label="Agregar Macallan 12 copa" onclick="addToCart('Macallan 12 (copa)',340)">🥃 $340</button><button aria-label="Agregar Macallan 12 botella" onclick="addToCart('Macallan 12 (botella)',3600)">🍾 $3,600</button></div></div>
+    <div class="drink-row"><span>Bacardi</span><span>$70 / $700</span><button class="add-btn" onclick="addToCart('Bacardi (copa)',70)">+</button></div>
+    <div class="drink-row"><span>Havana 7 <span class="es">años</span><span class="en">yr</span></span><span>$90 / $960</span><button class="add-btn" onclick="addToCart('Havana 7 años (copa)',90)">+</button></div>
+    <div class="drink-row"><span>Cascahuin</span><span>$110 / $1,100</span><button class="add-btn" onclick="addToCart('Cascahuin (copa)',110)">+</button></div>
+    <div class="drink-row"><span>Herradura</span><span>$130 / $1,400</span><button class="add-btn" onclick="addToCart('Herradura (copa)',130)">+</button></div>
+    <div class="drink-row"><span>Maestro Dobel</span><span>$150 / $1,700</span><button class="add-btn" onclick="addToCart('Maestro Dobel (copa)',150)">+</button></div>
+    <div class="drink-row"><span>400 Conejos</span><span>$110 / $1,100</span><button class="add-btn" onclick="addToCart('400 Conejos (copa)',110)">+</button></div>
+    <div class="drink-row"><span>Montelobos Espadín</span><span>$120 / $1,300</span><button class="add-btn" onclick="addToCart('Montelobos Espadín (copa)',120)">+</button></div>
+    <div class="drink-row"><span>Buchanans 12</span><span>$200 / $2,200</span><button class="add-btn" onclick="addToCart('Buchanans 12 (copa)',200)">+</button></div>
+    <div class="drink-row"><span>Etiqueta Negra</span><span>$220 / $2,600</span><button class="add-btn" onclick="addToCart('Etiqueta Negra (copa)',220)">+</button></div>
+    <div class="drink-row"><span>Macallan 12</span><span>$340 / $3,600</span><button class="add-btn" onclick="addToCart('Macallan 12 (copa)',340)">+</button></div>
   </div>
 </section>
 <div class="gold-sep"></div>
 </div><!-- end light-zone -->
-</main>
 
 <!-- REVIEWS -->
 <section class="reviews-section">
@@ -1100,15 +1080,15 @@ alt=""></noscript>
     <!-- 2️⃣ ORDER TYPE: 3 MODES -->
     <div class="order-type">
       <button class="order-type-btn" id="btn-domicilio" onclick="setOrderType('domicilio')">
-        <span class="ot-icon" aria-hidden="true">🛵</span>
+        <span class="ot-icon">🛵</span>
         <span class="es">Domicilio</span><span class="en">Delivery</span>
       </button>
       <button class="order-type-btn" id="btn-recoger" onclick="setOrderType('recoger')">
-        <span class="ot-icon" aria-hidden="true">🥡</span>
+        <span class="ot-icon">🥡</span>
         <span class="es">Recoger</span><span class="en">Pickup</span>
       </button>
       <button class="order-type-btn" id="btn-mesa" onclick="setOrderType('mesa')">
-        <span class="ot-icon" aria-hidden="true">🍽</span>
+        <span class="ot-icon">🍽</span>
         <span class="es">Mesa</span><span class="en">Table</span>
       </button>
     </div>
@@ -1126,9 +1106,7 @@ alt=""></noscript>
       <label><span class="es">DATOS PARA RECOGER</span><span class="en">PICKUP INFO</span></label>
       <input type="text" id="pick-name" placeholder="Tu nombre / Your name">
       <input type="tel" id="pick-phone" placeholder="WhatsApp">
-      <select id="pick-time">
-        <option value="" disabled selected>Hora de recogida / Pickup time</option>
-      </select>
+      <input type="time" id="pick-time" placeholder="Hora de recogida / Pickup time">
     </div>
 
     <!-- 2️⃣ DYNAMIC FORM: MESA -->
@@ -1152,13 +1130,17 @@ alt=""></noscript>
         </div>
         <div class="checkout-detail" id="checkout-detail"></div>
       </div>
+      <div id="delivery-fee-line" style="display:none;justify-content:space-between;padding:.3rem 0;font-size:.78rem;color:var(--muted);border-top:1px dashed rgba(255,255,255,.08);margin-top:.3rem;padding-top:.4rem;">
+        <span>🛵 <span class="es">Envío a domicilio</span><span class="en">Delivery fee</span></span>
+        <span style="color:var(--cream);">+$50</span>
+      </div>
       <div class="cart-total">
         <span class="es">TOTAL</span><span class="en">TOTAL</span>
         <span id="cart-total-amount">$0</span>
       </div>
-      <button class="checkout-btn mesa-mode" id="checkout-btn" onclick="sendToWhatsApp()" disabled>
-        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        <span id="checkout-btn-text"><span class="es">Enviar pedido a cocina</span><span class="en">Send order to kitchen</span></span>
+      <button class="checkout-btn" id="stripe-btn" onclick="payWithStripe()" disabled style="background:#635BFF;">
+        <svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:white;flex-shrink:0;"><path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.591-7.305z"/></svg>
+        <span id="checkout-btn-text"><span class="es">Pagar con tarjeta</span><span class="en">Pay with card</span></span>
       </button>
     </div>
   </div>
@@ -1169,7 +1151,7 @@ alt=""></noscript>
 <div class="lightbox" id="lightbox" onclick="if(event.target===this)closeLightbox()">
   <div class="lightbox-inner">
     <button class="lightbox-close" onclick="closeLightbox()">×</button>
-    <img id="lightbox-img" src="" alt="Vista ampliada del platillo">
+    <img id="lightbox-img" src="" alt="">
     <div class="lightbox-caption" id="lightbox-caption"></div>
   </div>
 </div>
@@ -1197,26 +1179,27 @@ document.querySelectorAll('.card-img-wrap img').forEach(function(img){
   img.style.cursor = 'zoom-in';
   img.addEventListener('click', function(){ openLightbox(this.src.replace('w_800','w_1400'), this.alt); });
 });
-// Lazy preload: solo precarga hi-res cuando el usuario se acerca a las secciones
-var preloadObserver = new IntersectionObserver(function(entries) {
-  entries.forEach(function(entry) {
-    if (entry.isIntersecting) {
-      // Preload hi-res de las imágenes visibles en esa sección
-      entry.target.querySelectorAll('.card-img-wrap img').forEach(function(img) {
-        var hi = new Image();
-        hi.src = img.src.replace('w_800', 'w_1400');
-      });
-      preloadObserver.unobserve(entry.target);
-    }
-  });
-}, {rootMargin: '200px 0px'});
-
 window.addEventListener('load', function(){
-  // Solo precargar cocktails (lightbox más probable)
   ['mezcalita_nhmtez','tachosour_uohegy','ballenita_eqqo6e','batanga_yqy8yi','ositorojo1_ip3u9c','picaflor_ioxxld'].forEach(preloadImg);
-  // Observar secciones del menú para precargar cuando se acerquen
-  document.querySelectorAll('.menu-section').forEach(function(sec) {
-    preloadObserver.observe(sec);
+  document.querySelectorAll('.card-img-wrap img').forEach(function(img){ var hi = new Image(); hi.src = img.src.replace('w_800','w_1400'); });
+});
+
+// ── PRELOAD LIGHTBOX IMAGES ──
+window.addEventListener('load', function() {
+  var toPreload = [
+    'https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/tacodonarturo_is8qhw.png',
+    'https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/tacotiojuanito_pbeszs.png',
+    'https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/tacofresa_edtqjl.png',
+    'https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/aguachiledepapada_tmgv5g.png',
+    'https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/camaronesroca_x0bgfj.png',
+    'https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/mezcalita_nhmtez.png',
+    'https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/tachosour_uohegy.png',
+    'https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/ballenita_eqqo6e.png',
+    'https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/batanga_yqy8yi.png',
+  ];
+  toPreload.forEach(function(src) {
+    var img = new Image();
+    img.src = src;
   });
 });
 }catch(e){console.warn("Lightbox error:",e);}
@@ -1224,7 +1207,7 @@ window.addEventListener('load', function(){
 <!-- Meta Pixel Advanced Tracking -->
 <script>
 // Safe fbq wrapper — only fires if real Pixel loaded
-function safeFbq(){if(typeof fbq==='function'&&fbq.callMethod)fbq.apply(null,arguments);}
+function safeFbq(){if(typeof fbq==='function'&&fbq.loaded)fbq.apply(null,arguments);}
 
 try{
 // Scroll depth tracking - fires at 25%, 50%, 75%, 100%
@@ -1299,8 +1282,9 @@ function setLang(lang) {
   if(typeof updateModeStrip==='function') updateModeStrip();
   if(typeof updateCheckout==='function') updateCheckout();
   if(typeof updateUrgencyBar==='function') updateUrgencyBar();
-  if(typeof populatePickupTimes==='function') populatePickupTimes();
 }
+var savedLang = localStorage.getItem("anastacio_lang");
+if (savedLang) setLang(savedLang);
 
 // ═══ NAV SCROLL ═══
 window.addEventListener("scroll", function() {
@@ -1361,11 +1345,11 @@ function captureLead(e) {
   var lang = document.body.getAttribute("data-lang");
   var name = lang === "en" ? document.getElementById("lead-name-en").value : document.getElementById("lead-name").value;
   var phone = document.getElementById("lead-phone").value;
-  // Save to Supabase
-  supabase.from('leads').insert({name: name, phone: phone, source: 'bar'}).then(function(res) {
-    if (res.error) console.warn('Lead save error:', res.error);
-  });
+  var leads = JSON.parse(localStorage.getItem("anastacio_leads") || "[]");
+  leads.push({name: name, phone: phone, date: new Date().toISOString(), source: "bar"});
+  localStorage.setItem("anastacio_leads", JSON.stringify(leads));
   e.target.reset();
+  var lang = document.body.getAttribute("data-lang");
   showToast(lang === "es" ? "Gracias " + name + "! Te mandamos las mejores promos." : "Thanks " + name + "! We will send you the best deals.");
   safeFbq('track', 'Lead', {content_name: 'Promo Bar', content_category: 'lead_capture'});
 }
@@ -1373,11 +1357,10 @@ function captureLead(e) {
 function submitPromo(e) {
   e.preventDefault();
   var f = e.target;
-  var lead = {name: f[0].value, phone: f[1].value, email: f[2].value, source: f[3].value};
-  // Save to Supabase
-  supabase.from('leads').insert(lead).then(function(res) {
-    if (res.error) console.warn('Promo lead save error:', res.error);
-  });
+  var lead = {name: f[0].value, phone: f[1].value, email: f[2].value, source: f[3].value, date: new Date().toISOString()};
+  var leads = JSON.parse(localStorage.getItem("anastacio_leads") || "[]");
+  leads.push(lead);
+  localStorage.setItem("anastacio_leads", JSON.stringify(leads));
   closeModal("promo-modal");
   var lang = document.body.getAttribute("data-lang");
   showToast(lang === "es" ? "Bienvenido al club Anastacio!" : "Welcome to the Anastacio club!");
@@ -1433,6 +1416,7 @@ function setOrderType(type) {
   });
   updateModeStrip();
   updateCheckout();
+  renderCart();
 }
 
 function updateOrderTypeButtons() {
@@ -1481,12 +1465,11 @@ function updateModeStrip() {
 function updateCheckout() {
   var badge = document.getElementById('checkout-badge');
   var detail = document.getElementById('checkout-detail');
-  var btn = document.getElementById('checkout-btn');
+  var btn = document.getElementById('stripe-btn');
   var btnText = document.getElementById('checkout-btn-text');
   if(!badge || !detail || !btn || !btnText) return;
   if(!orderType) {
     btn.disabled = true;
-    btn.className = 'checkout-btn';
     var lang = document.body.getAttribute("data-lang");
     var isEn = lang === 'en';
     badge.className = 'checkout-mode-badge';
@@ -1524,44 +1507,15 @@ function updateCheckout() {
   }
   detail.textContent = detailText;
 
-  // Button style + text
-  btn.className = 'checkout-btn';
-  var btnLabels = {
-    domicilio: {es: 'Enviar pedido por WhatsApp', en: 'Send order via WhatsApp'},
-    recoger: {es: 'Confirmar pedido para recoger', en: 'Confirm pickup order'},
-    mesa: {es: 'Enviar pedido a cocina', en: 'Send order to kitchen'}
-  };
-  var esBtn = btnText.querySelector('.es');
-  var enBtn = btnText.querySelector('.en');
-  if(esBtn) esBtn.textContent = btnLabels[orderType]['es'];
-  if(enBtn) enBtn.textContent = btnLabels[orderType]['en'];
-  if (orderType === 'mesa') btn.classList.add('mesa-mode');
-  else if (orderType === 'recoger') btn.classList.add('recoger-mode');
-
-  // Enable/disable button based on cart content AND required fields
-  var canSubmit = cart.length > 0;
-  if (canSubmit && orderType === 'domicilio') {
-    canSubmit = document.getElementById('del-name').value.trim() !== '' &&
-                document.getElementById('del-phone').value.trim() !== '' &&
-                document.getElementById('del-address').value.trim() !== '';
-  } else if (canSubmit && orderType === 'recoger') {
-    canSubmit = document.getElementById('pick-name').value.trim() !== '' &&
-                document.getElementById('pick-phone').value.trim() !== '';
-  } else if (canSubmit && orderType === 'mesa') {
-    canSubmit = document.getElementById('mesa-num').value.trim() !== '';
-  }
-  btn.disabled = !canSubmit;
+  // Button - enable if valid
+  btn.disabled = false;
 }
 
 // Live update checkout detail as user types
 document.addEventListener('input', function(e) {
-  if (['mesa-num','pick-time','del-address','pick-name','del-name','del-phone','pick-phone'].indexOf(e.target.id) > -1) {
+  if (['mesa-num','pick-time','del-address','pick-name','del-name'].indexOf(e.target.id) > -1) {
     updateCheckout();
   }
-});
-// Also listen for change (for select elements like pick-time)
-document.addEventListener('change', function(e) {
-  if (e.target.id === 'pick-time') updateCheckout();
 });
 
 // ═══ CART SYSTEM ═══
@@ -1582,8 +1536,14 @@ function removeFromCart(name) {
   renderCart(); updateBubble();
 }
 
-function getTotal() {
+var DELIVERY_FEE = 50;
+function getSubtotal() {
   return cart.reduce(function(sum, i) { return sum + i.price * i.qty; }, 0);
+}
+function getTotal() {
+  var sub = getSubtotal();
+  if (orderType === 'domicilio') return sub + DELIVERY_FEE;
+  return sub;
 }
 
 function updateBubble() {
@@ -1606,7 +1566,7 @@ function renderCart() {
   var body = document.getElementById("cart-body");
   var empty = document.getElementById("cart-empty");
   var totalEl = document.getElementById("cart-total-amount");
-  var btn = document.getElementById("checkout-btn");
+  var btn = document.getElementById("stripe-btn");
   if(!body || !empty || !totalEl || !btn) return;
 
   if (cart.length === 0) {
@@ -1645,6 +1605,11 @@ function renderCart() {
     body.insertBefore(div, empty);
   });
   totalEl.textContent = "$" + getTotal().toLocaleString("es-MX");
+  // Show/hide delivery fee
+  var feeLine = document.getElementById("delivery-fee-line");
+  if (feeLine) {
+    feeLine.style.display = orderType === 'domicilio' ? 'flex' : 'none';
+  }
   updateCheckout();
 }
 
@@ -1668,55 +1633,34 @@ function handleOverlayClick(e) {
 function sendToWhatsApp() {
   if (cart.length === 0) return;
   if (!orderType) { showToast(document.body.getAttribute("data-lang") === "en" ? "Please select order mode first" : "Selecciona un modo de pedido primero"); return; }
-
-  // Validate required fields per order mode
-  var lang = document.body.getAttribute("data-lang");
-  var isEn = lang === "en";
-  var dName, dPhone, dAddr, pName, pPhone, pTime, mesaVal;
-
-  if (orderType === "domicilio") {
-    dName = document.getElementById("del-name").value.trim();
-    dPhone = document.getElementById("del-phone").value.trim();
-    dAddr = document.getElementById("del-address").value.trim();
-    if (!dName || !dPhone || !dAddr) {
-      showToast(isEn ? "Fill in name, WhatsApp and address" : "Llena nombre, WhatsApp y dirección");
-      return;
-    }
-  } else if (orderType === "recoger") {
-    pName = document.getElementById("pick-name").value.trim();
-    pPhone = document.getElementById("pick-phone").value.trim();
-    if (!pName || !pPhone) {
-      showToast(isEn ? "Fill in name and WhatsApp" : "Llena nombre y WhatsApp");
-      return;
-    }
-  } else if (orderType === "mesa") {
-    mesaVal = document.getElementById("mesa-num").value.trim();
-    if (!mesaVal) {
-      showToast(isEn ? "Enter your table number" : "Ingresa tu número de mesa");
-      return;
-    }
-  }
-
   safeFbq('track', 'InitiateCheckout', {value: getTotal(), currency: 'MXN', num_items: cart.length});
   safeFbq('track', 'Contact', {content_name: 'WhatsApp Order'});
+  var lang = document.body.getAttribute("data-lang");
+  var isEn = lang === "en";
   var lines = [];
   lines.push(isEn ? "🦐 *NEW ORDER — ANASTACIO*" : "🦐 *NUEVA ORDEN — ANASTACIO*");
   lines.push("");
 
   if (orderType === "domicilio") {
+    var dName = document.getElementById("del-name").value;
+    var dPhone = document.getElementById("del-phone").value;
+    var dAddr = document.getElementById("del-address").value;
     lines.push(isEn ? "🛵 *DELIVERY*" : "🛵 *DOMICILIO*");
     if (dName) lines.push((isEn ? "Name: " : "Nombre: ") + dName);
     if (dPhone) lines.push("WhatsApp: " + dPhone);
     if (dAddr) lines.push((isEn ? "Address: " : "Dirección: ") + dAddr);
   } else if (orderType === "recoger") {
-    pTime = document.getElementById("pick-time").value;
+    var pName = document.getElementById("pick-name").value;
+    var pPhone = document.getElementById("pick-phone").value;
+    var pTime = document.getElementById("pick-time").value;
     lines.push(isEn ? "🥡 *PICKUP*" : "🥡 *PARA RECOGER*");
     if (pName) lines.push((isEn ? "Name: " : "Nombre: ") + pName);
     if (pPhone) lines.push("WhatsApp: " + pPhone);
     if (pTime) lines.push((isEn ? "Pickup time: " : "Hora de recogida: ") + pTime);
   } else {
+    var mesaNum = document.getElementById("mesa-num").value;
     lines.push(isEn ? "🍽 *TABLE ORDER*" : "🍽 *PEDIDO EN MESA*");
-    if (mesaVal) lines.push((isEn ? "Table: " : "Mesa: ") + mesaVal);
+    if (mesaNum) lines.push((isEn ? "Table: " : "Mesa: ") + mesaNum);
   }
 
   lines.push("");
@@ -1730,23 +1674,6 @@ function sendToWhatsApp() {
   lines.push("━━━━━━━━━━━━━━━━");
 
   var msg = encodeURIComponent(lines.join("\n"));
-
-  // Save order to Supabase
-  var orderData = {
-    order_type: orderType,
-    customer_name: dName || pName || null,
-    customer_phone: dPhone || pPhone || null,
-    delivery_address: dAddr || null,
-    table_number: mesaVal || null,
-    pickup_time: pTime || null,
-    items: cart.map(function(item) { return {name: item.name, qty: item.qty, price: item.price}; }),
-    total: getTotal(),
-    status: 'pending'
-  };
-  supabase.from('orders').insert(orderData).then(function(res) {
-    if (res.error) console.warn('Order save error:', res.error);
-  });
-
   window.open("https://wa.me/" + WA_NUMBER + "?text=" + msg, "_blank");
 }
 
@@ -1802,53 +1729,6 @@ function updateUrgencyBar() {
 updateUrgencyBar();
 setInterval(updateUrgencyBar, 60000);
 
-// ═══ PICKUP TIME SELECT ═══
-function populatePickupTimes() {
-  var select = document.getElementById('pick-time');
-  if (!select) return;
-  // Keep first option (placeholder), remove the rest
-  while (select.options.length > 1) select.remove(1);
-
-  var nowStr = new Date().toLocaleString('en-US', {timeZone: 'America/Mexico_City'});
-  var mxTime = new Date(nowStr);
-  var day = mxTime.getDay();
-  var currentHour = mxTime.getHours() + mxTime.getMinutes() / 60;
-  var isWeekend = (day === 5 || day === 6);
-  var sched = isWeekend ? SCHEDULE.weekend : SCHEDULE.weekday;
-
-  var lang = document.body.getAttribute("data-lang");
-  var isEn = lang === "en";
-
-  // Start from opening time always — user picks when to arrive
-  var startH = Math.floor(sched.open);
-  var startMin = 0;
-
-  for (var h = startH; h < sched.close; h++) {
-    var minStart = (h === startH) ? startMin : 0;
-    for (var m = minStart; m < 60; m += 15) {
-      var totalH = h + m / 60;
-      if (totalH >= sched.close) break;
-      var hour12 = h % 12 || 12;
-      var ampm = h >= 12 ? 'PM' : 'AM';
-      var minStr = m < 10 ? '0' + m : '' + m;
-      var label = hour12 + ':' + minStr + ' ' + ampm;
-      var opt = document.createElement('option');
-      opt.value = label;
-      opt.textContent = label;
-      select.appendChild(opt);
-    }
-  }
-
-  if (select.options.length <= 1) {
-    var opt = document.createElement('option');
-    opt.value = '';
-    opt.disabled = true;
-    opt.textContent = isEn ? 'Kitchen closed — try tomorrow' : 'Cocina cerrada — intenta mañana';
-    select.appendChild(opt);
-  }
-}
-populatePickupTimes();
-
 // Init mode strip
 updateModeStrip();
 updateCheckout();
@@ -1861,6 +1741,165 @@ if (savedLang2) setLang(savedLang2);
 window.addEventListener("scroll", function() {
   document.getElementById("scroll-top").classList.toggle("visible", window.scrollY > 400);
 });
+
+// ═══ STRIPE PAYMENT ═══
+async function payWithStripe() {
+  if (cart.length === 0 || !orderType) return;
+
+  var stripeBtn = document.getElementById("stripe-btn");
+  stripeBtn.disabled = true;
+  var btnTextEl = document.getElementById("checkout-btn-text");
+  if(btnTextEl) {
+    btnTextEl.querySelector('.es').textContent = 'Procesando...';
+    btnTextEl.querySelector('.en').textContent = 'Processing...';
+  }
+
+  // Get form data
+  var dName = "", dPhone = "", dAddr = "", pName = "", pPhone = "", pTime = "", mesaVal = "";
+  if (orderType === "domicilio") {
+    dName = document.getElementById("d-name") ? document.getElementById("d-name").value.trim() : "";
+    dPhone = document.getElementById("d-phone") ? document.getElementById("d-phone").value.trim() : "";
+    dAddr = document.getElementById("d-address") ? document.getElementById("d-address").value.trim() : "";
+  } else if (orderType === "recoger") {
+    pName = document.getElementById("p-name") ? document.getElementById("p-name").value.trim() : "";
+    pPhone = document.getElementById("p-phone") ? document.getElementById("p-phone").value.trim() : "";
+    pTime = document.getElementById("p-time") ? document.getElementById("p-time").value : "";
+  } else {
+    mesaVal = document.getElementById("mesa-num") ? document.getElementById("mesa-num").value.trim() : "";
+  }
+
+  var customerName = dName || pName || ("Mesa " + mesaVal);
+  var customerPhone = dPhone || pPhone || "";
+
+  // Save order to Supabase first
+  var orderItems = cart.map(function(i) { return { name: i.name, qty: i.qty, price: i.price }; });
+  // Add delivery fee as item if domicilio
+  var stripeItems = orderItems.slice();
+  if (orderType === 'domicilio') {
+    stripeItems.push({ name: 'Envío a domicilio', qty: 1, price: DELIVERY_FEE });
+  }
+  var orderData = {
+    order_type: orderType,
+    customer_name: customerName,
+    customer_phone: customerPhone,
+    delivery_address: dAddr,
+    table_number: mesaVal,
+    pickup_time: pTime,
+    items: orderItems,
+    total: getTotal(),
+    status: "pending"
+  };
+
+  var orderId = "";
+  try {
+    var res = await sbClient.from("orders").insert([orderData]).select();
+    if (res.data && res.data[0]) orderId = res.data[0].id;
+  } catch(e) { console.error("Order save error:", e); }
+
+  // Save order info for WhatsApp after payment
+  localStorage.setItem("anastacio_pending_order", JSON.stringify({
+    orderType: orderType,
+    customerName: customerName,
+    customerPhone: customerPhone,
+    deliveryAddress: dAddr,
+    tableNumber: mesaVal,
+    pickupTime: pTime,
+    items: orderItems,
+    total: getTotal(),
+    orderId: orderId
+  }));
+
+  // Track Meta Pixel
+  if (typeof fbq === "function") fbq("track", "InitiateCheckout", { value: getTotal(), currency: "MXN" });
+
+  // Call Stripe Edge Function
+  try {
+    var response = await fetch("https://hqrwjlrqzslkwhwqcmnh.supabase.co/functions/v1/smooth-action", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhxcndqbHJxenNsa3dod3FjbW5oIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIzMDYwMTcsImV4cCI6MjA4Nzg4MjAxN30.tNyO18E7lDNEYH28P_DGxSg9pf1yYysVpJuMwboJOoU"
+      },
+      body: JSON.stringify({
+        items: stripeItems,
+        customer_name: customerName,
+        customer_phone: customerPhone,
+        order_type: orderType,
+        delivery_address: dAddr,
+        table_number: mesaVal,
+        pickup_time: pTime,
+        order_id: orderId
+      })
+    });
+
+    var data = await response.json();
+
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      throw new Error(data.error || "Error al crear sesión de pago");
+    }
+  } catch(e) {
+    console.error("Stripe error:", e);
+    alert("Error al procesar pago: " + e.message);
+    stripeBtn.disabled = false;
+    if(btnTextEl) {
+      btnTextEl.querySelector('.es').textContent = 'Pagar con tarjeta';
+      btnTextEl.querySelector('.en').textContent = 'Pay with card';
+    }
+  }
+}
+
+// ═══ AUTO WHATSAPP AFTER PAYMENT ═══
+(function checkPaymentReturn() {
+  var params = new URLSearchParams(window.location.search);
+  if (params.get("payment") === "success") {
+    var pending = localStorage.getItem("anastacio_pending_order");
+    if (pending) {
+      try {
+        var order = JSON.parse(pending);
+        localStorage.removeItem("anastacio_pending_order");
+
+        // Update order status to confirmed in Supabase
+        if (order.orderId) {
+          sbClient.from("orders").update({ status: "confirmed" }).eq("id", order.orderId).then(function(){});
+        }
+
+        // Track Meta Pixel Purchase
+        if (typeof fbq === "function") fbq("track", "Purchase", { value: order.total, currency: "MXN" });
+
+        // Build WhatsApp message
+        var msg = "✅ *PEDIDO PAGADO CON TARJETA*\n\n";
+        msg += "📋 *Tipo:* " + order.orderType + "\n";
+        msg += "👤 *Cliente:* " + order.customerName + "\n";
+        if (order.customerPhone) msg += "📞 *Tel:* " + order.customerPhone + "\n";
+        if (order.deliveryAddress) msg += "📍 *Dirección:* " + order.deliveryAddress + "\n";
+        if (order.tableNumber) msg += "🍽 *Mesa:* " + order.tableNumber + "\n";
+        if (order.pickupTime) msg += "⏱ *Hora:* " + order.pickupTime + "\n";
+        msg += "\n🛒 *Pedido:*\n";
+        order.items.forEach(function(item) {
+          msg += "  • " + item.qty + "x " + item.name + " — $" + (item.price * item.qty) + "\n";
+        });
+        msg += "\n💰 *Total: $" + order.total + "* ✅ PAGADO\n";
+
+        var encoded = encodeURIComponent(msg);
+        var waURL = "https://wa.me/523331741741?text=" + encoded;
+
+        // Show success message then open WhatsApp
+        setTimeout(function() {
+          alert("¡Pago exitoso! Tu pedido ha sido confirmado. Se abrirá WhatsApp para enviar tu orden a la cocina.");
+          window.open(waURL, "_blank");
+        }, 500);
+
+        // Clean URL
+        window.history.replaceState({}, "", window.location.pathname);
+      } catch(e) { console.error("WhatsApp auto-send error:", e); }
+    }
+  } else if (params.get("payment") === "cancelled") {
+    // Payment was cancelled
+    window.history.replaceState({}, "", window.location.pathname);
+  }
+})();
 </script>
 </body>
 </html>
