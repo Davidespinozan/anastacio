@@ -37,10 +37,10 @@ body>*{position:relative;z-index:1;}
 .nav-promo:hover{background:var(--cta);color:white;}
 
 /* HERO */
-.hero{position:relative;height:100svh;min-height:500px;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;}
+.hero{position:relative;height:100svh;min-height:500px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding-top:15vh;overflow:hidden;}
 .hero-bg{position:absolute;inset:0;background-image:url("https://res.cloudinary.com/dp9l5i19b/image/upload/q_auto,f_auto,w_1400/IMG_9816_if2blm.png");background-size:55% auto;background-position:center 20%;}
 @media(max-width:768px){.hero-bg{background-size:cover;background-position:center center;}}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 0%,transparent 40%,rgba(7,24,38,.6) 75%,rgba(7,24,38,.95) 100%);}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 0%,transparent 35%,rgba(7,24,38,.5) 65%,rgba(7,24,38,.92) 100%);}
 .hero-content{position:relative;z-index:2;text-align:center;padding:1.5rem;display:flex;flex-direction:column;align-items:center;}
 .hero-logo{width:clamp(80px,14vw,130px);height:auto;margin-bottom:1rem;animation:fadeUp 1.2s ease both;}
 .hero-title{font-family:"Bebas Neue",sans-serif;font-size:clamp(4rem,18vw,10rem);letter-spacing:.08em;line-height:.88;color:var(--cream);animation:fadeUp 1.2s .15s ease both;opacity:1;}
@@ -392,14 +392,6 @@ body>*{position:relative;z-index:1;}
   .menu-nav a{font-size:.7rem;padding:.55rem .7rem;}
 }
 
-@media(max-width:768px) {
-  .hero-bg {
-    background-size:contain;
-    background-position:center 15%;
-    background-repeat:no-repeat;
-  }
-}
-
 .cocktail-card.has-photo { padding:0; overflow:hidden; }
 .cocktail-card.has-photo .cc-img-wrap { aspect-ratio:4/3; overflow:hidden; }
 .cocktail-card.has-photo .cc-img-wrap img { width:100%; height:100%; object-fit:cover; display:block; }
@@ -670,7 +662,7 @@ src="https://www.facebook.com/tr?id=1564615811495027&ev=PageView&noscript=1"
         <div class="card-name"><span class="es">Aguachile Mitotero</span><span class="en">Mitotero Aguachile</span></div>
         <div class="card-desc es">Camarón crudo y cocido, atún, pulpo, pepino, cebolla morada, salsa negra y chiltepín.</div>
         <div class="card-desc en">Raw and cooked shrimp, tuna, octopus, cucumber, red onion, black sauce and chiltepín.</div>
-        <div class="card-footer"><div class="card-price">$230</div><button class="add-btn" onclick="addToCart('Aguachile Mixto',230)">+</button></div>
+        <div class="card-footer"><div class="card-price">$230</div><button class="add-btn" onclick="addToCart('Aguachile Mitotero',230)">+</button></div>
       </div>
     </div>
   </div>
@@ -918,16 +910,16 @@ src="https://www.facebook.com/tr?id=1564615811495027&ev=PageView&noscript=1"
     <div class="drink-row"><span>Bichola Lata</span><span>$70</span><button class="add-btn" onclick="addToCart('Bichola Lata',70)">+</button></div>
     <div class="drink-row"><span>Bichola Barril</span><span>$80</span><button class="add-btn" onclick="addToCart('Bichola Barril',80)">+</button></div>
     <div class="drink-row"><span>Misil Bichola</span><span>$200</span><button class="add-btn" onclick="addToCart('Misil Bichola',200)">+</button></div>
-    <div class="drink-row"><span><span class="es">Artesanal</span><span class="en">Craft Beer</span> · IPA/Lager/Porter/Blonde</span><span>$90</span><button class="add-btn" onclick="addToCart('ArtesanalCraft Beer · IPA/Lager/Porter/Blonde',90)">+</button></div>
+    <div class="drink-row"><span><span class="es">Artesanal</span><span class="en">Craft Beer</span> · IPA/Lager/Porter/Blonde</span><span>$90</span><button class="add-btn" onclick="addToCart('Artesanal · IPA/Lager/Porter/Blonde',90)">+</button></div>
   </div>
   <div style="margin-top:2rem;">
     <div class="section-label" style="text-align:center;margin-bottom:1rem;"><span class="es">Las Bebidas</span><span class="en">Non-Alcoholic</span></div>
     <div class="drinks-cols">
       <div class="drink-row"><span>Limonada</span><span>$65</span><button class="add-btn" onclick="addToCart('Limonada',65)">+</button></div>
-      <div class="drink-row"><span><span class="es">Agua Natural</span><span class="en">Water</span></span><span>$45</span><button class="add-btn" onclick="addToCart('Agua NaturalWater',45)">+</button></div>
+      <div class="drink-row"><span><span class="es">Agua Natural</span><span class="en">Water</span></span><span>$45</span><button class="add-btn" onclick="addToCart('Agua Natural',45)">+</button></div>
       <div class="drink-row"><span>Topochico</span><span>$50</span><button class="add-btn" onclick="addToCart('Topochico',50)">+</button></div>
       <div class="drink-row"><span>Perrier</span><span>$75</span><button class="add-btn" onclick="addToCart('Perrier',75)">+</button></div>
-      <div class="drink-row"><span><span class="es">Refresco</span><span class="en">Soda</span></span><span>$45</span><button class="add-btn" onclick="addToCart('RefrescoSoda',45)">+</button></div>
+      <div class="drink-row"><span><span class="es">Refresco</span><span class="en">Soda</span></span><span>$45</span><button class="add-btn" onclick="addToCart('Refresco',45)">+</button></div>
       <div class="drink-row"><span>Rusa</span><span>$65</span><button class="add-btn" onclick="addToCart('Rusa',65)">+</button></div>
       <div class="drink-row"><span>Vaso Escarchado</span><span>$40</span><button class="add-btn" onclick="addToCart('Vaso Escarchado',40)">+</button></div>
       <div class="drink-row"><span>Vaso Michelado</span><span>$70</span><button class="add-btn" onclick="addToCart('Vaso Michelado',70)">+</button></div>
@@ -946,7 +938,7 @@ src="https://www.facebook.com/tr?id=1564615811495027&ev=PageView&noscript=1"
   <p style="text-align:center;color:var(--muted);font-size:.75rem;margin-bottom:1.2rem;letter-spacing:.12em;"><span class="es">COPA 2oz · BOTELLA CON 4 SERVICIOS</span><span class="en">2oz POUR · BOTTLE WITH 4 SERVINGS</span></p>
   <div class="drinks-cols">
     <div class="drink-row"><span>Bacardi</span><span>$70 / $700</span><button class="add-btn" onclick="addToCart('Bacardi (copa)',70)">+</button></div>
-    <div class="drink-row"><span>Havana 7 <span class="es">años</span><span class="en">yr</span></span><span>$90 / $960</span><button class="add-btn" onclick="addToCart('Havana 7 añosyr (copa)',90)">+</button></div>
+    <div class="drink-row"><span>Havana 7 <span class="es">años</span><span class="en">yr</span></span><span>$90 / $960</span><button class="add-btn" onclick="addToCart('Havana 7 años (copa)',90)">+</button></div>
     <div class="drink-row"><span>Cascahuin</span><span>$110 / $1,100</span><button class="add-btn" onclick="addToCart('Cascahuin (copa)',110)">+</button></div>
     <div class="drink-row"><span>Herradura</span><span>$130 / $1,400</span><button class="add-btn" onclick="addToCart('Herradura (copa)',130)">+</button></div>
     <div class="drink-row"><span>Maestro Dobel</span><span>$150 / $1,700</span><button class="add-btn" onclick="addToCart('Maestro Dobel (copa)',150)">+</button></div>
@@ -1029,9 +1021,9 @@ src="https://www.facebook.com/tr?id=1564615811495027&ev=PageView&noscript=1"
       <select>
         <option value="">¿Cómo nos conociste? / How did you find us?</option>
         <option value="instagram">Instagram</option>
-        <option value="friend"><span class="es">Recomendación</span><span class="en">Friend recommendation</span></option>
+        <option value="friend">Recomendación / Friend recommendation</option>
         <option value="google">Google Maps</option>
-        <option value="walk"><span class="es">Pasé por aquí</span><span class="en">Walked by</span></option>
+        <option value="walk">Pasé por aquí / Walked by</option>
         <option value="qr">QR Menu</option>
       </select>
       <button type="submit" class="btn-gold" style="width:100%;margin-top:.4rem;padding:.8rem;">
@@ -1270,7 +1262,9 @@ window.addEventListener("scroll", function() {
   var menuNav = document.querySelector(".menu-nav");
   var lightZone = document.querySelector(".light-zone");
   if(menuNav && lightZone){
-    var navHeight = topNav.offsetHeight;
+    var strip = document.getElementById('order-mode-strip');
+    var stripH = (strip && strip.classList.contains('visible')) ? strip.offsetHeight : 0;
+    var navHeight = topNav.offsetHeight + stripH;
     var zoneTop = lightZone.getBoundingClientRect().top;
     var zoneBottom = lightZone.getBoundingClientRect().bottom;
     var inMenu = zoneTop <= navHeight && zoneBottom > navHeight + 60;
@@ -1317,7 +1311,8 @@ function showToast(msg) {
 
 function captureLead(e) {
   e.preventDefault();
-  var name = document.getElementById("lead-name").value;
+  var lang = document.body.getAttribute("data-lang");
+  var name = lang === "en" ? document.getElementById("lead-name-en").value : document.getElementById("lead-name").value;
   var phone = document.getElementById("lead-phone").value;
   var leads = JSON.parse(localStorage.getItem("anastacio_leads") || "[]");
   leads.push({name: name, phone: phone, date: new Date().toISOString(), source: "bar"});
@@ -1625,6 +1620,7 @@ var SCHEDULE = {
 };
 
 function updateUrgencyBar() {
+  if(typeof SCHEDULE === 'undefined' || !SCHEDULE) return;
   // Get current time in Guadalajara (America/Mexico_City)
   var nowStr = new Date().toLocaleString('en-US', {timeZone: 'America/Mexico_City'});
   var mxTime = new Date(nowStr);
