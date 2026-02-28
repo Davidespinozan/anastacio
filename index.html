@@ -229,8 +229,8 @@ body>*{position:relative;z-index:1;}
 .ig-float svg{width:26px;height:26px;}
 
 /* TOAST */
-.toast{position:fixed;bottom:5rem;left:50%;transform:translateX(-50%) translateY(100px);background:var(--cta);color:white;padding:.8rem 1.6rem;font-family:"Bebas Neue",sans-serif;letter-spacing:.1em;font-size:.9rem;transition:transform .4s ease;z-index:9999;box-shadow:0 4px 25px rgba(242,107,29,.35);border-radius:12px;}
-.toast.show{transform:translateX(-50%) translateY(0);}
+.toast{position:fixed;bottom:5rem;left:50%;transform:translateX(-50%) translateY(100px);opacity:0;background:var(--cta);color:white;padding:.8rem 1.6rem;font-family:"Bebas Neue",sans-serif;letter-spacing:.1em;font-size:.9rem;transition:transform .25s ease,opacity .25s ease;z-index:9999;box-shadow:0 4px 25px rgba(242,107,29,.35);border-radius:12px;pointer-events:none;}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1;}
 
 /* LANGUAGE */
 [data-lang="en"] .es{display:none;}
@@ -1290,7 +1290,7 @@ document.addEventListener("keydown", function(e) {
 function showToast(msg) {
   var t = document.getElementById("toast");
   t.textContent = msg; t.classList.add("show");
-  setTimeout(function() { t.classList.remove("show"); }, 2500);
+  setTimeout(function() { t.classList.remove("show"); }, 800);
 }
 
 function captureLead(e) {
