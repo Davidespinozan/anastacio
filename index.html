@@ -144,11 +144,12 @@ body>*{position:relative;z-index:1;}
 /* CARDS */
 .featured-grid{display:flex;flex-direction:column;gap:.8rem;margin-bottom:2rem;}
 @media(min-width:600px){.featured-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;}}
-.featured-grid > .featured-card:last-child:nth-child(odd){grid-column:1 / -1;max-width:50%;margin:0 auto;}
+.featured-grid > .featured-card:last-child:nth-child(odd){grid-column:1 / -1;}
+@media(min-width:600px){.featured-grid > .featured-card:last-child:nth-child(odd){max-width:50%;margin:0 auto;}}
 .featured-card{background:rgba(15,47,79,.55);border:1.5px solid rgba(201,162,77,.1);overflow:hidden;transition:transform .45s cubic-bezier(.23,1,.32,1),box-shadow .45s;display:flex;flex-direction:row;box-shadow:0 8px 30px rgba(0,0,0,.2);border-radius:16px;cursor:default;align-items:stretch;}
 .featured-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.3),0 0 0 2px rgba(201,162,77,.15);}
-.card-img-wrap{overflow:hidden;aspect-ratio:1;border-radius:14px;margin:.4rem 0 .4rem .4rem;width:110px;min-width:110px;flex-shrink:0;}
-@media(min-width:600px){.card-img-wrap{width:130px;min-width:130px;}}
+.card-img-wrap{overflow:hidden;aspect-ratio:1;border-radius:14px;margin:.4rem 0 .4rem .4rem;width:168px;min-width:168px;flex-shrink:0;}
+@media(min-width:600px){.card-img-wrap{width:192px;min-width:192px;}}
 .card-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.23,1,.32,1);border-radius:14px;}
 .featured-card:hover .card-img-wrap img{transform:scale(1.08);}
 .card-body{padding:.7rem .7rem;display:flex;flex-direction:column;background:transparent;flex:1;min-width:0;justify-content:center;}
@@ -454,7 +455,7 @@ html{font-size:100%;}
 .card-name{font-size:.85rem;}
 .card-desc{font-size:.7rem;}
 .card-price{font-size:1.2rem;}
-.card-img-wrap{width:100px;min-width:100px;}
+.card-img-wrap{width:156px;min-width:156px;}
 .menu-item{padding:.85rem .9rem;border-radius:12px;}
 .item-name{font-size:.88rem;}
 .item-desc{font-size:.75rem;}
