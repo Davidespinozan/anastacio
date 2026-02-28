@@ -86,7 +86,7 @@ body>*{position:relative;z-index:1;}
 .trending-title{font-family:"Bebas Neue",sans-serif;font-size:clamp(1.6rem,5vw,2.5rem);letter-spacing:.05em;color:var(--accent);line-height:1;}
 .trending-subtitle{font-size:.78rem;color:var(--muted);margin-top:.3rem;font-style:italic;}
 .trending-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem;}
-@media(min-width:600px){.trending-grid{grid-template-columns:repeat(4,1fr);}}
+@media(min-width:600px){.trending-grid{grid-template-columns:repeat(3,1fr);}}
 .trending-card{background:rgba(15,47,79,.55)!important;border:1.5px solid rgba(242,107,29,.15)!important;border-radius:16px;overflow:hidden;transition:all .4s cubic-bezier(.23,1,.32,1);position:relative;flex-direction:column!important;}
 .trending-card::before{content:"🔥";position:absolute;top:.5rem;right:.5rem;font-size:.7rem;z-index:2;background:rgba(7,24,38,.8);padding:.2rem .4rem;border-radius:6px;}
 .trending-card:hover{transform:translateY(-4px);box-shadow:0 12px 35px rgba(242,107,29,.15),0 0 0 1px rgba(242,107,29,.3);}
@@ -488,8 +488,6 @@ html{font-size:100%;}
 
 <!-- Meta Pixel Code -->
 <script>
-if(typeof fbq==="undefined"){window.fbq=function(){};}
-
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -583,8 +581,21 @@ src="https://www.facebook.com/tr?id=1564615811495027&ev=PageView&noscript=1"
     var cl = document.getElementById('urgency-closes');
     if(h < openH || h >= closeH){
       if(dot) dot.className='urgency-dot red';
-      if(st) st.textContent='Cocina cerrada';
+      if(st){
+        var esSpan = st.querySelector('.es');
+        var enSpan = st.querySelector('.en');
+        if(esSpan) esSpan.textContent='Cocina cerrada';
+        if(enSpan) enSpan.textContent='Kitchen closed';
+      }
       if(cl) cl.style.display='none';
+    } else {
+      if(dot) dot.className='urgency-dot green';
+      if(st){
+        var esSpan = st.querySelector('.es');
+        var enSpan = st.querySelector('.en');
+        if(esSpan) esSpan.textContent='Cocina abierta';
+        if(enSpan) enSpan.textContent='Kitchen open';
+      }
     }
   }catch(e){}
 })();
@@ -621,19 +632,29 @@ src="https://www.facebook.com/tr?id=1564615811495027&ev=PageView&noscript=1"
       <div class="card-footer"><div class="card-price">$230</div><button class="add-btn" style="width:36px;height:36px;min-width:36px;font-size:1.2rem;border-radius:10px;" onclick="addToCart('Aguachile Mitotero',230)">+</button></div></div>
     </div>
     <div class="trending-card">
-      <div class="card-img-wrap"><img src="https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/vaquita_rhkdpn.png" alt="Vaquita" loading="lazy"></div>
-      <div class="card-body"><div class="card-name">Vaquita</div>
-      <div class="card-footer"><div class="card-price">$150</div><button class="add-btn" style="width:36px;height:36px;min-width:36px;font-size:1.2rem;border-radius:10px;" onclick="addToCart('Vaquita',150)">+</button></div></div>
+      <div class="card-img-wrap"><img src="https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/tunamatcha_wezskg.png" alt="Tuna Macha" loading="lazy"></div>
+      <div class="card-body"><div class="card-name">Tuna Macha</div>
+      <div class="card-footer"><div class="card-price">$160</div><button class="add-btn" style="width:36px;height:36px;min-width:36px;font-size:1.2rem;border-radius:10px;" onclick="addToCart('Tuna Macha',160)">+</button></div></div>
     </div>
     <div class="trending-card">
-      <div class="card-img-wrap"><img src="https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/lascostillonas_rjigpo.png" alt="Las Costillonas" loading="lazy"></div>
-      <div class="card-body"><div class="card-name"><span class="es">Las Costillonas</span><span class="en">The Ribs</span></div>
-      <div class="card-footer"><div class="card-price">$890</div><button class="add-btn" style="width:36px;height:36px;min-width:36px;font-size:1.2rem;border-radius:10px;" onclick="addToCart('Las Costillonas',890)">+</button></div></div>
+      <div class="card-img-wrap"><img src="https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/aguachiledepican%CC%83a_yxtzyn.png" alt="Aguachile de Picaña" loading="lazy"></div>
+      <div class="card-body"><div class="card-name"><span class="es">Aguachile de Picaña</span><span class="en">Picanha Aguachile</span></div>
+      <div class="card-footer"><div class="card-price">$245</div><button class="add-btn" style="width:36px;height:36px;min-width:36px;font-size:1.2rem;border-radius:10px;" onclick="addToCart('Aguachile de Picaña',245)">+</button></div></div>
     </div>
     <div class="trending-card">
-      <div class="card-img-wrap"><img src="https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/ositorojo1_ip3u9c.png" alt="Osito Rojo" loading="lazy"></div>
-      <div class="card-body"><div class="card-name">Osito Rojo</div>
-      <div class="card-footer"><div class="card-price">$140</div><button class="add-btn" style="width:36px;height:36px;min-width:36px;font-size:1.2rem;border-radius:10px;" onclick="addToCart('Osito Rojo',140)">+</button></div></div>
+      <div class="card-img-wrap"><img src="https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/tacotiojuanito_pbeszs.png" alt="Tío Juanito" loading="lazy"></div>
+      <div class="card-body"><div class="card-name">Tío Juanito</div>
+      <div class="card-footer"><div class="card-price">$145</div><button class="add-btn" style="width:36px;height:36px;min-width:36px;font-size:1.2rem;border-radius:10px;" onclick="addToCart('Tío Juanito',145)">+</button></div></div>
+    </div>
+    <div class="trending-card">
+      <div class="card-img-wrap"><img src="https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/diva_s1vcn0.png" alt="Diva" loading="lazy"></div>
+      <div class="card-body"><div class="card-name">Diva</div>
+      <div class="card-footer"><div class="card-price">$185</div><button class="add-btn" style="width:36px;height:36px;min-width:36px;font-size:1.2rem;border-radius:10px;" onclick="addToCart('Diva',185)">+</button></div></div>
+    </div>
+    <div class="trending-card">
+      <div class="card-img-wrap"><img src="https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_800/camaronesroca_x0bgfj.png" alt="Camarones Roca" loading="lazy"></div>
+      <div class="card-body"><div class="card-name"><span class="es">Camarones Roca</span><span class="en">Rock Shrimp</span></div>
+      <div class="card-footer"><div class="card-price">$175</div><button class="add-btn" style="width:36px;height:36px;min-width:36px;font-size:1.2rem;border-radius:10px;" onclick="addToCart('Camarones Roca',175)">+</button></div></div>
     </div>
   </div>
 </div>
@@ -797,7 +818,8 @@ src="https://www.facebook.com/tr?id=1564615811495027&ev=PageView&noscript=1"
         <div class="card-name"><span class="es">Las Costillonas <span class="badge">Must Try</span></span><span class="en">The Ribs <span class="badge">Must Try</span></span></div>
         <div class="card-desc es">Costillas de cerdo en barril peruano con salsa de piña y habanero. Media orden $490</div>
         <div class="card-desc en">Pork ribs in a Peruvian barrel with pineapple-habanero sauce. Half order $490</div>
-        <div class="card-footer"><div class="card-price">$890</div><button class="add-btn" onclick="addToCart('Las Costillonas',890)">+</button></div>
+        <div class="card-footer"><div class="card-price"><span class="es">½ Orden</span><span class="en">½ Order</span> $490</div><button class="add-btn" onclick="addToCart('Las Costillonas ½',490)">+</button></div>
+        <div class="card-footer" style="margin-top:.2rem;"><div class="card-price"><span class="es">Orden</span><span class="en">Full</span> $890</div><button class="add-btn" onclick="addToCart('Las Costillonas',890)">+</button></div>
       </div>
     </div>
     <div class="featured-card">
@@ -1000,7 +1022,7 @@ src="https://www.facebook.com/tr?id=1564615811495027&ev=PageView&noscript=1"
   <div class="footer-text">© 2025 · ANASTACIO · MARISQUERÍA DE BARRIO · GUADALAJARA</div>
 </footer>
 
-<a href="https://instagram.com/anastacio_gdl" class="ig-float" target="_blank" aria-label="Instagram" onclick="fbq('track','Contact',{content_name:'Instagram'})">
+<a href="https://instagram.com/anastacio_gdl" class="ig-float" target="_blank" aria-label="Instagram" onclick="safeFbq('track','Contact',{content_name:'Instagram'})">
   <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
     <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
     <circle cx="12" cy="12" r="4.5"/>
@@ -1180,6 +1202,9 @@ window.addEventListener('load', function() {
 </script>
 <!-- Meta Pixel Advanced Tracking -->
 <script>
+// Safe fbq wrapper — only fires if real Pixel loaded
+function safeFbq(){if(typeof fbq==='function'&&fbq.loaded)fbq.apply(null,arguments);}
+
 try{
 // Scroll depth tracking - fires at 25%, 50%, 75%, 100%
 (function(){
@@ -1189,7 +1214,7 @@ try{
     [25,50,75,100].forEach(function(threshold){
       if(scrollPct >= threshold && !fired[threshold]){
         fired[threshold] = true;
-        fbq('trackCustom', 'ScrollDepth', {percent: threshold});
+        safeFbq('trackCustom', 'ScrollDepth', {percent: threshold});
       }
     });
   });
@@ -1204,7 +1229,7 @@ try{
     milestones.forEach(function(sec){
       if(elapsed >= sec && !firedTime[sec]){
         firedTime[sec] = true;
-        fbq('trackCustom', 'TimeOnSite', {seconds: sec});
+        safeFbq('trackCustom', 'TimeOnSite', {seconds: sec});
       }
     });
   }, 5000);
@@ -1218,7 +1243,7 @@ try{
     entries.forEach(function(entry){
       if(entry.isIntersecting && !firedSections[entry.target.id]){
         firedSections[entry.target.id] = true;
-        fbq('trackCustom', 'MenuSectionView', {section: entry.target.id});
+        safeFbq('trackCustom', 'MenuSectionView', {section: entry.target.id});
       }
     });
   }, {threshold: 0.3});
@@ -1228,8 +1253,6 @@ try{
 </script>
 
 <script>
-// Safety: ensure fbq exists
-if(typeof fbq==='undefined'){window.fbq=function(){};}
 
 // ═══ GLOBAL STATE (must be first) ═══
 var cart = [];
@@ -1245,7 +1268,9 @@ function setLang(lang) {
   var nameEn = document.getElementById("lead-name-en");
   if(nameEs && nameEn){
     nameEs.style.display = lang === "es" ? "" : "none";
+    nameEs.required = lang === "es";
     nameEn.style.display = lang === "en" ? "" : "none";
+    nameEn.required = lang === "en";
   }
   localStorage.setItem("anastacio_lang", lang);
   if(typeof updateBubble==='function') updateBubble();
@@ -1322,7 +1347,7 @@ function captureLead(e) {
   e.target.reset();
   var lang = document.body.getAttribute("data-lang");
   showToast(lang === "es" ? "Gracias " + name + "! Te mandamos las mejores promos." : "Thanks " + name + "! We will send you the best deals.");
-  fbq('track', 'Lead', {content_name: 'Promo Bar', content_category: 'lead_capture'});
+  safeFbq('track', 'Lead', {content_name: 'Promo Bar', content_category: 'lead_capture'});
 }
 
 function submitPromo(e) {
@@ -1335,7 +1360,7 @@ function submitPromo(e) {
   closeModal("promo-modal");
   var lang = document.body.getAttribute("data-lang");
   showToast(lang === "es" ? "Bienvenido al club Anastacio!" : "Welcome to the Anastacio club!");
-  fbq('track', 'CompleteRegistration', {content_name: 'Promo Modal', content_category: 'club_signup'});
+  safeFbq('track', 'CompleteRegistration', {content_name: 'Promo Modal', content_category: 'club_signup'});
 }
 
 (function() {
@@ -1370,7 +1395,7 @@ function selectOrderMode(mode) {
       window.scrollTo({top: y, behavior: 'smooth'});
     }, 300);
   }
-  fbq('trackCustom', 'OrderModeSelected', {mode: mode});
+  safeFbq('trackCustom', 'OrderModeSelected', {mode: mode});
 }
 
 // ═══ 2️⃣ ORDER TYPE IN CART ═══
@@ -1438,7 +1463,20 @@ function updateCheckout() {
   var btn = document.getElementById('checkout-btn');
   var btnText = document.getElementById('checkout-btn-text');
   if(!badge || !detail || !btn || !btnText) return;
-  if(!orderType) return;
+  if(!orderType) {
+    btn.disabled = true;
+    btn.className = 'checkout-btn';
+    var lang = document.body.getAttribute("data-lang");
+    var isEn = lang === 'en';
+    badge.className = 'checkout-mode-badge';
+    badge.textContent = '';
+    if(cart.length > 0) {
+      detail.textContent = isEn ? '⚠ Select an order mode above to continue' : '⚠ Selecciona un modo de pedido arriba para continuar';
+    } else {
+      detail.textContent = '';
+    }
+    return;
+  }
   var lang = document.body.getAttribute("data-lang");
   var isEn = lang === 'en';
 
@@ -1472,7 +1510,10 @@ function updateCheckout() {
     recoger: {es: 'Confirmar pedido para recoger', en: 'Confirm pickup order'},
     mesa: {es: 'Enviar pedido a cocina', en: 'Send order to kitchen'}
   };
-  btnText.textContent = btnLabels[orderType][isEn ? 'en' : 'es'];
+  var esBtn = btnText.querySelector('.es');
+  var enBtn = btnText.querySelector('.en');
+  if(esBtn) esBtn.textContent = btnLabels[orderType]['es'];
+  if(enBtn) enBtn.textContent = btnLabels[orderType]['en'];
   if (orderType === 'mesa') btn.classList.add('mesa-mode');
   else if (orderType === 'recoger') btn.classList.add('recoger-mode');
 }
@@ -1487,7 +1528,7 @@ document.addEventListener('input', function(e) {
 // ═══ CART SYSTEM ═══
 function addToCart(name, price) {
   var existing = cart.find(function(i) { return i.name === name; });
-  fbq('track', 'AddToCart', {content_name: name, value: price, currency: 'MXN'});
+  safeFbq('track', 'AddToCart', {content_name: name, value: price, currency: 'MXN'});
   if (existing) { existing.qty += 1; }
   else { cart.push({ name: name, price: price, qty: 1 }); }
   renderCart(); updateBubble();
@@ -1534,7 +1575,18 @@ function renderCart() {
     body.querySelectorAll(".cart-item").forEach(function(el) { el.remove(); });
     totalEl.textContent = "$0"; btn.disabled = true; return;
   }
-  empty.style.display = "none"; btn.disabled = false;
+  empty.style.display = "none";
+  // Enable checkout only if items AND orderType selected
+  var summary = document.getElementById("checkout-detail");
+  if(!orderType){
+    btn.disabled = true;
+    if(summary){
+      var lang = document.body.getAttribute("data-lang");
+      summary.textContent = lang === 'en' ? '⚠ Select an order mode above to continue' : '⚠ Selecciona un modo de pedido arriba para continuar';
+    }
+  } else {
+    btn.disabled = false;
+  }
   body.querySelectorAll(".cart-item").forEach(function(el) { el.remove(); });
 
   cart.forEach(function(item) {
@@ -1577,8 +1629,8 @@ function handleOverlayClick(e) {
 function sendToWhatsApp() {
   if (cart.length === 0) return;
   if (!orderType) { showToast(document.body.getAttribute("data-lang") === "en" ? "Please select order mode first" : "Selecciona un modo de pedido primero"); return; }
-  fbq('track', 'InitiateCheckout', {value: getTotal(), currency: 'MXN', num_items: cart.length});
-  fbq('track', 'Contact', {content_name: 'WhatsApp Order'});
+  safeFbq('track', 'InitiateCheckout', {value: getTotal(), currency: 'MXN', num_items: cart.length});
+  safeFbq('track', 'Contact', {content_name: 'WhatsApp Order'});
   var lang = document.body.getAttribute("data-lang");
   var isEn = lang === "en";
   var lines = [];
@@ -1629,10 +1681,9 @@ var SCHEDULE = {
 
 function updateUrgencyBar() {
   if(typeof SCHEDULE === 'undefined' || !SCHEDULE) return;
-  // Get current time in Guadalajara (America/Mexico_City)
   var nowStr = new Date().toLocaleString('en-US', {timeZone: 'America/Mexico_City'});
   var mxTime = new Date(nowStr);
-  var day = mxTime.getDay(); // 0=Sun
+  var day = mxTime.getDay();
   var hour = mxTime.getHours() + mxTime.getMinutes() / 60;
   var isWeekend = (day === 5 || day === 6);
   var sched = isWeekend ? SCHEDULE.weekend : SCHEDULE.weekday;
@@ -1644,30 +1695,29 @@ function updateUrgencyBar() {
   var minsEs = document.getElementById('urgency-mins-es');
   var minsEn = document.getElementById('urgency-mins-en');
   if(!dot || !statusText || !closesEl || !demandEl) return;
-  var lang = document.body.getAttribute("data-lang");
+
+  var esSpan = statusText.querySelector('.es');
+  var enSpan = statusText.querySelector('.en');
 
   if (hour < sched.open || hour >= sched.close) {
-    // Closed
     dot.className = 'urgency-dot red';
-    statusText.innerHTML = lang === 'en' ? 'Kitchen closed' : 'Cocina cerrada';
+    if(esSpan) esSpan.textContent = 'Cocina cerrada';
+    if(enSpan) enSpan.textContent = 'Kitchen closed';
     closesEl.style.display = 'none';
     demandEl.style.display = 'none';
   } else {
     var minsLeft = Math.round((sched.close - hour) * 60);
+    if(esSpan) esSpan.textContent = 'Cocina abierta';
+    if(enSpan) enSpan.textContent = 'Kitchen open';
     if (minsLeft <= 60) {
-      // Closing soon
       dot.className = 'urgency-dot amber';
-      statusText.innerHTML = lang === 'en' ? 'Kitchen open' : 'Cocina abierta';
       closesEl.style.display = '';
       if(minsEs) minsEs.textContent = minsLeft + ' min';
       if(minsEn) minsEn.textContent = minsLeft + ' min';
     } else {
-      // Open
       dot.className = 'urgency-dot green';
-      statusText.innerHTML = lang === 'en' ? 'Kitchen open' : 'Cocina abierta';
       closesEl.style.display = 'none';
     }
-    // Peak hours demand indicator (1-3pm, 7-10pm)
     var isPeak = (hour >= 13 && hour <= 15) || (hour >= 19 && hour <= 22);
     demandEl.style.display = isPeak ? '' : 'none';
   }
