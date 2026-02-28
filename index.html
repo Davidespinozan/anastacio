@@ -884,7 +884,7 @@ var secObs = new IntersectionObserver(function(entries) {
       if (link) { link.classList.add("active"); var navRect=menuNav.getBoundingClientRect(); var linkRect=link.getBoundingClientRect(); menuNav.scrollLeft += linkRect.left - navRect.left - navRect.width/2 + linkRect.width/2; }
     }
   });
-}, {threshold: 0.05, rootMargin: "-80px 0px -75% 0px"});
+}, {threshold: 0.05, rootMargin: "-120px 0px -60% 0px"});
 sections.forEach(function(s) { secObs.observe(s); });
 
 document.querySelectorAll(".fade-in").forEach(function(el) {
