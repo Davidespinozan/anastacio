@@ -510,6 +510,14 @@ fbq('track', 'PageView');
 </script>
 <!-- End Meta Pixel Code -->
 
+<!-- Supabase SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+var SUPABASE_URL = 'https://hqrwjlrqzslkwhwqcmnh.supabase.co';
+var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhxcndqbHJxenNsa3dod3FjbW5oIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIzMDYwMTcsImV4cCI6MjA4Nzg4MjAxN30.tNyO18E7lDNEYH28P_DGxSg9pf1yYysVpJuMwboJOoU';
+var supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+</script>
+
 </head>
 <body data-lang="es">
 <!-- Meta Pixel noscript fallback -->
@@ -1353,9 +1361,10 @@ function captureLead(e) {
   var lang = document.body.getAttribute("data-lang");
   var name = lang === "en" ? document.getElementById("lead-name-en").value : document.getElementById("lead-name").value;
   var phone = document.getElementById("lead-phone").value;
-  var leads = JSON.parse(localStorage.getItem("anastacio_leads") || "[]");
-  leads.push({name: name, phone: phone, date: new Date().toISOString(), source: "bar"});
-  localStorage.setItem("anastacio_leads", JSON.stringify(leads));
+  // Save to Supabase
+  supabase.from('leads').insert({name: name, phone: phone, source: 'bar'}).then(function(res) {
+    if (res.error) console.warn('Lead save error:', res.error);
+  });
   e.target.reset();
   showToast(lang === "es" ? "Gracias " + name + "! Te mandamos las mejores promos." : "Thanks " + name + "! We will send you the best deals.");
   safeFbq('track', 'Lead', {content_name: 'Promo Bar', content_category: 'lead_capture'});
@@ -1364,10 +1373,11 @@ function captureLead(e) {
 function submitPromo(e) {
   e.preventDefault();
   var f = e.target;
-  var lead = {name: f[0].value, phone: f[1].value, email: f[2].value, source: f[3].value, date: new Date().toISOString()};
-  var leads = JSON.parse(localStorage.getItem("anastacio_leads") || "[]");
-  leads.push(lead);
-  localStorage.setItem("anastacio_leads", JSON.stringify(leads));
+  var lead = {name: f[0].value, phone: f[1].value, email: f[2].value, source: f[3].value};
+  // Save to Supabase
+  supabase.from('leads').insert(lead).then(function(res) {
+    if (res.error) console.warn('Promo lead save error:', res.error);
+  });
   closeModal("promo-modal");
   var lang = document.body.getAttribute("data-lang");
   showToast(lang === "es" ? "Bienvenido al club Anastacio!" : "Welcome to the Anastacio club!");
@@ -1662,23 +1672,25 @@ function sendToWhatsApp() {
   // Validate required fields per order mode
   var lang = document.body.getAttribute("data-lang");
   var isEn = lang === "en";
+  var dName, dPhone, dAddr, pName, pPhone, pTime, mesaVal;
+
   if (orderType === "domicilio") {
-    var dName = document.getElementById("del-name").value.trim();
-    var dPhone = document.getElementById("del-phone").value.trim();
-    var dAddr = document.getElementById("del-address").value.trim();
+    dName = document.getElementById("del-name").value.trim();
+    dPhone = document.getElementById("del-phone").value.trim();
+    dAddr = document.getElementById("del-address").value.trim();
     if (!dName || !dPhone || !dAddr) {
       showToast(isEn ? "Fill in name, WhatsApp and address" : "Llena nombre, WhatsApp y dirección");
       return;
     }
   } else if (orderType === "recoger") {
-    var pName = document.getElementById("pick-name").value.trim();
-    var pPhone = document.getElementById("pick-phone").value.trim();
+    pName = document.getElementById("pick-name").value.trim();
+    pPhone = document.getElementById("pick-phone").value.trim();
     if (!pName || !pPhone) {
       showToast(isEn ? "Fill in name and WhatsApp" : "Llena nombre y WhatsApp");
       return;
     }
   } else if (orderType === "mesa") {
-    var mesaVal = document.getElementById("mesa-num").value.trim();
+    mesaVal = document.getElementById("mesa-num").value.trim();
     if (!mesaVal) {
       showToast(isEn ? "Enter your table number" : "Ingresa tu número de mesa");
       return;
@@ -1697,7 +1709,7 @@ function sendToWhatsApp() {
     if (dPhone) lines.push("WhatsApp: " + dPhone);
     if (dAddr) lines.push((isEn ? "Address: " : "Dirección: ") + dAddr);
   } else if (orderType === "recoger") {
-    var pTime = document.getElementById("pick-time").value;
+    pTime = document.getElementById("pick-time").value;
     lines.push(isEn ? "🥡 *PICKUP*" : "🥡 *PARA RECOGER*");
     if (pName) lines.push((isEn ? "Name: " : "Nombre: ") + pName);
     if (pPhone) lines.push("WhatsApp: " + pPhone);
@@ -1718,6 +1730,23 @@ function sendToWhatsApp() {
   lines.push("━━━━━━━━━━━━━━━━");
 
   var msg = encodeURIComponent(lines.join("\n"));
+
+  // Save order to Supabase
+  var orderData = {
+    order_type: orderType,
+    customer_name: dName || pName || null,
+    customer_phone: dPhone || pPhone || null,
+    delivery_address: dAddr || null,
+    table_number: mesaVal || null,
+    pickup_time: pTime || null,
+    items: cart.map(function(item) { return {name: item.name, qty: item.qty, price: item.price}; }),
+    total: getTotal(),
+    status: 'pending'
+  };
+  supabase.from('orders').insert(orderData).then(function(res) {
+    if (res.error) console.warn('Order save error:', res.error);
+  });
+
   window.open("https://wa.me/" + WA_NUMBER + "?text=" + msg, "_blank");
 }
 
