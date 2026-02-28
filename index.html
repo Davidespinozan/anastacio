@@ -72,7 +72,7 @@ body>*{position:relative;z-index:1;}
 @keyframes urgPulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.6;transform:scale(.85);}}
 
 /* ═══ 2️⃣ ORDER MODE STRIP ═══ */
-.order-mode-strip{display:none;position:fixed;top:0;left:0;right:0;z-index:250;padding:.3rem .8rem;text-align:center;font-family:"Bebas Neue",sans-serif;font-size:.7rem;letter-spacing:.15em;cursor:pointer;transition:all .3s;}
+.order-mode-strip{display:none;position:fixed;top:0;left:0;right:0;z-index:250;padding:.55rem 1.2rem;text-align:center;font-family:"Bebas Neue",sans-serif;font-size:1.05rem;letter-spacing:.15em;cursor:pointer;transition:all .3s;}
 .order-mode-strip.visible{display:block;}
 .order-mode-strip.domicilio{background:linear-gradient(90deg,rgba(37,211,102,.9),rgba(37,211,102,.7));color:white;}
 .order-mode-strip.recoger{background:linear-gradient(90deg,rgba(201,162,77,.9),rgba(201,162,77,.7));color:var(--dark);}
@@ -486,12 +486,14 @@ html{font-size:100%;}
 .trending-card .card-name{font-size:.76rem;}
 .urgency-bar{padding:.45rem .8rem;gap:.7rem;}
 .urgency-item{font-size:.68rem;}
-.order-mode-strip{font-size:.6rem;padding:.25rem .6rem;}
+.order-mode-strip{font-size:.9rem;padding:.45rem 1rem;}
 }
 </style>
 
 <!-- Meta Pixel Code -->
 <script>
+if(typeof fbq==="undefined"){window.fbq=function(){};}
+
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -1112,6 +1114,7 @@ src="https://www.facebook.com/tr?id=1564615811495027&ev=PageView&noscript=1"
   </div>
 </div>
 <script>
+try{
 var imgCache = {};
 function preloadImg(id) {
   var base = 'https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_1400/';
@@ -1157,9 +1160,11 @@ window.addEventListener('load', function() {
     img.src = src;
   });
 });
+}catch(e){console.warn("Lightbox error:",e);}
 </script>
 <!-- Meta Pixel Advanced Tracking -->
 <script>
+try{
 // Scroll depth tracking - fires at 25%, 50%, 75%, 100%
 (function(){
   var fired = {};
@@ -1179,7 +1184,7 @@ window.addEventListener('load', function() {
   var milestones = [30,60,120];
   var firedTime = {};
   setInterval(function(){
-    var elapsed = Math.floor((Date.now() - performance.timing.navigationStart) / 1000);
+    var elapsed = Math.floor(performance.now() / 1000);
     milestones.forEach(function(sec){
       if(elapsed >= sec && !firedTime[sec]){
         firedTime[sec] = true;
@@ -1203,11 +1208,18 @@ window.addEventListener('load', function() {
   }, {threshold: 0.3});
   sections.forEach(function(s){ observer.observe(s); });
 })();
+}catch(e){console.warn("Tracking error:",e);}
 </script>
 
 <script>
 // Safety: ensure fbq exists
 if(typeof fbq==='undefined'){window.fbq=function(){};}
+
+// ═══ GLOBAL STATE (must be first) ═══
+var cart = [];
+var orderType = "mesa";
+var WA_NUMBER = "523318916060";
+
 // ═══ LANGUAGE ═══
 function setLang(lang) {
   document.body.setAttribute("data-lang", lang);
@@ -1314,11 +1326,6 @@ function submitPromo(e) {
   a.total = (a.total || 0) + 1;
   localStorage.setItem("anastacio_analytics", JSON.stringify(a));
 })();
-
-// ═══ 2️⃣ ORDER MODE STATE (global) ═══
-var cart = [];
-var orderType = "mesa"; // domicilio | recoger | mesa
-var WA_NUMBER = "523318916060";
 
 // ═══ 1️⃣ HERO MODE SELECTION ═══
 function selectOrderMode(mode) {
