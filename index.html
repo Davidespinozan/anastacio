@@ -143,31 +143,40 @@ body>*{position:relative;z-index:1;}
 
 /* CARDS */
 .featured-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-bottom:2rem;}
-@media(max-width:480px){.featured-grid{grid-template-columns:1fr;}}
-.featured-card{background:var(--sand);border:none;overflow:hidden;transition:transform .45s cubic-bezier(.23,1,.32,1),box-shadow .45s;display:flex;flex-direction:column;box-shadow:0 8px 30px rgba(0,0,0,.2);border-radius:16px;cursor:default;}
+@media(min-width:600px){.featured-grid{grid-template-columns:repeat(4,1fr);}}
+@media(max-width:480px){.featured-grid{grid-template-columns:repeat(2,1fr);}}
+.featured-card{background:rgba(15,47,79,.55);border:1.5px solid rgba(201,162,77,.1);overflow:hidden;transition:transform .45s cubic-bezier(.23,1,.32,1),box-shadow .45s;display:flex;flex-direction:column;box-shadow:0 8px 30px rgba(0,0,0,.2);border-radius:16px;cursor:default;}
 .featured-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,.3),0 0 0 2px rgba(201,162,77,.15);}
-.card-img-wrap{overflow:hidden;aspect-ratio:4/3;border-radius:16px 16px 0 0;}
-.card-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.23,1,.32,1);}
+.card-img-wrap{overflow:hidden;aspect-ratio:1;border-radius:14px;margin:.4rem .4rem 0;}
+.card-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.23,1,.32,1);border-radius:14px;}
 .featured-card:hover .card-img-wrap img{transform:scale(1.08);}
-.card-body{padding:1.1rem 1.2rem;display:flex;flex-direction:column;background:var(--sand);}
-.card-name{font-family:"Playfair Display",serif;font-size:1rem;color:var(--dark);margin-bottom:.25rem;font-weight:600;}
-.card-desc{font-size:.8rem;color:#6B5D4F;line-height:1.5;margin-bottom:.6rem;flex:1;}
-.card-price{font-family:"Bebas Neue",sans-serif;font-size:1.6rem;color:var(--accent2);text-shadow:none;}
+.card-body{padding:.8rem .7rem;display:flex;flex-direction:column;background:transparent;}
+.card-name{font-family:"Playfair Display",serif;font-size:.88rem;color:var(--cream);margin-bottom:.25rem;font-weight:600;cursor:pointer;}
+.card-name::after{content:" ▸";font-size:.6rem;color:var(--muted);}
+.card-name.desc-open::after{content:" ▾";}
+.card-desc{font-size:.72rem;color:var(--muted);line-height:1.5;margin-bottom:.6rem;flex:1;display:none;animation:fadeDesc .25s ease;}
+.card-desc.open{display:block;}
+@keyframes fadeDesc{from{opacity:0;max-height:0;}to{opacity:1;max-height:200px;}}
+.card-price{font-family:"Bebas Neue",sans-serif;font-size:1.4rem;color:var(--cta);text-shadow:none;}
 
 /* LIST */
 .menu-list{display:flex;flex-direction:column;gap:.7rem;}
-.menu-item{display:flex;justify-content:space-between;align-items:flex-start;gap:.8rem;padding:1.2rem 1.3rem;border-bottom:none;background:var(--sand);border:none;border-radius:14px;transition:transform .35s cubic-bezier(.23,1,.32,1),box-shadow .35s;box-shadow:0 3px 15px rgba(0,0,0,.12);}
+.menu-item{display:flex;justify-content:space-between;align-items:flex-start;gap:.8rem;padding:1.2rem 1.3rem;border-bottom:none;background:rgba(15,47,79,.55);border:1.5px solid rgba(201,162,77,.1);border-radius:14px;transition:transform .35s cubic-bezier(.23,1,.32,1),box-shadow .35s;box-shadow:0 3px 15px rgba(0,0,0,.12);}
 .menu-item:last-child{border-bottom:none;}
 .menu-item:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,0,0,.2);}
 .item-info{flex:1;min-width:0;}
-.item-name{font-family:"Playfair Display",serif;font-size:.95rem;color:var(--dark);margin-bottom:.22rem;font-weight:600;}
-.item-desc{font-size:.8rem;color:#6B5D4F;line-height:1.4;}
-.item-price{font-family:"Bebas Neue",sans-serif;font-size:1.3rem;color:var(--accent2);flex-shrink:0;padding-left:.5rem;}
+.item-name{font-family:"Playfair Display",serif;font-size:.95rem;color:var(--cream);margin-bottom:.22rem;font-weight:600;cursor:pointer;}
+.item-name::after{content:" ▸";font-size:.6rem;color:var(--muted);}
+.item-name.desc-open::after{content:" ▾";}
+.item-desc{font-size:.8rem;color:var(--muted);line-height:1.4;display:none;animation:fadeDesc .25s ease;}
+.item-desc.open{display:block;}
+.item-price{font-family:"Bebas Neue",sans-serif;font-size:1.3rem;color:var(--cta);flex-shrink:0;padding-left:.5rem;}
 
 /* COCKTAILS */
 .cocktails-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;}
-@media(max-width:480px){.cocktails-grid{grid-template-columns:1fr;}}
-.cocktail-card{background:var(--sand);border:none;padding:1.2rem;transition:transform .35s cubic-bezier(.23,1,.32,1),box-shadow .35s;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,.15);}
+@media(min-width:600px){.cocktails-grid{grid-template-columns:repeat(4,1fr);}}
+@media(max-width:480px){.cocktails-grid{grid-template-columns:repeat(2,1fr);}}
+.cocktail-card{background:rgba(15,47,79,.55);border:1.5px solid rgba(201,162,77,.1);padding:0;transition:transform .35s cubic-bezier(.23,1,.32,1),box-shadow .35s;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,.15);overflow:hidden;display:flex;flex-direction:column;}
 .cocktail-card:hover{box-shadow:0 12px 40px rgba(0,0,0,.25);transform:translateY(-4px);}
 .cc-name{font-family:"Playfair Display",serif;font-style:italic;font-size:1rem;color:var(--dark);margin-bottom:.3rem;font-weight:600;}
 .cc-desc{font-size:.78rem;color:#6B5D4F;line-height:1.45;margin-bottom:.7rem;}
@@ -431,17 +440,17 @@ body>*{position:relative;z-index:1;}
 .light-zone .section-title{color:var(--accent);}
 .light-zone .section-line{background:var(--cta);}
 .light-zone .gold-sep{background:linear-gradient(90deg,transparent,rgba(201,162,77,.15),transparent);}
-.light-zone .add-btn{background:var(--cta);border:none;color:white;box-shadow:0 4px 15px rgba(242,107,29,.25);animation:none;border-radius:14px;}
+.light-zone .add-btn{background:var(--cta);border:none;color:white;box-shadow:0 4px 15px rgba(242,107,29,.25);animation:none;border-radius:10px;width:36px;height:36px;min-width:36px;font-size:1.2rem;}
 .light-zone .add-btn:hover{background:#E05A10;box-shadow:0 6px 25px rgba(242,107,29,.5);transform:scale(1.12);}
 .light-zone .photo-strip{background:transparent;}
 .light-zone .ver-foto-btn{color:var(--muted);}
 
 /* ===== DARK MENU FIX ===== */
-.featured-card,.menu-item,.cocktail-card{background:rgba(15,47,79,.55)!important;border:1px solid rgba(201,162,77,.08);box-shadow:0 8px 30px rgba(0,0,0,.35);}
+.featured-card,.menu-item,.cocktail-card{background:rgba(15,47,79,.55)!important;border:1.5px solid rgba(201,162,77,.1);box-shadow:0 8px 30px rgba(0,0,0,.35);}
 .card-body{background:transparent!important;border:none!important;box-shadow:none!important;}
 .card-name,.item-name,.cc-name{color:var(--cream)!important;}
-.card-desc,.item-desc,.cc-desc{color:var(--textDim)!important;}
-.card-price,.item-price,.cc-price{color:#D4AF37!important;}
+.card-desc,.item-desc,.cc-desc{color:var(--muted)!important;}
+.card-price,.item-price,.cc-price{color:var(--cta)!important;}
 .gold-sep{background:linear-gradient(90deg,transparent,rgba(201,162,77,.12),transparent);}
 
 @media(max-width:768px){
@@ -562,7 +571,7 @@ src="https://www.facebook.com/tr?id=1564615811495027&ev=PageView&noscript=1"
   <div class="urgency-item">
     <span class="urgency-dot green" id="urgency-dot"></span>
     <span id="urgency-status-text">
-      <span class="es">Cocina abierta</span><span class="en">Kitchen open</span>
+      <span class="es">Cargando...</span><span class="en">Loading...</span>
     </span>
   </div>
   <div class="urgency-item" id="urgency-closes" style="display:none;">
@@ -573,6 +582,26 @@ src="https://www.facebook.com/tr?id=1564615811495027&ev=PageView&noscript=1"
     <span class="es">🔥 Alta demanda ahora</span><span class="en">🔥 High demand now</span>
   </div>
 </div>
+<script>
+// Immediate urgency check (runs right after urgency bar HTML)
+(function(){
+  try{
+    var ns = new Date().toLocaleString('en-US',{timeZone:'America/Mexico_City'});
+    var h = new Date(ns).getHours() + new Date(ns).getMinutes()/60;
+    var d = new Date(ns).getDay();
+    var isWknd = (d===5||d===6);
+    var openH = 12, closeH = isWknd ? 23.5 : 23;
+    var dot = document.getElementById('urgency-dot');
+    var st = document.getElementById('urgency-status-text');
+    var cl = document.getElementById('urgency-closes');
+    if(h < openH || h >= closeH){
+      if(dot) dot.className='urgency-dot red';
+      if(st) st.textContent='Cocina cerrada';
+      if(cl) cl.style.display='none';
+    }
+  }catch(e){}
+})();
+</script>
 
 <div class="lead-bar">
   <p class="es">Suscríbete y recibe promociones exclusivas</p>
@@ -1049,7 +1078,7 @@ src="https://www.facebook.com/tr?id=1564615811495027&ev=PageView&noscript=1"
         <span class="ot-icon">🥡</span>
         <span class="es">Recoger</span><span class="en">Pickup</span>
       </button>
-      <button class="order-type-btn active" id="btn-mesa" onclick="setOrderType('mesa')">
+      <button class="order-type-btn" id="btn-mesa" onclick="setOrderType('mesa')">
         <span class="ot-icon">🍽</span>
         <span class="es">Mesa</span><span class="en">Table</span>
       </button>
@@ -1072,7 +1101,7 @@ src="https://www.facebook.com/tr?id=1564615811495027&ev=PageView&noscript=1"
     </div>
 
     <!-- 2️⃣ DYNAMIC FORM: MESA -->
-    <div class="dynamic-form show" id="form-mesa">
+    <div class="dynamic-form" id="form-mesa">
       <label><span class="es">¿EN QUÉ MESA ESTÁS?</span><span class="en">WHAT TABLE ARE YOU AT?</span></label>
       <input type="text" id="mesa-num" placeholder="Número de mesa / Table number" inputmode="numeric">
     </div>
@@ -1087,8 +1116,8 @@ src="https://www.facebook.com/tr?id=1564615811495027&ev=PageView&noscript=1"
     <div class="cart-footer">
       <!-- 5️⃣ CHECKOUT SUMMARY -->
       <div class="checkout-summary" id="checkout-summary">
-        <div class="checkout-mode-badge mesa" id="checkout-badge">
-          <span class="es">🍽 Pedido en mesa</span><span class="en">🍽 Table order</span>
+        <div class="checkout-mode-badge" id="checkout-badge">
+          <span class="es">Selecciona un modo de pedido</span><span class="en">Select an order mode</span>
         </div>
         <div class="checkout-detail" id="checkout-detail"></div>
       </div>
@@ -1217,7 +1246,7 @@ if(typeof fbq==='undefined'){window.fbq=function(){};}
 
 // ═══ GLOBAL STATE (must be first) ═══
 var cart = [];
-var orderType = "mesa";
+var orderType = null;
 var WA_NUMBER = "523318916060";
 
 // ═══ LANGUAGE ═══
@@ -1385,6 +1414,11 @@ function updateModeStrip() {
   var text = document.getElementById('mode-strip-text');
   var nav = document.getElementById('top-nav');
   if(!strip || !text) return;
+  if(!orderType) {
+    strip.className = 'order-mode-strip';
+    if(nav) nav.style.top = '0';
+    return;
+  }
   var lang = document.body.getAttribute("data-lang");
   var isEn = lang === 'en';
   strip.className = 'order-mode-strip visible ' + orderType;
@@ -1408,6 +1442,7 @@ function updateCheckout() {
   var btn = document.getElementById('checkout-btn');
   var btnText = document.getElementById('checkout-btn-text');
   if(!badge || !detail || !btn || !btnText) return;
+  if(!orderType) return;
   var lang = document.body.getAttribute("data-lang");
   var isEn = lang === 'en';
 
@@ -1510,11 +1545,12 @@ function renderCart() {
     var div = document.createElement("div"); div.className = "cart-item";
     var nameDiv = document.createElement("div"); nameDiv.className = "cart-item-name"; nameDiv.textContent = item.name;
     var qtyDiv = document.createElement("div"); qtyDiv.className = "cart-item-qty";
-    var minusBtn = document.createElement("button"); minusBtn.className = "qty-btn"; minusBtn.textContent = "−";
-    minusBtn.dataset.name = item.name; minusBtn.dataset.action = "remove";
+    var minusBtn = document.createElement("button"); minusBtn.className = "qty-btn"; minusBtn.textContent = item.qty === 1 ? "🗑" : "−";
+    if(item.qty === 1) minusBtn.style.fontSize = ".85rem";
+    (function(n){ minusBtn.onclick = function(){ removeFromCart(n); }; })(item.name);
     var qtySpan = document.createElement("span"); qtySpan.className = "qty-num"; qtySpan.textContent = item.qty;
     var plusBtn = document.createElement("button"); plusBtn.className = "qty-btn"; plusBtn.textContent = "+";
-    plusBtn.dataset.name = item.name; plusBtn.dataset.price = item.price; plusBtn.dataset.action = "add";
+    (function(n,p){ plusBtn.onclick = function(){ addToCart(n,p); }; })(item.name, item.price);
     qtyDiv.appendChild(minusBtn); qtyDiv.appendChild(qtySpan); qtyDiv.appendChild(plusBtn);
     var priceDiv = document.createElement("div"); priceDiv.className = "cart-item-price";
     priceDiv.textContent = "$" + (item.price * item.qty).toLocaleString("es-MX");
@@ -1540,14 +1576,11 @@ function handleOverlayClick(e) {
   if (e.target === document.getElementById("cart-overlay")) closeCart();
 }
 
-document.addEventListener("click", function(e) {
-  if (e.target.dataset.action === "remove") { removeFromCart(e.target.dataset.name); }
-  else if (e.target.dataset.action === "add") { addToCart(e.target.dataset.name, parseInt(e.target.dataset.price)); }
-});
 
 // ═══ 5️⃣ WHATSAPP MESSAGE — ADAPTED PER MODE ═══
 function sendToWhatsApp() {
   if (cart.length === 0) return;
+  if (!orderType) { showToast(document.body.getAttribute("data-lang") === "en" ? "Please select order mode first" : "Selecciona un modo de pedido primero"); return; }
   fbq('track', 'InitiateCheckout', {value: getTotal(), currency: 'MXN', num_items: cart.length});
   fbq('track', 'Contact', {content_name: 'WhatsApp Order'});
   var lang = document.body.getAttribute("data-lang");
@@ -1599,10 +1632,9 @@ var SCHEDULE = {
 };
 
 function updateUrgencyBar() {
-  var now = new Date();
-  // Adjust to Mexico City time (UTC-6)
-  var utcMs = now.getTime() + (now.getTimezoneOffset() * 60000);
-  var mxTime = new Date(utcMs + (-6 * 3600000));
+  // Get current time in Guadalajara (America/Mexico_City)
+  var nowStr = new Date().toLocaleString('en-US', {timeZone: 'America/Mexico_City'});
+  var mxTime = new Date(nowStr);
   var day = mxTime.getDay(); // 0=Sun
   var hour = mxTime.getHours() + mxTime.getMinutes() / 60;
   var isWeekend = (day === 5 || day === 6);
@@ -1657,6 +1689,18 @@ if (savedLang2) setLang(savedLang2);
 // Scroll top
 window.addEventListener("scroll", function() {
   document.getElementById("scroll-top").classList.toggle("visible", window.scrollY > 400);
+});
+
+// Toggle card/item descriptions on name click
+document.addEventListener("click", function(e) {
+  var name = e.target.closest('.card-name, .item-name');
+  if (!name) return;
+  var parent = name.closest('.card-body, .item-info');
+  if (!parent) return;
+  var desc = parent.querySelector('.card-desc, .item-desc');
+  if (!desc) return;
+  var isOpen = desc.classList.toggle('open');
+  name.classList.toggle('desc-open', isOpen);
 });
 </script>
 </body>
