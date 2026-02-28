@@ -1345,13 +1345,6 @@ function selectOrderMode(mode) {
       trending.scrollIntoView({behavior: 'smooth', block: 'start'});
     }, 300);
   }
-  var lang = document.body.getAttribute("data-lang");
-  var msgs = {
-    domicilio: {es: '🛵 Modo domicilio activado', en: '🛵 Delivery mode active'},
-    recoger: {es: '🥡 Modo recoger activado', en: '🥡 Pickup mode active'},
-    mesa: {es: '🍽 Modo mesa activado', en: '🍽 Table mode active'}
-  };
-  showToast(msgs[mode][lang === 'en' ? 'en' : 'es']);
   fbq('trackCustom', 'OrderModeSelected', {mode: mode});
 }
 
@@ -1390,6 +1383,7 @@ function updateOrderTypeButtons() {
 function updateModeStrip() {
   var strip = document.getElementById('order-mode-strip');
   var text = document.getElementById('mode-strip-text');
+  var nav = document.getElementById('top-nav');
   if(!strip || !text) return;
   var lang = document.body.getAttribute("data-lang");
   var isEn = lang === 'en';
@@ -1400,6 +1394,11 @@ function updateModeStrip() {
     mesa: {es: '🍽 PIDIENDO DESDE MESA — Toca para ver tu orden', en: '🍽 TABLE ORDER — Tap to view order'}
   };
   text.textContent = labels[orderType][isEn ? 'en' : 'es'];
+  // Push nav below the strip
+  if(nav) {
+    var stripH = strip.offsetHeight;
+    nav.style.top = stripH + 'px';
+  }
 }
 
 // ═══ 5️⃣ STRATEGIC CHECKOUT ═══
