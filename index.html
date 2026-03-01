@@ -179,8 +179,12 @@ body>*{position:relative;z-index:1;}
 .drinks-cols{display:grid;grid-template-columns:repeat(2,1fr);gap:0 1.5rem;}
 @media(max-width:420px){.drinks-cols{grid-template-columns:1fr;}}
 .drink-row{display:flex;align-items:center;padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:.88rem;gap:.4rem;}
-.drink-row span:first-child{flex:1;color:var(--cream);}
-.drink-row span:last-child{color:var(--gold);font-family:"Bebas Neue";font-size:.98rem;padding-left:.5rem;flex-shrink:0;}
+.drink-row>span:first-child{flex:1;color:var(--cream);}
+.drink-row>.drink-price{color:var(--gold);font-family:"Bebas Neue",sans-serif;font-size:.98rem;padding-left:.5rem;flex-shrink:0;white-space:nowrap;}
+.drink-btns{display:flex;gap:.5rem;flex-shrink:0;align-items:center;}
+.drink-btns button{all:unset;cursor:pointer;padding:.4rem 0;width:5.5rem;background:var(--cta);color:white;font-family:"Bebas Neue",sans-serif;font-size:.82rem;letter-spacing:.06em;border-radius:8px;white-space:nowrap;text-align:center;transition:all .2s;box-shadow:0 2px 10px rgba(242,107,29,.3);-webkit-tap-highlight-color:transparent;display:inline-flex;align-items:center;justify-content:center;gap:.25rem;}
+.drink-btns button:hover{background:#E05A10;transform:scale(1.05);}
+@media(max-width:768px){.drink-btns button{font-size:.75rem;width:5rem;padding:.35rem 0;}}
 
 /* PHOTO STRIP */
 .photo-strip{display:flex;gap:8px;height:160px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:0 4px;}
@@ -520,6 +524,13 @@ src="https://www.facebook.com/tr?id=1564615811495027&ev=PageView&noscript=1"
   </div>
 </header>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.3/dist/umd/supabase.min.js"></script>
+<script>
+var SUPABASE_URL = 'https://hqrwjlrqzslkwhwqcmnh.supabase.co';
+var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhxcndqbHJxenNsa3dod3FjbW5oIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIzMDYwMTcsImV4cCI6MjA4Nzg4MjAxN30.tNyO18E7lDNEYH28P_DGxSg9pf1yYysVpJuMwboJOoU';
+var sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+</script>
+
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
@@ -567,39 +578,6 @@ src="https://www.facebook.com/tr?id=1564615811495027&ev=PageView&noscript=1"
     <span class="es">🔥 Alta demanda ahora</span><span class="en">🔥 High demand now</span>
   </div>
 </div>
-<script>
-// Immediate urgency check (runs right after urgency bar HTML)
-(function(){
-  try{
-    var ns = new Date().toLocaleString('en-US',{timeZone:'America/Mexico_City'});
-    var h = new Date(ns).getHours() + new Date(ns).getMinutes()/60;
-    var d = new Date(ns).getDay();
-    var isWknd = (d===5||d===6);
-    var openH = 12, closeH = isWknd ? 23.5 : 23;
-    var dot = document.getElementById('urgency-dot');
-    var st = document.getElementById('urgency-status-text');
-    var cl = document.getElementById('urgency-closes');
-    if(h < openH || h >= closeH){
-      if(dot) dot.className='urgency-dot red';
-      if(st){
-        var esSpan = st.querySelector('.es');
-        var enSpan = st.querySelector('.en');
-        if(esSpan) esSpan.textContent='Cocina cerrada';
-        if(enSpan) enSpan.textContent='Kitchen closed';
-      }
-      if(cl) cl.style.display='none';
-    } else {
-      if(dot) dot.className='urgency-dot green';
-      if(st){
-        var esSpan = st.querySelector('.es');
-        var enSpan = st.querySelector('.en');
-        if(esSpan) esSpan.textContent='Cocina abierta';
-        if(enSpan) enSpan.textContent='Kitchen open';
-      }
-    }
-  }catch(e){}
-})();
-</script>
 
 <div class="lead-bar">
   <p class="es">Suscríbete y recibe promociones exclusivas</p>
@@ -925,28 +903,28 @@ src="https://www.facebook.com/tr?id=1564615811495027&ev=PageView&noscript=1"
     <div class="section-line"></div>
   </div>
   <div class="drinks-cols">
-    <div class="drink-row"><span>Pacífico Clara</span><span>$50</span><button class="add-btn" onclick="addToCart('Pacífico Clara',50)">+</button></div>
-    <div class="drink-row"><span>Pacífico Suave</span><span>$50</span><button class="add-btn" onclick="addToCart('Pacífico Suave',50)">+</button></div>
-    <div class="drink-row"><span>Corona</span><span>$45</span><button class="add-btn" onclick="addToCart('Corona',45)">+</button></div>
-    <div class="drink-row"><span>Modelo Especial</span><span>$55</span><button class="add-btn" onclick="addToCart('Modelo Especial',55)">+</button></div>
-    <div class="drink-row"><span>Modelo Negra</span><span>$55</span><button class="add-btn" onclick="addToCart('Modelo Negra',55)">+</button></div>
-    <div class="drink-row"><span>Caguama Familiar</span><span>$120</span><button class="add-btn" onclick="addToCart('Caguama Familiar',120)">+</button></div>
-    <div class="drink-row"><span>Bichola Lata</span><span>$70</span><button class="add-btn" onclick="addToCart('Bichola Lata',70)">+</button></div>
-    <div class="drink-row"><span>Bichola Barril</span><span>$80</span><button class="add-btn" onclick="addToCart('Bichola Barril',80)">+</button></div>
-    <div class="drink-row"><span>Misil Bichola</span><span>$200</span><button class="add-btn" onclick="addToCart('Misil Bichola',200)">+</button></div>
-    <div class="drink-row"><span><span class="es">Artesanal</span><span class="en">Craft Beer</span> · IPA/Lager/Porter/Blonde</span><span>$90</span><button class="add-btn" onclick="addToCart('Artesanal · IPA/Lager/Porter/Blonde',90)">+</button></div>
+    <div class="drink-row"><span>Pacífico Clara</span><span class="drink-price">$50</span><button class="add-btn" onclick="addToCart('Pacífico Clara',50)">+</button></div>
+    <div class="drink-row"><span>Pacífico Suave</span><span class="drink-price">$50</span><button class="add-btn" onclick="addToCart('Pacífico Suave',50)">+</button></div>
+    <div class="drink-row"><span>Corona</span><span class="drink-price">$45</span><button class="add-btn" onclick="addToCart('Corona',45)">+</button></div>
+    <div class="drink-row"><span>Modelo Especial</span><span class="drink-price">$55</span><button class="add-btn" onclick="addToCart('Modelo Especial',55)">+</button></div>
+    <div class="drink-row"><span>Modelo Negra</span><span class="drink-price">$55</span><button class="add-btn" onclick="addToCart('Modelo Negra',55)">+</button></div>
+    <div class="drink-row"><span>Caguama Familiar</span><span class="drink-price">$120</span><button class="add-btn" onclick="addToCart('Caguama Familiar',120)">+</button></div>
+    <div class="drink-row"><span>Bichola Lata</span><span class="drink-price">$70</span><button class="add-btn" onclick="addToCart('Bichola Lata',70)">+</button></div>
+    <div class="drink-row"><span>Bichola Barril</span><span class="drink-price">$80</span><button class="add-btn" onclick="addToCart('Bichola Barril',80)">+</button></div>
+    <div class="drink-row"><span>Misil Bichola</span><span class="drink-price">$200</span><button class="add-btn" onclick="addToCart('Misil Bichola',200)">+</button></div>
+    <div class="drink-row"><span><span class="es">Artesanal</span><span class="en">Craft Beer</span> · IPA/Lager/Porter/Blonde</span><span class="drink-price">$90</span><button class="add-btn" onclick="addToCart('Artesanal · IPA/Lager/Porter/Blonde',90)">+</button></div>
   </div>
   <div style="margin-top:2rem;">
     <div class="section-label" style="text-align:center;margin-bottom:1rem;"><span class="es">Las Bebidas</span><span class="en">Non-Alcoholic</span></div>
     <div class="drinks-cols">
-      <div class="drink-row"><span>Limonada</span><span>$65</span><button class="add-btn" onclick="addToCart('Limonada',65)">+</button></div>
-      <div class="drink-row"><span><span class="es">Agua Natural</span><span class="en">Water</span></span><span>$45</span><button class="add-btn" onclick="addToCart('Agua Natural',45)">+</button></div>
-      <div class="drink-row"><span>Topochico</span><span>$50</span><button class="add-btn" onclick="addToCart('Topochico',50)">+</button></div>
-      <div class="drink-row"><span>Perrier</span><span>$75</span><button class="add-btn" onclick="addToCart('Perrier',75)">+</button></div>
-      <div class="drink-row"><span><span class="es">Refresco</span><span class="en">Soda</span></span><span>$45</span><button class="add-btn" onclick="addToCart('Refresco',45)">+</button></div>
-      <div class="drink-row"><span>Rusa</span><span>$65</span><button class="add-btn" onclick="addToCart('Rusa',65)">+</button></div>
-      <div class="drink-row"><span>Vaso Escarchado</span><span>$40</span><button class="add-btn" onclick="addToCart('Vaso Escarchado',40)">+</button></div>
-      <div class="drink-row"><span>Vaso Michelado</span><span>$70</span><button class="add-btn" onclick="addToCart('Vaso Michelado',70)">+</button></div>
+      <div class="drink-row"><span>Limonada</span><span class="drink-price">$65</span><button class="add-btn" onclick="addToCart('Limonada',65)">+</button></div>
+      <div class="drink-row"><span><span class="es">Agua Natural</span><span class="en">Water</span></span><span class="drink-price">$45</span><button class="add-btn" onclick="addToCart('Agua Natural',45)">+</button></div>
+      <div class="drink-row"><span>Topochico</span><span class="drink-price">$50</span><button class="add-btn" onclick="addToCart('Topochico',50)">+</button></div>
+      <div class="drink-row"><span>Perrier</span><span class="drink-price">$75</span><button class="add-btn" onclick="addToCart('Perrier',75)">+</button></div>
+      <div class="drink-row"><span><span class="es">Refresco</span><span class="en">Soda</span></span><span class="drink-price">$45</span><button class="add-btn" onclick="addToCart('Refresco',45)">+</button></div>
+      <div class="drink-row"><span>Rusa</span><span class="drink-price">$65</span><button class="add-btn" onclick="addToCart('Rusa',65)">+</button></div>
+      <div class="drink-row"><span>Vaso Escarchado</span><span class="drink-price">$40</span><button class="add-btn" onclick="addToCart('Vaso Escarchado',40)">+</button></div>
+      <div class="drink-row"><span>Vaso Michelado</span><span class="drink-price">$70</span><button class="add-btn" onclick="addToCart('Vaso Michelado',70)">+</button></div>
     </div>
   </div>
 </section>
@@ -961,16 +939,16 @@ src="https://www.facebook.com/tr?id=1564615811495027&ev=PageView&noscript=1"
   </div>
   <p style="text-align:center;color:var(--muted);font-size:.75rem;margin-bottom:1.2rem;letter-spacing:.12em;"><span class="es">COPA 2oz · BOTELLA CON 4 SERVICIOS</span><span class="en">2oz POUR · BOTTLE WITH 4 SERVINGS</span></p>
   <div class="drinks-cols">
-    <div class="drink-row"><span>Bacardi</span><span>$70 / $700</span><button class="add-btn" onclick="addToCart('Bacardi (copa)',70)">+</button></div>
-    <div class="drink-row"><span>Havana 7 <span class="es">años</span><span class="en">yr</span></span><span>$90 / $960</span><button class="add-btn" onclick="addToCart('Havana 7 años (copa)',90)">+</button></div>
-    <div class="drink-row"><span>Cascahuin</span><span>$110 / $1,100</span><button class="add-btn" onclick="addToCart('Cascahuin (copa)',110)">+</button></div>
-    <div class="drink-row"><span>Herradura</span><span>$130 / $1,400</span><button class="add-btn" onclick="addToCart('Herradura (copa)',130)">+</button></div>
-    <div class="drink-row"><span>Maestro Dobel</span><span>$150 / $1,700</span><button class="add-btn" onclick="addToCart('Maestro Dobel (copa)',150)">+</button></div>
-    <div class="drink-row"><span>400 Conejos</span><span>$110 / $1,100</span><button class="add-btn" onclick="addToCart('400 Conejos (copa)',110)">+</button></div>
-    <div class="drink-row"><span>Montelobos Espadín</span><span>$120 / $1,300</span><button class="add-btn" onclick="addToCart('Montelobos Espadín (copa)',120)">+</button></div>
-    <div class="drink-row"><span>Buchanans 12</span><span>$200 / $2,200</span><button class="add-btn" onclick="addToCart('Buchanans 12 (copa)',200)">+</button></div>
-    <div class="drink-row"><span>Etiqueta Negra</span><span>$220 / $2,600</span><button class="add-btn" onclick="addToCart('Etiqueta Negra (copa)',220)">+</button></div>
-    <div class="drink-row"><span>Macallan 12</span><span>$340 / $3,600</span><button class="add-btn" onclick="addToCart('Macallan 12 (copa)',340)">+</button></div>
+    <div class="drink-row"><span>Bacardi</span><div class="drink-btns"><button aria-label="Agregar Bacardi copa" onclick="addToCart('Bacardi (copa)',70)">🥃 $70</button><button aria-label="Agregar Bacardi botella" onclick="addToCart('Bacardi (botella)',700)">🍾 $700</button></div></div>
+    <div class="drink-row"><span>Havana 7 <span class="es">años</span><span class="en">yr</span></span><div class="drink-btns"><button aria-label="Agregar Havana 7 años copa" onclick="addToCart('Havana 7 años (copa)',90)">🥃 $90</button><button aria-label="Agregar Havana 7 años botella" onclick="addToCart('Havana 7 años (botella)',960)">🍾 $960</button></div></div>
+    <div class="drink-row"><span>Cascahuin</span><div class="drink-btns"><button aria-label="Agregar Cascahuin copa" onclick="addToCart('Cascahuin (copa)',110)">🥃 $110</button><button aria-label="Agregar Cascahuin botella" onclick="addToCart('Cascahuin (botella)',1100)">🍾 $1,100</button></div></div>
+    <div class="drink-row"><span>Herradura</span><div class="drink-btns"><button aria-label="Agregar Herradura copa" onclick="addToCart('Herradura (copa)',130)">🥃 $130</button><button aria-label="Agregar Herradura botella" onclick="addToCart('Herradura (botella)',1400)">🍾 $1,400</button></div></div>
+    <div class="drink-row"><span>Maestro Dobel</span><div class="drink-btns"><button aria-label="Agregar Maestro Dobel copa" onclick="addToCart('Maestro Dobel (copa)',150)">🥃 $150</button><button aria-label="Agregar Maestro Dobel botella" onclick="addToCart('Maestro Dobel (botella)',1700)">🍾 $1,700</button></div></div>
+    <div class="drink-row"><span>400 Conejos</span><div class="drink-btns"><button aria-label="Agregar 400 Conejos copa" onclick="addToCart('400 Conejos (copa)',110)">🥃 $110</button><button aria-label="Agregar 400 Conejos botella" onclick="addToCart('400 Conejos (botella)',1100)">🍾 $1,100</button></div></div>
+    <div class="drink-row"><span>Montelobos Espadín</span><div class="drink-btns"><button aria-label="Agregar Montelobos copa" onclick="addToCart('Montelobos (copa)',120)">🥃 $120</button><button aria-label="Agregar Montelobos botella" onclick="addToCart('Montelobos (botella)',1300)">🍾 $1,300</button></div></div>
+    <div class="drink-row"><span>Buchanans 12</span><div class="drink-btns"><button aria-label="Agregar Buchanans 12 copa" onclick="addToCart('Buchanans 12 (copa)',200)">🥃 $200</button><button aria-label="Agregar Buchanans 12 botella" onclick="addToCart('Buchanans 12 (botella)',2200)">🍾 $2,200</button></div></div>
+    <div class="drink-row"><span>Etiqueta Negra</span><div class="drink-btns"><button aria-label="Agregar Etiqueta Negra copa" onclick="addToCart('Etiqueta Negra (copa)',220)">🥃 $220</button><button aria-label="Agregar Etiqueta Negra botella" onclick="addToCart('Etiqueta Negra (botella)',2600)">🍾 $2,600</button></div></div>
+    <div class="drink-row"><span>Macallan 12</span><div class="drink-btns"><button aria-label="Agregar Macallan 12 copa" onclick="addToCart('Macallan 12 (copa)',340)">🥃 $340</button><button aria-label="Agregar Macallan 12 botella" onclick="addToCart('Macallan 12 (botella)',3600)">🍾 $3,600</button></div></div>
   </div>
 </section>
 <div class="gold-sep"></div>
@@ -1148,40 +1126,65 @@ src="https://www.facebook.com/tr?id=1564615811495027&ev=PageView&noscript=1"
 
 
 <!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox" onclick="if(event.target===this)closeLightbox()">
-  <div class="lightbox-inner">
-    <button class="lightbox-close" onclick="closeLightbox()">×</button>
-    <img id="lightbox-img" src="" alt="">
+<div class="lightbox" id="lightbox" onclick="if(event.target===this||event.target.classList.contains('lightbox-inner'))closeLightbox()">
+  <div class="lightbox-inner" style="cursor:pointer;">
+    <button class="lightbox-close" onclick="closeLightbox()" aria-label="Cerrar">×</button>
+    <img id="lightbox-img" src="" alt="" style="cursor:default;" onclick="event.stopPropagation()">
     <div class="lightbox-caption" id="lightbox-caption"></div>
   </div>
 </div>
 <script>
 try{
+// Safe localStorage wrapper — prevents errors in Safari private mode, etc.
+var safeStorage = {
+  get: function(key) { try { return window['localStorage'].getItem(key); } catch(e) { return null; } },
+  set: function(key, val) { try { window['localStorage'].setItem(key, val); } catch(e) {} },
+  remove: function(key) { try { window['localStorage'].removeItem(key); } catch(e) {} }
+};
 var imgCache = {};
 function preloadImg(id) {
   var base = 'https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_1400/';
   if (!imgCache[id]) { var img = new Image(); img.src = base + id + '.png'; imgCache[id] = img; }
 }
-function openLightbox(id, alt) {
-  var base = 'https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto,w_1400/';
-  var src = (typeof id === 'string' && id.startsWith('http')) ? id : base + id + '.png';
-  document.getElementById('lightbox-img').src = src;
+function openLightbox(src, alt) {
+  // Upgrade any Cloudinary URL to HD regardless of current size pattern
+  var hdSrc = src;
+  if (src.indexOf('cloudinary.com') > -1) {
+    // Replace any w_NUMBER pattern with w_1400
+    hdSrc = src.replace(/w_\d+/, 'w_1400');
+    // If no w_ pattern found, insert w_1400 after upload/
+    if (hdSrc === src && src.indexOf('/upload/') > -1) {
+      hdSrc = src.replace('/upload/', '/upload/w_1400,');
+    }
+  }
+  document.getElementById('lightbox-img').src = hdSrc;
   document.getElementById('lightbox-caption').textContent = alt || '';
   document.getElementById('lightbox').classList.add('open');
   document.body.style.overflow = 'hidden';
+  history.pushState({lightbox: true}, '');
 }
 function closeLightbox() {
-  document.getElementById('lightbox').classList.remove('open');
+  var lb = document.getElementById('lightbox');
+  if (!lb.classList.contains('open')) return;
+  lb.classList.remove('open');
   document.body.style.overflow = '';
 }
+// Close on Escape key
 document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeLightbox(); });
+// Close on back button (mobile)
+window.addEventListener('popstate', function(e){
+  if (document.getElementById('lightbox').classList.contains('open')) {
+    closeLightbox();
+  }
+});
+// Open lightbox on image click
 document.querySelectorAll('.card-img-wrap img').forEach(function(img){
   img.style.cursor = 'zoom-in';
-  img.addEventListener('click', function(){ openLightbox(this.src.replace('w_800','w_1400'), this.alt); });
+  img.addEventListener('click', function(){ openLightbox(this.src, this.alt); });
 });
 window.addEventListener('load', function(){
   ['mezcalita_nhmtez','tachosour_uohegy','ballenita_eqqo6e','batanga_yqy8yi','ositorojo1_ip3u9c','picaflor_ioxxld'].forEach(preloadImg);
-  document.querySelectorAll('.card-img-wrap img').forEach(function(img){ var hi = new Image(); hi.src = img.src.replace('w_800','w_1400'); });
+  document.querySelectorAll('.card-img-wrap img').forEach(function(img){ var hi = new Image(); hi.src = img.src.replace(/w_\d+/, 'w_1400'); });
 });
 
 // ── PRELOAD LIGHTBOX IMAGES ──
@@ -1276,14 +1279,15 @@ function setLang(lang) {
     nameEn.style.display = lang === "en" ? "" : "none";
     nameEn.required = lang === "en";
   }
-  localStorage.setItem("anastacio_lang", lang);
+  safeStorage.set("anastacio_lang", lang);
   if(typeof updateBubble==='function') updateBubble();
   if(typeof renderCart==='function') renderCart();
   if(typeof updateModeStrip==='function') updateModeStrip();
   if(typeof updateCheckout==='function') updateCheckout();
   if(typeof updateUrgencyBar==='function') updateUrgencyBar();
+  setTimeout(function(){ if(typeof updateScrollMargins==='function') updateScrollMargins(); }, 100);
 }
-var savedLang = localStorage.getItem("anastacio_lang");
+var savedLang = safeStorage.get("anastacio_lang");
 if (savedLang) setLang(savedLang);
 
 // ═══ NAV SCROLL ═══
@@ -1299,8 +1303,45 @@ window.addEventListener("scroll", function() {
     var zoneTop = lightZone.getBoundingClientRect().top;
     var zoneBottom = lightZone.getBoundingClientRect().bottom;
     var inMenu = zoneTop <= navHeight && zoneBottom > navHeight + 60;
-    menuNav.style.top = inMenu ? navHeight + "px" : "-60px";
+    var newTop = inMenu ? navHeight + "px" : "-60px";
+    if (menuNav.style.top !== newTop) {
+      menuNav.style.top = newTop;
+      updateScrollMargins();
+    }
   }
+});
+
+// Dynamic scroll offset calculation
+function getFixedOffset() {
+  var topNav = document.getElementById('top-nav');
+  var strip = document.getElementById('order-mode-strip');
+  var menuNav = document.querySelector('.menu-nav');
+  var h = 0;
+  if (topNav) h += topNav.offsetHeight;
+  if (strip && strip.classList.contains('visible')) h += strip.offsetHeight;
+  if (menuNav && parseInt(menuNav.style.top) >= 0) h += menuNav.offsetHeight;
+  return h + 12; // 12px breathing room
+}
+
+// Update scroll-margin-top on all sections dynamically
+function updateScrollMargins() {
+  var offset = getFixedOffset();
+  document.querySelectorAll('.menu-section').forEach(function(s) {
+    s.style.scrollMarginTop = offset + 'px';
+  });
+}
+
+// Menu nav anchor click — smooth scroll with correct offset
+document.querySelectorAll('.menu-nav a[href^="#"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    e.preventDefault();
+    var target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      var offset = getFixedOffset();
+      var y = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  });
 });
 
 var navLinks = document.querySelectorAll(".menu-nav a");
@@ -1345,9 +1386,11 @@ function captureLead(e) {
   var lang = document.body.getAttribute("data-lang");
   var name = lang === "en" ? document.getElementById("lead-name-en").value : document.getElementById("lead-name").value;
   var phone = document.getElementById("lead-phone").value;
-  var leads = JSON.parse(localStorage.getItem("anastacio_leads") || "[]");
+  var leads = JSON.parse(safeStorage.get("anastacio_leads") || "[]");
   leads.push({name: name, phone: phone, date: new Date().toISOString(), source: "bar"});
-  localStorage.setItem("anastacio_leads", JSON.stringify(leads));
+  safeStorage.set("anastacio_leads", JSON.stringify(leads));
+  // Send to Supabase
+  if(typeof sbClient !== 'undefined') sbClient.from('leads').insert({name: name, phone: phone, source: 'bar'}).then(function(){});
   e.target.reset();
   var lang = document.body.getAttribute("data-lang");
   showToast(lang === "es" ? "Gracias " + name + "! Te mandamos las mejores promos." : "Thanks " + name + "! We will send you the best deals.");
@@ -1358,9 +1401,11 @@ function submitPromo(e) {
   e.preventDefault();
   var f = e.target;
   var lead = {name: f[0].value, phone: f[1].value, email: f[2].value, source: f[3].value, date: new Date().toISOString()};
-  var leads = JSON.parse(localStorage.getItem("anastacio_leads") || "[]");
+  var leads = JSON.parse(safeStorage.get("anastacio_leads") || "[]");
   leads.push(lead);
-  localStorage.setItem("anastacio_leads", JSON.stringify(leads));
+  safeStorage.set("anastacio_leads", JSON.stringify(leads));
+  // Send to Supabase
+  if(typeof sbClient !== 'undefined') sbClient.from('leads').insert({name: lead.name, phone: lead.phone, email: lead.email, source: 'modal'}).then(function(){});
   closeModal("promo-modal");
   var lang = document.body.getAttribute("data-lang");
   showToast(lang === "es" ? "Bienvenido al club Anastacio!" : "Welcome to the Anastacio club!");
@@ -1368,11 +1413,11 @@ function submitPromo(e) {
 }
 
 (function() {
-  var a = JSON.parse(localStorage.getItem("anastacio_analytics") || "{}");
+  var a = JSON.parse(safeStorage.get("anastacio_analytics") || "{}");
   var today = new Date().toDateString();
   a[today] = (a[today] || 0) + 1;
   a.total = (a.total || 0) + 1;
-  localStorage.setItem("anastacio_analytics", JSON.stringify(a));
+  safeStorage.set("anastacio_analytics", JSON.stringify(a));
 })();
 
 // ═══ 1️⃣ HERO MODE SELECTION ═══
@@ -1386,18 +1431,15 @@ function selectOrderMode(mode) {
   updateOrderTypeButtons();
   updateModeStrip();
   updateCheckout();
+  // Recalculate scroll margins after mode strip appears
+  setTimeout(updateScrollMargins, 350);
   // Scroll to trending title
   var trending = document.getElementById('trending');
   if (trending) {
     setTimeout(function() {
-      var strip = document.getElementById('order-mode-strip');
-      var topNav = document.getElementById('top-nav');
-      var stripH = (strip && strip.classList.contains('visible')) ? strip.offsetHeight : 0;
-      var navH = topNav ? topNav.offsetHeight : 0;
-      var offset = stripH + navH + 10;
-      var y = trending.getBoundingClientRect().top + window.scrollY - offset;
+      var y = trending.getBoundingClientRect().top + window.scrollY - getFixedOffset();
       window.scrollTo({top: y, behavior: 'smooth'});
-    }, 300);
+    }, 400);
   }
   safeFbq('trackCustom', 'OrderModeSelected', {mode: mode});
 }
@@ -1462,25 +1504,74 @@ function updateModeStrip() {
 }
 
 // ═══ 5️⃣ STRATEGIC CHECKOUT ═══
+function isCheckoutValid() {
+  if (cart.length === 0) return false;
+  if (!orderType) return false;
+  if (orderType === 'domicilio') {
+    var dn = document.getElementById('del-name');
+    var dp = document.getElementById('del-phone');
+    var da = document.getElementById('del-address');
+    if (!dn || !dn.value.trim() || !dp || !dp.value.trim() || !da || !da.value.trim()) return false;
+  } else if (orderType === 'recoger') {
+    var pn = document.getElementById('pick-name');
+    var pp = document.getElementById('pick-phone');
+    if (!pn || !pn.value.trim() || !pp || !pp.value.trim()) return false;
+  } else if (orderType === 'mesa') {
+    var mn = document.getElementById('mesa-num');
+    if (!mn || !mn.value.trim()) return false;
+  }
+  return true;
+}
+
+function getCheckoutMessage() {
+  var lang = document.body.getAttribute("data-lang");
+  var isEn = lang === 'en';
+  if (cart.length === 0) return '';
+  if (!orderType) return isEn ? '⚠ Select an order mode above to continue' : '⚠ Selecciona un modo de pedido arriba para continuar';
+  if (orderType === 'domicilio') {
+    var dn = document.getElementById('del-name');
+    var dp = document.getElementById('del-phone');
+    var da = document.getElementById('del-address');
+    var missing = [];
+    if (!dn || !dn.value.trim()) missing.push(isEn ? 'name' : 'nombre');
+    if (!dp || !dp.value.trim()) missing.push('WhatsApp');
+    if (!da || !da.value.trim()) missing.push(isEn ? 'address' : 'dirección');
+    if (missing.length > 0) return (isEn ? '⚠ Missing: ' : '⚠ Falta: ') + missing.join(', ');
+  } else if (orderType === 'recoger') {
+    var pn = document.getElementById('pick-name');
+    var pp = document.getElementById('pick-phone');
+    var missing = [];
+    if (!pn || !pn.value.trim()) missing.push(isEn ? 'name' : 'nombre');
+    if (!pp || !pp.value.trim()) missing.push('WhatsApp');
+    if (missing.length > 0) return (isEn ? '⚠ Missing: ' : '⚠ Falta: ') + missing.join(', ');
+  } else if (orderType === 'mesa') {
+    var mn = document.getElementById('mesa-num');
+    if (!mn || !mn.value.trim()) return isEn ? '⚠ Enter table number' : '⚠ Ingresa número de mesa';
+  }
+  return '';
+}
+
 function updateCheckout() {
   var badge = document.getElementById('checkout-badge');
   var detail = document.getElementById('checkout-detail');
   var btn = document.getElementById('stripe-btn');
   var btnText = document.getElementById('checkout-btn-text');
   if(!badge || !detail || !btn || !btnText) return;
+
+  var valid = isCheckoutValid();
+  btn.disabled = !valid;
+
+  // Update button opacity for visual feedback
+  btn.style.opacity = valid ? '1' : '0.5';
+
   if(!orderType) {
-    btn.disabled = true;
-    var lang = document.body.getAttribute("data-lang");
-    var isEn = lang === 'en';
     badge.className = 'checkout-mode-badge';
     badge.textContent = '';
-    if(cart.length > 0) {
-      detail.textContent = isEn ? '⚠ Select an order mode above to continue' : '⚠ Selecciona un modo de pedido arriba para continuar';
-    } else {
-      detail.textContent = '';
-    }
+    var msg = getCheckoutMessage();
+    detail.textContent = msg;
     return;
   }
+
   var lang = document.body.getAttribute("data-lang");
   var isEn = lang === 'en';
 
@@ -1493,27 +1584,36 @@ function updateCheckout() {
   };
   badge.textContent = badgeLabels[orderType][isEn ? 'en' : 'es'];
 
-  // Detail line
-  var detailText = '';
-  if (orderType === 'mesa') {
-    var mesa = document.getElementById('mesa-num').value;
-    if (mesa) detailText = (isEn ? 'Table: ' : 'Mesa: ') + mesa;
-  } else if (orderType === 'recoger') {
-    var ptime = document.getElementById('pick-time').value;
-    if (ptime) detailText = (isEn ? 'Pickup at: ' : 'Recoger a las: ') + ptime;
+  // Detail line - show missing fields or order info
+  var missingMsg = getCheckoutMessage();
+  if (missingMsg) {
+    detail.textContent = missingMsg;
+    detail.style.color = 'var(--cta)';
   } else {
-    var addr = document.getElementById('del-address').value;
-    if (addr) detailText = (isEn ? 'To: ' : 'Enviar a: ') + addr;
+    detail.style.color = 'var(--muted)';
+    var detailText = '';
+    if (orderType === 'mesa') {
+      var mesa = document.getElementById('mesa-num').value;
+      if (mesa) detailText = (isEn ? 'Table: ' : 'Mesa: ') + mesa;
+    } else if (orderType === 'recoger') {
+      var pn = document.getElementById('pick-name').value.trim();
+      var pt = document.getElementById('pick-time') ? document.getElementById('pick-time').value : '';
+      detailText = pn;
+      if (pt) detailText += (isEn ? ' · Pickup at: ' : ' · Recoger a las: ') + pt;
+    } else {
+      var dn = document.getElementById('del-name').value.trim();
+      var addr = document.getElementById('del-address').value.trim();
+      detailText = dn;
+      if (addr) detailText += ' · 📍 ' + addr;
+    }
+    detail.textContent = detailText;
   }
-  detail.textContent = detailText;
-
-  // Button - enable if valid
-  btn.disabled = false;
 }
 
-// Live update checkout detail as user types
+// Live update checkout as user types ANY field in order forms
 document.addEventListener('input', function(e) {
-  if (['mesa-num','pick-time','del-address','pick-name','del-name'].indexOf(e.target.id) > -1) {
+  var el = e.target;
+  if (el.closest('#form-domicilio') || el.closest('#form-recoger') || el.closest('#form-mesa')) {
     updateCheckout();
   }
 });
@@ -1554,7 +1654,7 @@ function updateBubble() {
   if(!bubble || !count || !label) return;
   var lang = document.body.getAttribute("data-lang");
   count.textContent = total;
-  label.textContent = lang === "es" ? ("$" + getTotal().toLocaleString("es-MX")) : ("$" + getTotal().toLocaleString("en-US"));
+  label.textContent = "$" + getTotal().toLocaleString("es-MX");
   if (total > 0) {
     bubble.classList.add("visible");
     bubble.style.transform = "scale(1.15)";
@@ -1575,16 +1675,13 @@ function renderCart() {
     totalEl.textContent = "$0"; btn.disabled = true; return;
   }
   empty.style.display = "none";
-  // Enable checkout only if items AND orderType selected
+  // Enable checkout only if all conditions met
   var summary = document.getElementById("checkout-detail");
-  if(!orderType){
-    btn.disabled = true;
-    if(summary){
-      var lang = document.body.getAttribute("data-lang");
-      summary.textContent = lang === 'en' ? '⚠ Select an order mode above to continue' : '⚠ Selecciona un modo de pedido arriba para continuar';
-    }
-  } else {
-    btn.disabled = false;
+  btn.disabled = !isCheckoutValid();
+  btn.style.opacity = isCheckoutValid() ? '1' : '0.5';
+  if(!orderType && summary){
+    var lang = document.body.getAttribute("data-lang");
+    summary.textContent = lang === 'en' ? '⚠ Select an order mode above to continue' : '⚠ Selecciona un modo de pedido arriba para continuar';
   }
   body.querySelectorAll(".cart-item").forEach(function(el) { el.remove(); });
 
@@ -1734,7 +1831,7 @@ updateModeStrip();
 updateCheckout();
 
 // Re-apply saved language now that all functions exist
-var savedLang2 = localStorage.getItem("anastacio_lang");
+var savedLang2 = safeStorage.get("anastacio_lang");
 if (savedLang2) setLang(savedLang2);
 
 // Scroll top
@@ -1745,6 +1842,33 @@ window.addEventListener("scroll", function() {
 // ═══ STRIPE PAYMENT ═══
 async function payWithStripe() {
   if (cart.length === 0 || !orderType) return;
+
+  var lang = document.body.getAttribute("data-lang");
+  var isEn = lang === 'en';
+
+  // Validate required fields
+  if (orderType === "domicilio") {
+    var dn = document.getElementById("del-name").value.trim();
+    var dp = document.getElementById("del-phone").value.trim();
+    var da = document.getElementById("del-address").value.trim();
+    if (!dn || !dp || !da) {
+      alert(isEn ? "Please fill in your name, phone and delivery address" : "Llena tu nombre, teléfono y dirección de envío");
+      return;
+    }
+  } else if (orderType === "recoger") {
+    var pn = document.getElementById("pick-name").value.trim();
+    var pp = document.getElementById("pick-phone").value.trim();
+    if (!pn || !pp) {
+      alert(isEn ? "Please fill in your name and phone" : "Llena tu nombre y teléfono");
+      return;
+    }
+  } else if (orderType === "mesa") {
+    var mn = document.getElementById("mesa-num").value.trim();
+    if (!mn) {
+      alert(isEn ? "Please enter your table number" : "Ingresa el número de mesa");
+      return;
+    }
+  }
 
   var stripeBtn = document.getElementById("stripe-btn");
   stripeBtn.disabled = true;
@@ -1757,15 +1881,15 @@ async function payWithStripe() {
   // Get form data
   var dName = "", dPhone = "", dAddr = "", pName = "", pPhone = "", pTime = "", mesaVal = "";
   if (orderType === "domicilio") {
-    dName = document.getElementById("d-name") ? document.getElementById("d-name").value.trim() : "";
-    dPhone = document.getElementById("d-phone") ? document.getElementById("d-phone").value.trim() : "";
-    dAddr = document.getElementById("d-address") ? document.getElementById("d-address").value.trim() : "";
+    dName = document.getElementById("del-name").value.trim();
+    dPhone = document.getElementById("del-phone").value.trim();
+    dAddr = document.getElementById("del-address").value.trim();
   } else if (orderType === "recoger") {
-    pName = document.getElementById("p-name") ? document.getElementById("p-name").value.trim() : "";
-    pPhone = document.getElementById("p-phone") ? document.getElementById("p-phone").value.trim() : "";
-    pTime = document.getElementById("p-time") ? document.getElementById("p-time").value : "";
+    pName = document.getElementById("pick-name").value.trim();
+    pPhone = document.getElementById("pick-phone").value.trim();
+    pTime = document.getElementById("pick-time") ? document.getElementById("pick-time").value : "";
   } else {
-    mesaVal = document.getElementById("mesa-num") ? document.getElementById("mesa-num").value.trim() : "";
+    mesaVal = document.getElementById("mesa-num").value.trim();
   }
 
   var customerName = dName || pName || ("Mesa " + mesaVal);
@@ -1797,7 +1921,7 @@ async function payWithStripe() {
   } catch(e) { console.error("Order save error:", e); }
 
   // Save order info for WhatsApp after payment
-  localStorage.setItem("anastacio_pending_order", JSON.stringify({
+  safeStorage.set("anastacio_pending_order", JSON.stringify({
     orderType: orderType,
     customerName: customerName,
     customerPhone: customerPhone,
@@ -1818,7 +1942,7 @@ async function payWithStripe() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhxcndqbHJxenNsa3dod3FjbW5oIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIzMDYwMTcsImV4cCI6MjA4Nzg4MjAxN30.tNyO18E7lDNEYH28P_DGxSg9pf1yYysVpJuMwboJOoU"
+        "Authorization": "Bearer " + SUPABASE_KEY
       },
       body: JSON.stringify({
         items: stripeItems,
@@ -1854,11 +1978,11 @@ async function payWithStripe() {
 (function checkPaymentReturn() {
   var params = new URLSearchParams(window.location.search);
   if (params.get("payment") === "success") {
-    var pending = localStorage.getItem("anastacio_pending_order");
+    var pending = safeStorage.get("anastacio_pending_order");
     if (pending) {
       try {
         var order = JSON.parse(pending);
-        localStorage.removeItem("anastacio_pending_order");
+        safeStorage.remove("anastacio_pending_order");
 
         // Update order status to confirmed in Supabase
         if (order.orderId) {
@@ -1878,9 +2002,9 @@ async function payWithStripe() {
         if (order.pickupTime) msg += "⏱ *Hora:* " + order.pickupTime + "\n";
         msg += "\n🛒 *Pedido:*\n";
         order.items.forEach(function(item) {
-          msg += "  • " + item.qty + "x " + item.name + " — $" + (item.price * item.qty) + "\n";
+          msg += "  • " + item.qty + "x " + item.name + " — $" + (item.price * item.qty).toLocaleString("es-MX") + "\n";
         });
-        msg += "\n💰 *Total: $" + order.total + "* ✅ PAGADO\n";
+        msg += "\n💰 *Total: $" + order.total.toLocaleString("es-MX") + "* ✅ PAGADO\n";
 
         var encoded = encodeURIComponent(msg);
         var waURL = "https://wa.me/523318916060?text=" + encoded;
