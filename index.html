@@ -1917,8 +1917,12 @@ async function payWithStripe() {
   var orderId = "";
   try {
     var res = await sbClient.from("orders").insert([orderData]).select();
+    console.log("Order insert result:", JSON.stringify(res));
+    if (res.error) { 
+      console.error("Order insert error:", JSON.stringify(res.error)); 
+    }
     if (res.data && res.data[0]) orderId = res.data[0].id;
-  } catch(e) { console.error("Order save error:", e); }
+  } catch(e) { console.error("Order save exception:", e); }
 
   // Save order info for WhatsApp after payment
   safeStorage.set("anastacio_pending_order", JSON.stringify({
