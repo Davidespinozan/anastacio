@@ -1914,17 +1914,8 @@ async function payWithStripe() {
     status: "pending"
   };
 
-  var orderId = "";
-  try {
-    var res = await sbClient.from("orders").insert([orderData]).select();
-    console.log("Order insert result:", JSON.stringify(res));
-    if (res.error) { 
-      console.error("Order insert error:", JSON.stringify(res.error)); 
-    }
-    if (res.data && res.data[0]) orderId = res.data[0].id;
-  } catch(e) { console.error("Order save exception:", e); }
-
-  // Save order info for WhatsApp after payment
+  // DON'T save to Supabase yet — only after payment success
+  // Save order info to localStorage for post-payment processing
   safeStorage.set("anastacio_pending_order", JSON.stringify({
     orderType: orderType,
     customerName: customerName,
@@ -1933,8 +1924,7 @@ async function payWithStripe() {
     tableNumber: mesaVal,
     pickupTime: pTime,
     items: orderItems,
-    total: getTotal(),
-    orderId: orderId
+    total: getTotal()
   }));
 
   // Track Meta Pixel
@@ -1955,8 +1945,7 @@ async function payWithStripe() {
         order_type: orderType,
         delivery_address: dAddr,
         table_number: mesaVal,
-        pickup_time: pTime,
-        order_id: orderId
+        pickup_time: pTime
       })
     });
 
@@ -1988,10 +1977,22 @@ async function payWithStripe() {
         var order = JSON.parse(pending);
         safeStorage.remove("anastacio_pending_order");
 
-        // Update order status to confirmed in Supabase
-        if (order.orderId) {
-          sbClient.from("orders").update({ status: "confirmed" }).eq("id", order.orderId).then(function(){});
-        }
+        // NOW save order to Supabase (only after payment confirmed)
+        var orderData = {
+          order_type: order.orderType,
+          customer_name: order.customerName,
+          customer_phone: order.customerPhone,
+          delivery_address: order.deliveryAddress || "",
+          table_number: order.tableNumber || "",
+          pickup_time: order.pickupTime || "",
+          items: order.items,
+          total: order.total,
+          status: "confirmed"
+        };
+        sbClient.from("orders").insert([orderData]).then(function(res){
+          if(res.error) console.error("Order save error:", JSON.stringify(res.error));
+          else console.log("Order saved after payment");
+        });
 
         // Track Meta Pixel Purchase
         if (typeof fbq === "function") fbq("track", "Purchase", { value: order.total, currency: "MXN" });
