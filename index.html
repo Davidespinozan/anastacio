@@ -580,6 +580,10 @@ var sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
   <div class="urgency-item" id="urgency-demand" style="display:none;">
     <span class="es">🔥 Alta demanda ahora</span><span class="en">🔥 High demand now</span>
   </div>
+  <div class="urgency-item">
+    <span>📍</span>
+    <span id="branch-location-item">Sucursal Guadalajara</span>
+  </div>
 </div>
 
 <div class="lead-bar">
@@ -1279,6 +1283,7 @@ document.addEventListener('DOMContentLoaded', function() {
   if ((el = document.getElementById('ig-info-link')))       { el.href = BRANCH.instagramUrl; el.textContent = BRANCH.instagram; }
   if ((el = document.getElementById('ig-float-link')))      el.href = BRANCH.instagramUrl;
   if ((el = document.getElementById('footer-text')))        el.textContent = '© 2025 · ANASTACIO · MARISQUERÍA DE BARRIO · ' + BRANCH.footerCity;
+  if ((el = document.getElementById('branch-location-item'))) el.textContent = 'Sucursal ' + BRANCH.city;
 });
 
 // ═══ LANGUAGE ═══
