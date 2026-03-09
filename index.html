@@ -490,6 +490,9 @@ html{font-size:100%;}
 }
 </style>
 
+<!-- Branch Config (debe ir antes del Pixel) -->
+<script src="/branch-config.js"></script>
+
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -500,7 +503,7 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1564615811495027');
+fbq('init', BRANCH.metaPixelId);
 fbq('track', 'PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none"
@@ -965,7 +968,7 @@ var sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
     <div class="stars">★★★★★</div>
     <p class="review-text es">Tu opinión nos ayuda a mejorar y a que más personas descubran Anastacio.</p>
     <p class="review-text en">Your review helps us improve and lets more people discover Anastacio.</p>
-    <a href="https://maps.app.goo.gl/Lcn5kNqrHzQY8cMr6" class="btn-gold" target="_blank"><span class="es">Reseña en Google</span><span class="en">Review on Google</span></a>
+    <a id="google-review-link" href="https://maps.app.goo.gl/Lcn5kNqrHzQY8cMr6" class="btn-gold" target="_blank"><span class="es">Reseña en Google</span><span class="en">Review on Google</span></a>
     <br><br>
     <a href="#" class="btn-outline" onclick="openModal('promo-modal'); return false;"><span class="es">Recibir Promociones</span><span class="en">Get Deals</span></a>
     <a href="https://instagram.com/anastacio_gdl" class="btn-outline" target="_blank">@anastacio_gdl</a>
@@ -977,15 +980,15 @@ var sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
   <div class="info-block" style="text-align:left;">
     <h3 style="text-align:center;">📍 <span class="es">Dónde estamos</span><span class="en">Find us</span></h3>
     <iframe
-      src="https://maps.google.com/maps?q=Anastacio+Marisqueria+de+Barrio,+Av+Guadalupe+290,+Chapalita,+Guadalajara&output=embed&z=16"
+      id="maps-embed" src="https://maps.google.com/maps?q=Anastacio+Marisqueria+de+Barrio,+Av+Guadalupe+290,+Chapalita,+Guadalajara&output=embed&z=16"
       width="100%" height="200" style="border:0;margin-top:.5rem;border-radius:4px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
     </iframe>
-    <p style="text-align:center;margin-top:.6rem;">Av Guadalupe 290, Chapalita</p>
-    <a href="https://maps.app.goo.gl/Lcn5kNqrHzQY8cMr6" target="_blank" style="text-align:center;display:block;margin-top:.3rem;"><span class="es">Abrir en Maps →</span><span class="en">Open in Maps →</span></a>
+    <p id="branch-address" style="text-align:center;margin-top:.6rem;">Av Guadalupe 290, Chapalita</p>
+    <a id="maps-open-link" href="https://maps.app.goo.gl/Lcn5kNqrHzQY8cMr6" target="_blank" style="text-align:center;display:block;margin-top:.3rem;"><span class="es">Abrir en Maps →</span><span class="en">Open in Maps →</span></a>
   </div>
   <div class="info-block">
     <h3>📱 <span class="es">Síguenos</span><span class="en">Follow us</span></h3>
-    <a href="https://instagram.com/anastacio_gdl" target="_blank">@anastacio_gdl</a>
+    <a id="ig-info-link" href="https://instagram.com/anastacio_gdl" target="_blank">@anastacio_gdl</a>
     
   </div>
   <div class="info-block">
@@ -997,10 +1000,10 @@ var sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 <footer class="footer">
   <img src="https://res.cloudinary.com/dp9l5i19b/image/upload/f_auto,q_auto/logooficial_cys7ex.webp" alt="Anastacio" class="footer-logo">
-  <div class="footer-text">© 2025 · ANASTACIO · MARISQUERÍA DE BARRIO · GUADALAJARA</div>
+  <div id="footer-text" class="footer-text">© 2025 · ANASTACIO · MARISQUERÍA DE BARRIO · GUADALAJARA</div>
 </footer>
 
-<a href="https://instagram.com/anastacio_gdl" class="ig-float" target="_blank" aria-label="Instagram" onclick="safeFbq('track','Contact',{content_name:'Instagram'})">
+<a id="ig-float-link" href="https://instagram.com/anastacio_gdl" class="ig-float" target="_blank" aria-label="Instagram" onclick="safeFbq('track','Contact',{content_name:'Instagram'})">
   <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
     <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
     <circle cx="12" cy="12" r="4.5"/>
@@ -1264,7 +1267,19 @@ try{
 // ═══ GLOBAL STATE (must be first) ═══
 var cart = [];
 var orderType = null;
-var WA_NUMBER = "523318916060";
+var WA_NUMBER = BRANCH.whatsapp;
+
+// ═══ APPLY BRANCH CONFIG TO DOM ═══
+document.addEventListener('DOMContentLoaded', function() {
+  var el;
+  if ((el = document.getElementById('google-review-link'))) el.href = BRANCH.googleReviewUrl;
+  if ((el = document.getElementById('maps-embed')))         el.src  = BRANCH.googleMapsEmbed;
+  if ((el = document.getElementById('maps-open-link')))     el.href = BRANCH.googleMapsUrl;
+  if ((el = document.getElementById('branch-address')))     el.textContent = BRANCH.address;
+  if ((el = document.getElementById('ig-info-link')))       { el.href = BRANCH.instagramUrl; el.textContent = BRANCH.instagram; }
+  if ((el = document.getElementById('ig-float-link')))      el.href = BRANCH.instagramUrl;
+  if ((el = document.getElementById('footer-text')))        el.textContent = '© 2025 · ANASTACIO · MARISQUERÍA DE BARRIO · ' + BRANCH.footerCity;
+});
 
 // ═══ LANGUAGE ═══
 function setLang(lang) {
@@ -1390,7 +1405,7 @@ function captureLead(e) {
   leads.push({name: name, phone: phone, date: new Date().toISOString(), source: "bar"});
   safeStorage.set("anastacio_leads", JSON.stringify(leads));
   // Send to Supabase
-  if(typeof sbClient !== 'undefined') sbClient.from('leads').insert({name: name, phone: phone, source: 'bar'}).then(function(){});
+  if(typeof sbClient !== 'undefined') sbClient.from('leads').insert({name: name, phone: phone, source: 'bar', sucursal: BRANCH.slug}).then(function(){});
   e.target.reset();
   var lang = document.body.getAttribute("data-lang");
   showToast(lang === "es" ? "Gracias " + name + "! Te mandamos las mejores promos." : "Thanks " + name + "! We will send you the best deals.");
@@ -1405,7 +1420,7 @@ function submitPromo(e) {
   leads.push(lead);
   safeStorage.set("anastacio_leads", JSON.stringify(leads));
   // Send to Supabase
-  if(typeof sbClient !== 'undefined') sbClient.from('leads').insert({name: lead.name, phone: lead.phone, email: lead.email, source: 'modal'}).then(function(){});
+  if(typeof sbClient !== 'undefined') sbClient.from('leads').insert({name: lead.name, phone: lead.phone, email: lead.email, source: 'modal', sucursal: BRANCH.slug}).then(function(){});
   closeModal("promo-modal");
   var lang = document.body.getAttribute("data-lang");
   showToast(lang === "es" ? "Bienvenido al club Anastacio!" : "Welcome to the Anastacio club!");
@@ -1945,7 +1960,8 @@ async function payWithStripe() {
         order_type: orderType,
         delivery_address: dAddr,
         table_number: mesaVal,
-        pickup_time: pTime
+        pickup_time: pTime,
+        branch: BRANCH.slug
       })
     });
 
@@ -1987,7 +2003,8 @@ async function payWithStripe() {
           pickup_time: order.pickupTime || "",
           items: order.items,
           total: order.total,
-          status: "confirmed"
+          status: "confirmed",
+          sucursal: BRANCH.slug
         };
         sbClient.from("orders").insert([orderData]).then(function(res){
           if(res.error) console.error("Order save error:", JSON.stringify(res.error));

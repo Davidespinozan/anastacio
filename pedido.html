@@ -152,6 +152,7 @@
 
 </section>
 
+<script src="/branch-config.js"></script>
 <script>
 var MENU = {
   'g-aguachiles': [['Aguachile Mixto',230],['Aguachile Tropical',230],['Aguachile Mitotero',250]],
@@ -256,7 +257,7 @@ function enviarWA() {
   if (notas) msg += '\nNotas: ' + notas;
   msg += '\n\nGracias!';
 
-  window.open('https://wa.me/523318916060?text=' + encodeURIComponent(msg), '_blank');
+  window.open('https://wa.me/' + BRANCH.whatsapp + '?text=' + encodeURIComponent(msg), '_blank');
 }
 
 buildMenu();

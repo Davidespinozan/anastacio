@@ -1,0 +1,7 @@
+# Anastacio — Routing por sucursal
+# Sirve el mismo HTML para /gdl y /cln (el JS detecta el branch del URL)
+
+/gdl          /index.html    200
+/gdl/*        /index.html    200
+/cln          /index.html    200
+/cln/*        /index.html    200
