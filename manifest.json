@@ -1,0 +1,22 @@
+{
+  "name": "Anastacio · Marisquería de Barrio",
+  "short_name": "Anastacio",
+  "description": "Aguachiles, tostaditas, cocteles y más en Chapalita, Guadalajara.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#071826",
+  "theme_color": "#071826",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/object/public/imagenes/logooficial_cys7ex.webp",
+      "sizes": "192x192",
+      "type": "image/webp"
+    },
+    {
+      "src": "https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/object/public/imagenes/logooficial_cys7ex.webp",
+      "sizes": "512x512",
+      "type": "image/webp"
+    }
+  ]
+}
