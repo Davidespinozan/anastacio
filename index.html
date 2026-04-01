@@ -558,6 +558,9 @@ var sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
         <span class="es">Pedir desde Mesa</span><span class="en">Order at Table</span>
       </button>
     </div>
+    <button id="install-hero-btn" style="display:none;padding:.75rem 1.8rem;background:rgba(242,107,29,.15);border:1.5px solid var(--cta);color:var(--cream);border-radius:50px;font-family:'Bebas Neue',sans-serif;font-size:.85rem;letter-spacing:.15em;cursor:pointer;transition:all .35s;margin-top:.5rem;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);min-height:48px;">
+      <span class="es">📲 Guardar como App</span><span class="en">📲 Save as App</span>
+    </button>
   </div>
   <div class="scroll-hint">↓ <span class="es">Desliza para ver menú</span><span class="en">Scroll to see menu</span></div>
 </section>
@@ -1006,9 +1009,6 @@ var sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 <footer class="footer">
   <img src="https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/object/public/imagenes/logooficial_cys7ex.webp" alt="Anastacio" class="footer-logo">
-  <button id="install-btn" style="display:none;padding:.7rem 1.8rem;background:var(--cta);color:white;border:none;border-radius:50px;font-family:'Bebas Neue',sans-serif;font-size:.9rem;letter-spacing:.2em;cursor:pointer;box-shadow:0 4px 20px rgba(242,107,29,.4);transition:all .3s;margin:.5rem 0;">
-    <span class="es">📲 INSTALAR APP</span><span class="en">📲 INSTALL APP</span>
-  </button>
   <div id="footer-text" class="footer-text">© 2025 · ANASTACIO · MARISQUERÍA DE BARRIO · GUADALAJARA</div>
   <div class="footer-text" style="letter-spacing:.1em;opacity:.45;">Hecho por <a href="https://stryvstudio.com" target="_blank" style="color:inherit;text-decoration:none;">STRYV</a></div>
 </footer>
@@ -2084,7 +2084,7 @@ if ('serviceWorker' in navigator) {
 }
 
 let deferredPrompt;
-const installBtn = document.getElementById('install-btn');
+const installBtn = document.getElementById('install-hero-btn');
 
 window.addEventListener('beforeinstallprompt', e => {
   e.preventDefault();
