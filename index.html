@@ -558,9 +558,6 @@ var sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
         <span class="es">Pedir desde Mesa</span><span class="en">Order at Table</span>
       </button>
     </div>
-    <button id="install-hero-btn" style="display:none;padding:.75rem 1.8rem;background:rgba(242,107,29,.15);border:1.5px solid var(--cta);color:var(--cream);border-radius:50px;font-family:'Bebas Neue',sans-serif;font-size:.85rem;letter-spacing:.15em;cursor:pointer;transition:all .35s;margin-top:.5rem;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);min-height:48px;">
-      <span class="es">📲 Guardar como App</span><span class="en">📲 Save as App</span>
-    </button>
   </div>
   <div class="scroll-hint">↓ <span class="es">Desliza para ver menú</span><span class="en">Scroll to see menu</span></div>
 </section>
@@ -2077,59 +2074,98 @@ async function payWithStripe() {
 })();
 </script>
 
-<!-- PWA Install -->
+<!-- PWA Install Banner -->
+<div id="pwa-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:300;background:linear-gradient(135deg,#071826 0%,#0A1F33 100%);border-top:1px solid rgba(201,162,77,.3);padding:.9rem 1.2rem;animation:slideUp .4s ease;">
+  <div style="display:flex;align-items:center;justify-content:space-between;max-width:500px;margin:0 auto;gap:.8rem;">
+    <img src="https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/object/public/imagenes/logooficial_cys7ex.webp" alt="" style="width:36px;height:36px;border-radius:8px;flex-shrink:0;">
+    <div style="flex:1;min-width:0;">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:.85rem;letter-spacing:.1em;color:var(--cream);" id="pwa-banner-title">
+        <span class="es">Agrega Anastacio a tu inicio</span><span class="en">Add Anastacio to home</span>
+      </div>
+      <div style="font-size:.65rem;color:var(--muted);margin-top:.1rem;" id="pwa-banner-sub">
+        <span class="es">Acceso rápido sin descargar nada</span><span class="en">Quick access, no download needed</span>
+      </div>
+    </div>
+    <button id="pwa-action-btn" style="padding:.55rem 1.2rem;background:var(--cta);color:white;border:none;border-radius:50px;font-family:'Bebas Neue',sans-serif;font-size:.8rem;letter-spacing:.12em;cursor:pointer;white-space:nowrap;flex-shrink:0;">
+      <span class="es">INSTALAR</span><span class="en">INSTALL</span>
+    </button>
+    <button id="pwa-close" style="background:none;border:none;color:var(--muted);font-size:1.2rem;cursor:pointer;padding:.3rem;flex-shrink:0;line-height:1;">✕</button>
+  </div>
+</div>
+<style>
+@keyframes slideUp{from{transform:translateY(100%);}to{transform:translateY(0);}}
+</style>
+
 <script>
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw.js').catch(() => {});
 }
 
-let deferredPrompt;
-const installBtn = document.getElementById('install-hero-btn');
+(function() {
+  const banner = document.getElementById('pwa-banner');
+  const actionBtn = document.getElementById('pwa-action-btn');
+  const closeBtn = document.getElementById('pwa-close');
+  const titleEl = document.getElementById('pwa-banner-title');
+  const subEl = document.getElementById('pwa-banner-sub');
+  let deferredPrompt = null;
 
-window.addEventListener('beforeinstallprompt', e => {
-  e.preventDefault();
-  deferredPrompt = e;
-  installBtn.style.display = 'inline-block';
-});
+  // Don't show if already installed or dismissed recently
+  if (window.matchMedia('(display-mode: standalone)').matches) return;
+  if (navigator.standalone) return;
+  if (sessionStorage.getItem('pwa-dismissed')) return;
 
-installBtn.addEventListener('click', async () => {
-  if (!deferredPrompt) return;
-  deferredPrompt.prompt();
-  const { outcome } = await deferredPrompt.userChoice;
-  console.log('PWA install:', outcome);
-  if (outcome === 'accepted') {
-    // Track install
-    if (typeof safeFbq === 'function') safeFbq('track', 'Lead', { content_name: 'PWA Install' });
-    // Log to Supabase
-    try {
-      const SUPA_URL = 'https://hqrwjlrqzslkwhwqcmnh.supabase.co';
-      const SUPA_KEY = document.querySelector('script[data-supabase-key]')?.dataset?.supabaseKey;
-      if (SUPA_URL) {
-        fetch(SUPA_URL + '/rest/v1/pwa_installs', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'apikey': SUPA_KEY || '',
-            'Authorization': 'Bearer ' + (SUPA_KEY || ''),
-            'Prefer': 'return=minimal'
-          },
-          body: JSON.stringify({
-            installed_at: new Date().toISOString(),
-            user_agent: navigator.userAgent,
-            branch: typeof BRANCH !== 'undefined' ? BRANCH.name : 'unknown'
-          })
-        }).catch(() => {});
-      }
-    } catch(e) {}
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  const isAndroid = /Android/.test(navigator.userAgent);
+
+  // Android: catch the native prompt
+  window.addEventListener('beforeinstallprompt', e => {
+    e.preventDefault();
+    deferredPrompt = e;
+    setTimeout(() => { banner.style.display = 'block'; }, 3000);
+  });
+
+  // iOS: show guide after 3s
+  if (isIOS) {
+    setTimeout(() => {
+      titleEl.innerHTML = '<span class="es">Agrega Anastacio a tu inicio</span><span class="en">Add Anastacio to home</span>';
+      subEl.innerHTML = '<span class="es">Toca <b>Compartir</b> ↑ y luego <b>"Agregar a Inicio"</b></span><span class="en">Tap <b>Share</b> ↑ then <b>"Add to Home Screen"</b></span>';
+      actionBtn.innerHTML = '<span class="es">VER CÓMO</span><span class="en">SHOW ME</span>';
+      banner.style.display = 'block';
+      if (typeof setLang === 'function') setLang(document.documentElement.lang === 'en' ? 'en' : 'es');
+    }, 3000);
   }
-  deferredPrompt = null;
-  installBtn.style.display = 'none';
-});
 
-window.addEventListener('appinstalled', () => {
-  installBtn.style.display = 'none';
-  console.log('PWA installed successfully');
-});
+  // Action button click
+  actionBtn.addEventListener('click', async () => {
+    if (deferredPrompt) {
+      // Android native install
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      if (outcome === 'accepted') {
+        if (typeof safeFbq === 'function') safeFbq('track', 'Lead', { content_name: 'PWA Install' });
+      }
+      deferredPrompt = null;
+      banner.style.display = 'none';
+    } else if (isIOS) {
+      // iOS: highlight the share button with a visual hint
+      banner.querySelector('#pwa-action-btn').style.display = 'none';
+      subEl.innerHTML = '<span class="es">1️⃣ Toca el ícono <b style="font-size:1.1em">⎋</b> de compartir abajo<br>2️⃣ Busca <b>"Agregar a Inicio"</b> ➕</span><span class="en">1️⃣ Tap the <b style="font-size:1.1em">⎋</b> share icon below<br>2️⃣ Find <b>"Add to Home Screen"</b> ➕</span>';
+      if (typeof setLang === 'function') setLang(document.documentElement.lang === 'en' ? 'en' : 'es');
+      if (typeof safeFbq === 'function') safeFbq('track', 'Lead', { content_name: 'PWA iOS Guide' });
+    }
+  });
+
+  // Close
+  closeBtn.addEventListener('click', () => {
+    banner.style.display = 'none';
+    sessionStorage.setItem('pwa-dismissed', '1');
+  });
+
+  // Hide on install
+  window.addEventListener('appinstalled', () => {
+    banner.style.display = 'none';
+  });
+})();
 </script>
 </body>
 </html>
