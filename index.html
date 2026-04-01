@@ -2175,5 +2175,56 @@ if ('serviceWorker' in navigator) {
   });
 })();
 </script>
+
+<!-- Visitor Tracking -->
+<script>
+(function(){
+  var SUPABASE_URL='https://hqrwjlrqzslkwhwqcmnh.supabase.co';
+  var SUPABASE_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhxcndqbHJxenNsa3dod3FjbW5oIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIzMDYwMTcsImV4cCI6MjA4Nzg4MjAxN30.tNyO18E7lDNEYH28P_DGxSg9pf1yYysVpJuMwboJOoU';
+
+  var vid = localStorage.getItem('_av');
+  if(!vid){ vid = 'v_' + Math.random().toString(36).substr(2,9) + Date.now().toString(36); localStorage.setItem('_av', vid); }
+
+  var params = new URLSearchParams(window.location.search);
+  var utmSource = params.get('utm_source') || '';
+  var utmMedium = params.get('utm_medium') || '';
+  var utmCampaign = params.get('utm_campaign') || '';
+
+  var ref = document.referrer || '';
+  var refSource = 'directo';
+  if(ref.indexOf('facebook.com')>-1 || ref.indexOf('fb.com')>-1) refSource = 'facebook';
+  else if(ref.indexOf('instagram.com')>-1) refSource = 'instagram';
+  else if(ref.indexOf('google.com')>-1) refSource = 'google';
+  else if(ref.indexOf('tiktok.com')>-1) refSource = 'tiktok';
+  else if(ref) refSource = new URL(ref).hostname;
+
+  if(utmSource) refSource = utmSource;
+
+  var ua = navigator.userAgent;
+  var deviceType = /Mobile|Android|iPhone|iPad/.test(ua) ? 'mobile' : 'desktop';
+
+  fetch(SUPABASE_URL + '/rest/v1/page_views', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'apikey': SUPABASE_KEY,
+      'Authorization': 'Bearer ' + SUPABASE_KEY,
+      'Prefer': 'return=minimal'
+    },
+    body: JSON.stringify({
+      visitor_id: vid,
+      page: window.location.pathname,
+      referrer: ref,
+      referrer_source: refSource,
+      utm_source: utmSource || null,
+      utm_medium: utmMedium || null,
+      utm_campaign: utmCampaign || null,
+      user_agent: ua,
+      device_type: deviceType,
+      screen_width: window.screen.width
+    })
+  }).catch(function(){});
+})();
+</script>
 </body>
 </html>
