@@ -1010,7 +1010,7 @@ var sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
   <div class="footer-text" style="letter-spacing:.1em;opacity:.45;">Hecho por <a href="https://stryvstudio.com" target="_blank" style="color:inherit;text-decoration:none;">STRYV</a></div>
 </footer>
 
-<a id="ig-float-link" href="https://instagram.com/anastacio_gdl" class="ig-float" target="_blank" aria-label="Instagram" onclick="safeFbq('track','Contact',{content_name:'Instagram'})">
+<a id="ig-float-link" href="https://instagram.com/anastacio_gdl" class="ig-float" target="_blank" aria-label="Instagram" onclick="trackEvent('Contact',{content_name:'Instagram'})">
   <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
     <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
     <circle cx="12" cy="12" r="4.5"/>
@@ -1222,6 +1222,42 @@ window.addEventListener('load', function() {
 // Safe fbq wrapper — only fires if real Pixel loaded
 function safeFbq(){if(typeof fbq==='function'&&fbq.loaded)fbq.apply(null,arguments);}
 
+// Dual tracker — sends to Meta Pixel AND Supabase
+function trackEvent(eventName, eventData) {
+  eventData = eventData || {};
+  // Send to Meta
+  if (eventData._custom) {
+    safeFbq('trackCustom', eventName, eventData);
+  } else {
+    safeFbq('track', eventName, eventData);
+  }
+  // Send to Supabase
+  try {
+    var vid = localStorage.getItem('_av') || 'unknown';
+    var SUPA_URL = 'https://hqrwjlrqzslkwhwqcmnh.supabase.co';
+    var SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhxcndqbHJxenNsa3dod3FjbW5oIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIzMDYwMTcsImV4cCI6MjA4Nzg4MjAxN30.tNyO18E7lDNEYH28P_DGxSg9pf1yYysVpJuMwboJOoU';
+    var cleanData = Object.assign({}, eventData);
+    delete cleanData._custom;
+    fetch(SUPA_URL + '/rest/v1/pixel_events', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPA_KEY,
+        'Authorization': 'Bearer ' + SUPA_KEY,
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({
+        visitor_id: vid,
+        event_name: eventName,
+        event_data: cleanData,
+        page: window.location.pathname,
+        branch: typeof BRANCH !== 'undefined' ? BRANCH.slug : 'unknown',
+        device_type: /Mobile|Android|iPhone|iPad/.test(navigator.userAgent) ? 'mobile' : 'desktop'
+      })
+    }).catch(function(){});
+  } catch(e) {}
+}
+
 try{
 // Scroll depth tracking - fires at 25%, 50%, 75%, 100%
 (function(){
@@ -1231,7 +1267,7 @@ try{
     [25,50,75,100].forEach(function(threshold){
       if(scrollPct >= threshold && !fired[threshold]){
         fired[threshold] = true;
-        safeFbq('trackCustom', 'ScrollDepth', {percent: threshold});
+        trackEvent('ScrollDepth', {percent: threshold, _custom: true});
       }
     });
   });
@@ -1239,14 +1275,14 @@ try{
 
 // Time on site tracking - fires at 30s, 60s, 120s
 (function(){
-  var milestones = [30,60,120];
+  var milestones = [30,60,120,300];
   var firedTime = {};
   setInterval(function(){
     var elapsed = Math.floor(performance.now() / 1000);
     milestones.forEach(function(sec){
       if(elapsed >= sec && !firedTime[sec]){
         firedTime[sec] = true;
-        safeFbq('trackCustom', 'TimeOnSite', {seconds: sec});
+        trackEvent('TimeOnSite', {seconds: sec, _custom: true});
       }
     });
   }, 5000);
@@ -1260,7 +1296,7 @@ try{
     entries.forEach(function(entry){
       if(entry.isIntersecting && !firedSections[entry.target.id]){
         firedSections[entry.target.id] = true;
-        safeFbq('trackCustom', 'MenuSectionView', {section: entry.target.id});
+        trackEvent('MenuSectionView', {section: entry.target.id, _custom: true});
       }
     });
   }, {threshold: 0.3});
@@ -1417,7 +1453,7 @@ function captureLead(e) {
   e.target.reset();
   var lang = document.body.getAttribute("data-lang");
   showToast(lang === "es" ? "Gracias " + name + "! Te mandamos las mejores promos." : "Thanks " + name + "! We will send you the best deals.");
-  safeFbq('track', 'Lead', {content_name: 'Promo Bar', content_category: 'lead_capture'});
+  trackEvent('Lead', {content_name: 'Promo Bar', content_category: 'lead_capture'});
 }
 
 function submitPromo(e) {
@@ -1432,7 +1468,7 @@ function submitPromo(e) {
   closeModal("promo-modal");
   var lang = document.body.getAttribute("data-lang");
   showToast(lang === "es" ? "Bienvenido al club Anastacio!" : "Welcome to the Anastacio club!");
-  safeFbq('track', 'CompleteRegistration', {content_name: 'Promo Modal', content_category: 'club_signup'});
+  trackEvent('CompleteRegistration', {content_name: 'Promo Modal', content_category: 'club_signup'});
 }
 
 (function() {
@@ -1464,7 +1500,7 @@ function selectOrderMode(mode) {
       window.scrollTo({top: y, behavior: 'smooth'});
     }, 400);
   }
-  safeFbq('trackCustom', 'OrderModeSelected', {mode: mode});
+  trackEvent('OrderModeSelected', {mode: mode, _custom: true});
 }
 
 // ═══ 2️⃣ ORDER TYPE IN CART ═══
@@ -1644,7 +1680,7 @@ document.addEventListener('input', function(e) {
 // ═══ CART SYSTEM ═══
 function addToCart(name, price) {
   var existing = cart.find(function(i) { return i.name === name; });
-  safeFbq('track', 'AddToCart', {content_name: name, value: price, currency: 'MXN'});
+  trackEvent('AddToCart', {content_name: name, value: price, currency: 'MXN'});
   if (existing) { existing.qty += 1; }
   else { cart.push({ name: name, price: price, qty: 1 }); }
   renderCart(); updateBubble();
@@ -1753,8 +1789,7 @@ function handleOverlayClick(e) {
 function sendToWhatsApp() {
   if (cart.length === 0) return;
   if (!orderType) { showToast(document.body.getAttribute("data-lang") === "en" ? "Please select order mode first" : "Selecciona un modo de pedido primero"); return; }
-  safeFbq('track', 'InitiateCheckout', {value: getTotal(), currency: 'MXN', num_items: cart.length});
-  safeFbq('track', 'Contact', {content_name: 'WhatsApp Order'});
+  trackEvent('InitiateCheckout', {value: getTotal(), currency: 'MXN', num_items: cart.length, method: 'whatsapp'});
   var lang = document.body.getAttribute("data-lang");
   var isEn = lang === "en";
   var lines = [];
@@ -1951,7 +1986,7 @@ async function payWithStripe() {
   }));
 
   // Track Meta Pixel
-  if (typeof fbq === "function") fbq("track", "InitiateCheckout", { value: getTotal(), currency: "MXN" });
+  trackEvent('InitiateCheckout', {value: getTotal(), currency: 'MXN', num_items: cart.length, method: 'stripe'});
 
   // Call Stripe Edge Function
   try {
@@ -2020,7 +2055,7 @@ async function payWithStripe() {
         });
 
         // Track Meta Pixel Purchase
-        if (typeof fbq === "function") fbq("track", "Purchase", { value: order.total, currency: "MXN" });
+        trackEvent('Purchase', {value: order.total, currency: 'MXN', content_name: order.items.map(function(i){return i.name}).join(', '), method: 'stripe'});
 
         // Build WhatsApp message
         var msg = "✅ *PEDIDO PAGADO CON TARJETA*\n\n";
@@ -2149,7 +2184,7 @@ if ('serviceWorker' in navigator) {
       deferredPrompt.prompt();
       const { outcome } = await deferredPrompt.userChoice;
       if (outcome === 'accepted') {
-        if (typeof safeFbq === 'function') safeFbq('track', 'Lead', { content_name: 'PWA Install' });
+        trackEvent('Lead', { content_name: 'PWA Install' });
       }
       deferredPrompt = null;
       banner.style.display = 'none';
@@ -2158,7 +2193,7 @@ if ('serviceWorker' in navigator) {
       banner.querySelector('#pwa-action-btn').style.display = 'none';
       subEl.innerHTML = '<span class="es">1️⃣ Toca el ícono <b style="font-size:1.1em">⎋</b> de compartir abajo<br>2️⃣ Busca <b>"Agregar a Inicio"</b> ➕</span><span class="en">1️⃣ Tap the <b style="font-size:1.1em">⎋</b> share icon below<br>2️⃣ Find <b>"Add to Home Screen"</b> ➕</span>';
       if (typeof setLang === 'function') setLang(document.documentElement.lang === 'en' ? 'en' : 'es');
-      if (typeof safeFbq === 'function') safeFbq('track', 'Lead', { content_name: 'PWA iOS Guide' });
+      trackEvent('Lead', { content_name: 'PWA iOS Guide' });
     }
   });
 
