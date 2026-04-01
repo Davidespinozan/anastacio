@@ -2109,6 +2109,12 @@ if ('serviceWorker' in navigator) {
   const subEl = document.getElementById('pwa-banner-sub');
   let deferredPrompt = null;
 
+  function shiftIG(up) {
+    const ig = document.getElementById('ig-float-link');
+    if (ig) ig.style.transition = 'bottom .3s ease';
+    if (ig) ig.style.bottom = up ? '5rem' : '1.5rem';
+  }
+
   // Don't show if already installed or dismissed recently
   if (window.matchMedia('(display-mode: standalone)').matches) return;
   if (navigator.standalone) return;
@@ -2121,7 +2127,7 @@ if ('serviceWorker' in navigator) {
   window.addEventListener('beforeinstallprompt', e => {
     e.preventDefault();
     deferredPrompt = e;
-    setTimeout(() => { banner.style.display = 'block'; }, 3000);
+    setTimeout(() => { banner.style.display = 'block'; shiftIG(true); }, 3000);
   });
 
   // iOS: show guide after 3s
@@ -2131,6 +2137,7 @@ if ('serviceWorker' in navigator) {
       subEl.innerHTML = '<span class="es">Toca <b>Compartir</b> ↑ y luego <b>"Agregar a Inicio"</b></span><span class="en">Tap <b>Share</b> ↑ then <b>"Add to Home Screen"</b></span>';
       actionBtn.innerHTML = '<span class="es">VER CÓMO</span><span class="en">SHOW ME</span>';
       banner.style.display = 'block';
+      shiftIG(true);
       if (typeof setLang === 'function') setLang(document.documentElement.lang === 'en' ? 'en' : 'es');
     }, 3000);
   }
@@ -2158,6 +2165,7 @@ if ('serviceWorker' in navigator) {
   // Close
   closeBtn.addEventListener('click', () => {
     banner.style.display = 'none';
+    shiftIG(false);
     sessionStorage.setItem('pwa-dismissed', '1');
   });
 
