@@ -2157,6 +2157,7 @@ if ('serviceWorker' in navigator) {
 
   const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
   const isAndroid = /Android/.test(navigator.userAgent);
+  const isSafariDesktop = !isIOS && !isAndroid && /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
 
   // Android: catch the native prompt
   window.addEventListener('beforeinstallprompt', e => {
@@ -2173,6 +2174,17 @@ if ('serviceWorker' in navigator) {
       actionBtn.innerHTML = '<span class="es">VER CÓMO</span><span class="en">SHOW ME</span>';
       banner.style.display = 'block';
       shiftIG(true);
+      if (typeof setLang === 'function') setLang(document.documentElement.lang === 'en' ? 'en' : 'es');
+    }, 3000);
+  }
+
+  // Safari desktop: show guide after 3s
+  if (isSafariDesktop) {
+    setTimeout(() => {
+      titleEl.innerHTML = '<span class="es">Agrega Anastacio a tu Dock</span><span class="en">Add Anastacio to your Dock</span>';
+      subEl.innerHTML = '<span class="es">Acceso directo como app de escritorio</span><span class="en">Quick access as a desktop app</span>';
+      actionBtn.innerHTML = '<span class="es">VER CÓMO</span><span class="en">SHOW ME</span>';
+      banner.style.display = 'block';
       if (typeof setLang === 'function') setLang(document.documentElement.lang === 'en' ? 'en' : 'es');
     }, 3000);
   }
@@ -2194,6 +2206,11 @@ if ('serviceWorker' in navigator) {
       subEl.innerHTML = '<span class="es">1️⃣ Toca el ícono <b style="font-size:1.1em">⎋</b> de compartir abajo<br>2️⃣ Busca <b>"Agregar a Inicio"</b> ➕</span><span class="en">1️⃣ Tap the <b style="font-size:1.1em">⎋</b> share icon below<br>2️⃣ Find <b>"Add to Home Screen"</b> ➕</span>';
       if (typeof setLang === 'function') setLang(document.documentElement.lang === 'en' ? 'en' : 'es');
       trackEvent('Lead', { content_name: 'PWA iOS Guide' });
+    } else if (isSafariDesktop) {
+      banner.querySelector('#pwa-action-btn').style.display = 'none';
+      subEl.innerHTML = '<span class="es">En el menú <b>Archivo</b> → <b>"Agregar al Dock"</b></span><span class="en">Go to <b>File</b> menu → <b>"Add to Dock"</b></span>';
+      if (typeof setLang === 'function') setLang(document.documentElement.lang === 'en' ? 'en' : 'es');
+      trackEvent('Lead', { content_name: 'PWA Safari Desktop Guide' });
     }
   });
 
