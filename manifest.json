@@ -9,12 +9,12 @@
   "orientation": "portrait",
   "icons": [
     {
-      "src": "https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/object/public/imagenes/anastaciologo192.png",
+      "src": "https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/render/image/public/imagenes/anastaciologo192.png?width=200&quality=90&format=webp",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/object/public/imagenes/anastaciologo512.png",
+      "src": "https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/render/image/public/imagenes/anastaciologo512.png?width=200&quality=90&format=webp",
       "sizes": "512x512",
       "type": "image/png"
     }
