@@ -1,6 +1,7 @@
 # Anastacio — Routing principal
-# Raíz exacta sirve el selector de sucursal (rewrite, no redirect)
-/             /landing.html  200
+# Raíz exacta sirve el selector de sucursal (rewrite forzado con `!`
+# para que tenga prioridad sobre el index.html existente)
+/             /landing.html  200!
 
 # Sucursales — sirven el menú con su branch detectada por JS
 /gdl          /index.html    200
