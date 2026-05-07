@@ -182,38 +182,17 @@ html, body {
 .branch {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.8rem;
-  padding: 1.5rem 1rem;
+  justify-content: space-between;
+  padding: 1.3rem 0.5rem;
   text-decoration: none;
   color: inherit;
   transition: transform 0.15s ease, background 0.25s ease;
   -webkit-tap-highlight-color: transparent;
   position: relative;
-  overflow: hidden;
 }
 
 .branch + .branch {
   border-top: 0.5px solid var(--line);
-}
-
-.branch::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(201, 162, 77, 0.10) 50%,
-    transparent 100%
-  );
-  transform: translateX(-100%);
-  animation: shimmer 6s ease-in-out infinite;
-  pointer-events: none;
-}
-
-.branch:nth-child(2)::before {
-  animation-delay: 3s;
 }
 
 .branch:active {
@@ -221,60 +200,40 @@ html, body {
   background: rgba(201, 162, 77, 0.06);
 }
 
-.branch-name {
-  font-family: "Bebas Neue", sans-serif;
-  font-size: 1.75rem;
-  letter-spacing: 0.18em;
-  color: var(--gold-l);
-  line-height: 1;
-  position: relative;
-  animation: namePulse 4s ease-in-out infinite;
+.branch-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
 }
 
-.branch:nth-child(2) .branch-name {
-  animation-delay: 2s;
+.branch-name {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.14em;
+  color: var(--gold-l);
+  line-height: 1;
+}
+
+.branch-meta {
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.7rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  opacity: 0.8;
 }
 
 .branch-arrow {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: var(--gold);
   font-family: "Montserrat", sans-serif;
   opacity: 0.7;
-  animation: arrowDrift 2.5s ease-in-out infinite;
-}
-
-.branch:active .branch-arrow {
-  transform: translateX(8px);
-  opacity: 1;
   transition: transform 0.15s ease, opacity 0.15s ease;
 }
 
-@keyframes shimmer {
-  0% { transform: translateX(-100%); }
-  50% { transform: translateX(100%); }
-  100% { transform: translateX(100%); }
-}
-
-@keyframes namePulse {
-  0%, 100% {
-    text-shadow: 0 0 0 rgba(201, 162, 77, 0);
-    color: var(--gold-l);
-  }
-  50% {
-    text-shadow: 0 0 16px rgba(230, 199, 107, 0.35);
-    color: #F0D688;
-  }
-}
-
-@keyframes arrowDrift {
-  0%, 100% {
-    transform: translateX(0);
-    opacity: 0.7;
-  }
-  50% {
-    transform: translateX(4px);
-    opacity: 1;
-  }
+.branch:active .branch-arrow {
+  transform: translateX(6px);
+  opacity: 1;
 }
 
 .footer {
@@ -349,11 +308,11 @@ html, body {
   }
 
   .branch {
-    padding: 1.8rem 1rem;
+    padding: 1.5rem 0.5rem;
   }
 
   .branch-name {
-    font-size: 2.2rem;
+    font-size: 1.7rem;
   }
 
   .branch:hover {
@@ -366,12 +325,6 @@ html, body {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation: none !important;
-    transition: none !important;
-  }
-}
 </style>
 </head>
 <body>
@@ -400,12 +353,18 @@ html, body {
       <p class="hero-subtitle">elige tu sucursal</p>
 
       <nav class="branches" aria-label="Sucursales">
-        <a href="/gdl" class="branch" aria-label="Ir a Anastacio Guadalajara, Chapalita">
-          <span class="branch-name">Guadalajara</span>
+        <a href="/gdl" class="branch" aria-label="Anastacio Guadalajara, Chapalita">
+          <div class="branch-text">
+            <span class="branch-name">Guadalajara</span>
+            <span class="branch-meta">Chapalita · Av. Guadalupe 290</span>
+          </div>
           <span class="branch-arrow" aria-hidden="true">→</span>
         </a>
-        <a href="/cln" class="branch" aria-label="Ir a Anastacio Culiacán">
-          <span class="branch-name">Culiacán</span>
+        <a href="/cln" class="branch" aria-label="Anastacio Culiacán">
+          <div class="branch-text">
+            <span class="branch-name">Culiacán</span>
+            <span class="branch-meta">Sinaloa</span>
+          </div>
           <span class="branch-arrow" aria-hidden="true">→</span>
         </a>
       </nav>
