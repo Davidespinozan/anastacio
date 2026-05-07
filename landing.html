@@ -299,16 +299,45 @@ html, body {
     object-position: center center;
   }
 
+  /* Split editorial: pulpo izquierda, texto derecha */
+  .hero {
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  .hero-gradient {
+    background: linear-gradient(
+      90deg,
+      rgba(5, 20, 32, 0) 0%,
+      rgba(5, 20, 32, 0) 35%,
+      rgba(5, 20, 32, 0.5) 55%,
+      rgba(5, 20, 32, 0.85) 75%,
+      rgba(5, 20, 32, 0.95) 100%
+    );
+  }
+
   .hero-content {
-    padding: 0 2rem 3rem;
+    width: 42%;
+    max-width: 520px;
+    padding: 0 4rem 0 2rem;
+    padding-bottom: 0;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .hero-eyebrow,
+  .hero-subtitle {
+    align-self: flex-start;
   }
 
   .hero-title {
     font-size: 5rem;
+    align-self: flex-start;
   }
 
   .branches {
-    max-width: 480px;
+    width: 100%;
+    max-width: none;
   }
 
   .branch {
