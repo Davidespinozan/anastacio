@@ -56,6 +56,14 @@ agregar `streetAddress` real al Schema.org de Culiacán en
   - Actualizar `og:image` de landing.html a un frame del video desktop
     (composición landscape funciona mejor en previews de WhatsApp/X)
 
+## Mejoras visuales menú interno (post-lanzamiento)
+
+- [ ] Reducir tamaño del hero de sucursal (ANASTACIO MARISQUERÍA / SUCURSAL / X) — ocupa demasiado real estate sin aportar acción.
+- [ ] Reemplazar emojis 🛵🥡🍽️ de los 3 botones de modo por iconografía SVG consistente con la paleta de marca.
+- [ ] Unificar colores de bordes de los 3 botones de modo (actualmente: verde / dorado / naranja). Usar paleta de marca dorado uniforme.
+- [ ] Cambiar botón "PROMOS" de naranja brillante a dorado de marca para consistencia.
+- [ ] Considerar reducir altura de urgency-bar y hero combinados a máx 30% del viewport para que el menú esté visible al instante.
+
 ## Otras mejoras
 
 - Validar Schema.org en https://validator.schema.org/ tras el primer push
