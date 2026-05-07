@@ -469,6 +469,13 @@ if ("serviceWorker" in navigator) {
     });
   });
 })();
+
+// Resetear opacity al volver con back button (Safari bfcache)
+// Sin esto, el body queda en opacity:0 al restaurar la página y se ve en blanco.
+window.addEventListener("pageshow", function(){
+  document.body.style.transition = "";
+  document.body.style.opacity = "";
+});
 </script>
 </body>
 </html>
