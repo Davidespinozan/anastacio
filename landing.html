@@ -182,13 +182,15 @@ html, body {
 .branch {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 1.1rem 0.5rem;
+  justify-content: center;
+  gap: 0.8rem;
+  padding: 1.5rem 1rem;
   text-decoration: none;
   color: inherit;
-  transition: padding 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: transform 0.15s ease, background 0.25s ease;
   -webkit-tap-highlight-color: transparent;
   position: relative;
+  overflow: hidden;
 }
 
 .branch + .branch {
@@ -198,60 +200,81 @@ html, body {
 .branch::before {
   content: '';
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  background: linear-gradient(90deg, transparent, rgba(201, 162, 77, 0.05), transparent);
-  opacity: 0;
-  transition: opacity 0.4s ease;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(201, 162, 77, 0.10) 50%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  animation: shimmer 6s ease-in-out infinite;
   pointer-events: none;
 }
 
-.branch:hover::before,
-.branch:active::before {
-  opacity: 1;
+.branch:nth-child(2)::before {
+  animation-delay: 3s;
 }
 
-.branch:hover,
 .branch:active {
-  padding-left: 0.8rem;
-  padding-right: 0.2rem;
-}
-
-.branch-text {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.15rem;
+  transform: scale(0.98);
+  background: rgba(201, 162, 77, 0.06);
 }
 
 .branch-name {
   font-family: "Bebas Neue", sans-serif;
-  font-size: 1.4rem;
-  letter-spacing: 0.14em;
+  font-size: 1.75rem;
+  letter-spacing: 0.18em;
   color: var(--gold-l);
   line-height: 1;
+  position: relative;
+  animation: namePulse 4s ease-in-out infinite;
 }
 
-.branch-meta {
-  font-family: "Montserrat", sans-serif;
-  font-size: 0.7rem;
-  color: var(--muted);
-  letter-spacing: 0.04em;
-  opacity: 0.75;
+.branch:nth-child(2) .branch-name {
+  animation-delay: 2s;
 }
 
 .branch-arrow {
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: var(--gold);
   font-family: "Montserrat", sans-serif;
-  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  opacity: 0.7;
+  animation: arrowDrift 2.5s ease-in-out infinite;
 }
 
-.branch:hover .branch-arrow,
 .branch:active .branch-arrow {
-  transform: translateX(4px);
+  transform: translateX(8px);
+  opacity: 1;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes namePulse {
+  0%, 100% {
+    text-shadow: 0 0 0 rgba(201, 162, 77, 0);
+    color: var(--gold-l);
+  }
+  50% {
+    text-shadow: 0 0 16px rgba(230, 199, 107, 0.35);
+    color: #F0D688;
+  }
+}
+
+@keyframes arrowDrift {
+  0%, 100% {
+    transform: translateX(0);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateX(4px);
+    opacity: 1;
+  }
 }
 
 .footer {
@@ -326,11 +349,20 @@ html, body {
   }
 
   .branch {
-    padding: 1.4rem 0.5rem;
+    padding: 1.8rem 1rem;
   }
 
   .branch-name {
-    font-size: 1.7rem;
+    font-size: 2.2rem;
+  }
+
+  .branch:hover {
+    background: rgba(201, 162, 77, 0.06);
+  }
+
+  .branch:hover .branch-arrow {
+    transform: translateX(6px);
+    opacity: 1;
   }
 }
 
@@ -369,17 +401,11 @@ html, body {
 
       <nav class="branches" aria-label="Sucursales">
         <a href="/gdl" class="branch" aria-label="Ir a Anastacio Guadalajara, Chapalita">
-          <div class="branch-text">
-            <span class="branch-name">Guadalajara</span>
-            <span class="branch-meta">Chapalita · Av. Guadalupe 290</span>
-          </div>
+          <span class="branch-name">Guadalajara</span>
           <span class="branch-arrow" aria-hidden="true">→</span>
         </a>
         <a href="/cln" class="branch" aria-label="Ir a Anastacio Culiacán">
-          <div class="branch-text">
-            <span class="branch-name">Culiacán</span>
-            <span class="branch-meta">Sinaloa</span>
-          </div>
+          <span class="branch-name">Culiacán</span>
           <span class="branch-arrow" aria-hidden="true">→</span>
         </a>
       </nav>
@@ -463,6 +489,26 @@ if ("serviceWorker" in navigator) {
     var v = document.querySelector(".hero-video");
     if (v) { v.removeAttribute("autoplay"); v.pause(); }
   }
+})();
+
+// Botones de sucursal: haptic feedback + fade-out de salida
+(function(){
+  var branches = document.querySelectorAll(".branch");
+  branches.forEach(function(branch){
+    branch.addEventListener("touchstart", function(){
+      if (window.navigator && window.navigator.vibrate) {
+        window.navigator.vibrate(8);
+      }
+    }, { passive: true });
+
+    branch.addEventListener("click", function(e){
+      e.preventDefault();
+      var href = this.getAttribute("href");
+      document.body.style.transition = "opacity 0.35s ease";
+      document.body.style.opacity = "0";
+      setTimeout(function(){ window.location.href = href; }, 320);
+    });
+  });
 })();
 </script>
 </body>
