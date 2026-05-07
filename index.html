@@ -78,7 +78,7 @@ body>*{position:relative;z-index:1;}
 .branch-title-city{color:var(--gold);}
 
 /* ═══ 1️⃣ HERO ORDER MODE BUTTONS ═══ */
-.hero-order-modes{display:flex;gap:.7rem;margin-top:1.8rem;animation:fadeUp 1.2s .6s ease both;flex-wrap:wrap;justify-content:center;opacity:1;}
+.hero-order-modes{display:flex;gap:.7rem;padding:1.2rem 1.25rem;background:#071826;animation:fadeUp 1s ease both;flex-wrap:wrap;justify-content:center;opacity:1;}
 .hero-mode-btn{display:flex;align-items:center;gap:.5rem;padding:.75rem 1.3rem;border:1.5px solid rgba(255,255,255,.2);background:rgba(7,24,38,.6);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--cream);font-family:"Bebas Neue",sans-serif;font-size:.85rem;letter-spacing:.15em;cursor:pointer;transition:all .35s cubic-bezier(.23,1,.32,1);border-radius:50px;-webkit-tap-highlight-color:transparent;touch-action:manipulation;min-height:48px;}
 .hero-mode-btn .mode-icon{font-size:1.1rem;line-height:1;}
 .hero-mode-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,.3);}
@@ -112,7 +112,6 @@ body>*{position:relative;z-index:1;}
 .trending-label{display:inline-flex;align-items:center;gap:.4rem;background:linear-gradient(135deg,rgba(242,107,29,.15),rgba(201,162,77,.1));border:1px solid rgba(242,107,29,.25);padding:.35rem 1rem;border-radius:50px;font-size:.7rem;letter-spacing:.15em;color:var(--cta);font-family:"Bebas Neue",sans-serif;margin-bottom:.6rem;animation:trendPulse 3s ease-in-out infinite;}
 @keyframes trendPulse{0%,100%{box-shadow:0 0 0 0 rgba(242,107,29,.15);}50%{box-shadow:0 0 0 8px rgba(242,107,29,0);}}
 .trending-title{font-family:"Bebas Neue",sans-serif;font-size:clamp(1.6rem,5vw,2.5rem);letter-spacing:.05em;color:var(--accent);line-height:1;}
-.trending-subtitle{font-size:.78rem;color:var(--muted);margin-top:.3rem;font-style:italic;}
 .trending-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem;}
 @media(min-width:600px){.trending-grid{grid-template-columns:repeat(3,1fr);}}
 .trending-card{background:rgba(15,47,79,.55)!important;border:1.5px solid rgba(242,107,29,.15)!important;border-radius:16px;overflow:hidden;transition:all .4s cubic-bezier(.23,1,.32,1);position:relative;flex-direction:column!important;}
@@ -593,24 +592,24 @@ var sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
         <span class="es">🔥 Alta demanda ahora</span><span class="en">🔥 High demand now</span>
       </div>
     </div>
-
-    <!-- HERO DECISION BUTTONS -->
-    <div class="hero-order-modes">
-      <button class="hero-mode-btn" data-mode="domicilio" onclick="selectOrderMode('domicilio')">
-        <span class="mode-icon">🛵</span>
-        <span class="es">Pedir a Domicilio</span><span class="en">Delivery</span>
-      </button>
-      <button class="hero-mode-btn" data-mode="recoger" onclick="selectOrderMode('recoger')">
-        <span class="mode-icon">🥡</span>
-        <span class="es">Recoger en Local</span><span class="en">Pickup</span>
-      </button>
-      <button class="hero-mode-btn" data-mode="mesa" onclick="selectOrderMode('mesa')">
-        <span class="mode-icon">🍽</span>
-        <span class="es">Pedir desde Mesa</span><span class="en">Order at Table</span>
-      </button>
-    </div>
   </div>
 </section>
+
+<!-- ORDER MODE BUTTONS — justo después del hero, antes del menú -->
+<div class="hero-order-modes">
+  <button class="hero-mode-btn" data-mode="domicilio" onclick="selectOrderMode('domicilio')">
+    <span class="mode-icon">🛵</span>
+    <span class="es">Pedir a Domicilio</span><span class="en">Delivery</span>
+  </button>
+  <button class="hero-mode-btn" data-mode="recoger" onclick="selectOrderMode('recoger')">
+    <span class="mode-icon">🥡</span>
+    <span class="es">Recoger en Local</span><span class="en">Pickup</span>
+  </button>
+  <button class="hero-mode-btn" data-mode="mesa" onclick="selectOrderMode('mesa')">
+    <span class="mode-icon">🍽</span>
+    <span class="es">Pedir desde Mesa</span><span class="en">Order at Table</span>
+  </button>
+</div>
 
 <!-- 2️⃣ ORDER MODE PERSISTENT STRIP -->
 <div class="order-mode-strip" id="order-mode-strip" onclick="openCart()">
@@ -628,7 +627,6 @@ var sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
       <span class="en">WHAT EVERYONE'S ORDERING</span>
     </div>
     <h2 class="trending-title"><span class="es">Favoritos del Barrio</span><span class="en">Neighborhood Favorites</span></h2>
-    <div class="trending-subtitle"><span class="es">Lo más pedido hoy</span><span class="en">Most ordered today</span></div>
   </div>
   <div class="trending-grid">
     <div class="trending-card">
