@@ -66,30 +66,20 @@ body>*{position:relative;z-index:1;}
 .nav-promo{padding:.38rem .85rem;border:1px solid var(--cta);color:var(--cta);background:transparent;font-family:"Bebas Neue",sans-serif;font-size:.78rem;letter-spacing:.12em;cursor:pointer;text-decoration:none;transition:all .3s;border-radius:8px;}
 .nav-promo:hover{background:var(--cta);color:white;}
 
-/* HERO con imagen de fondo (caustics + mariscos) */
-/* Hero asimétrico: texto izquierda con tipografía previa, plato derecha sin blur */
-.branch-hero{position:relative;width:100%;padding:7rem 0 2.5rem;background:#071826;overflow:hidden;isolation:isolate;}
+/* HERO con imagen de fondo (caustics + mariscos) — texto centrado, overlay sutil */
+.branch-hero{position:relative;width:100%;padding:7rem 1.25rem 2.5rem;background:#071826;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
 .branch-hero-bg{position:absolute;inset:0;z-index:0;}
 .branch-hero-img{width:100%;height:100%;object-fit:cover;object-position:center center;display:block;}
-.branch-hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,24,38,.88) 0%,rgba(7,24,38,.7) 35%,rgba(7,24,38,.15) 60%,rgba(7,24,38,0) 100%),linear-gradient(180deg,rgba(7,24,38,.4) 0%,rgba(7,24,38,0) 20%,rgba(7,24,38,0) 60%,rgba(7,24,38,.7) 85%,#071826 100%);}
-.branch-hero-content{position:relative;z-index:1;padding:1.5rem 1.25rem;max-width:60%;display:flex;flex-direction:column;align-items:flex-start;}
+.branch-hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,24,38,.35) 0%,rgba(7,24,38,.1) 25%,rgba(7,24,38,.15) 60%,rgba(7,24,38,.7) 88%,#071826 100%);}
+.branch-hero-content{position:relative;z-index:1;max-width:760px;width:100%;display:flex;flex-direction:column;align-items:center;}
 .branch-eyebrow{font-family:"Bebas Neue",sans-serif;font-size:.94rem;letter-spacing:.45em;text-transform:uppercase;color:var(--muted);margin-bottom:.7rem;animation:fadeUp 1s ease both;}
-.branch-title{font-family:"Bebas Neue",sans-serif;font-size:clamp(2.6rem,9vw,4.2rem);letter-spacing:.06em;line-height:.95;color:var(--cream);margin-bottom:1.2rem;animation:fadeUp 1s .1s ease both;display:flex;flex-direction:column;align-items:flex-start;gap:.1em;}
+.branch-title{font-family:"Bebas Neue",sans-serif;font-size:clamp(3.1rem,11vw,6rem);letter-spacing:.06em;line-height:.95;color:var(--cream);margin-bottom:1.6rem;animation:fadeUp 1s .1s ease both;display:flex;flex-direction:column;align-items:center;gap:.1em;}
 .branch-title-prefix{font-size:.55em;letter-spacing:.22em;color:var(--muted);font-weight:400;}
 .branch-title-city{color:var(--gold);text-shadow:0 0 30px rgba(201,162,77,.28);}
-@media(min-width:768px){
-  .branch-hero{padding-top:8rem;}
-  .branch-hero-content{padding:2rem 2.5rem;max-width:55%;}
-  .branch-title{font-size:clamp(3rem,7vw,5rem);}
-}
-@media(min-width:1200px){
-  .branch-hero-content{max-width:48%;padding-left:4rem;}
-  .branch-title{font-size:5.5rem;}
-}
 
 /* ═══ 1️⃣ HERO ORDER MODE BUTTONS ═══ */
-.hero-order-modes{display:flex;flex-direction:column;gap:.7rem;margin-top:1rem;width:100%;max-width:280px;align-items:stretch;animation:fadeUp 1.2s .6s ease both;opacity:1;}
-.hero-mode-btn{display:flex;align-items:center;justify-content:flex-start;gap:.6rem;padding:.85rem 1.3rem;border:1.5px solid rgba(255,255,255,.2);background:rgba(7,24,38,.6);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--cream);font-family:"Bebas Neue",sans-serif;font-size:.85rem;letter-spacing:.15em;cursor:pointer;transition:all .35s cubic-bezier(.23,1,.32,1);border-radius:50px;-webkit-tap-highlight-color:transparent;touch-action:manipulation;min-height:48px;width:100%;text-align:left;}
+.hero-order-modes{display:flex;gap:.7rem;margin-top:1rem;animation:fadeUp 1.2s .6s ease both;flex-wrap:wrap;justify-content:center;opacity:1;}
+.hero-mode-btn{display:flex;align-items:center;gap:.5rem;padding:.75rem 1.3rem;border:1.5px solid rgba(255,255,255,.2);background:rgba(7,24,38,.6);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--cream);font-family:"Bebas Neue",sans-serif;font-size:.85rem;letter-spacing:.15em;cursor:pointer;transition:all .35s cubic-bezier(.23,1,.32,1);border-radius:50px;-webkit-tap-highlight-color:transparent;touch-action:manipulation;min-height:48px;}
 .hero-mode-btn .mode-icon{font-size:1.1rem;line-height:1;}
 .hero-mode-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,.3);}
 .hero-mode-btn[data-mode="domicilio"]{border-color:rgba(37,211,102,.4);}
@@ -480,6 +470,8 @@ body>*{position:relative;z-index:1;}
 
 @media(max-width:768px){
 html{font-size:100%;}
+.branch-hero{padding:6rem 1rem 2rem;}
+.branch-title{font-size:clamp(2.9rem,13vw,4.8rem);}
 .nav-logo{height:60px;}
 .top-nav{padding:.4rem .8rem;}
 .menu-nav a{font-size:.8rem;padding:.65rem 1rem;}
