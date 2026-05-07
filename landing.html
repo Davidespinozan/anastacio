@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Anastacio Marisquería</title>
+<meta name="description" content="Marisquería con sucursales en Guadalajara y Culiacán. Pedidos a domicilio, recoger o mesa.">
+<meta name="theme-color" content="#071826">
+<link rel="icon" type="image/png" href="https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/object/public/imagenes/logooficial_cys7ex.webp">
+<link rel="apple-touch-icon" href="https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/object/public/imagenes/anastaciologo192.png">
+<link rel="manifest" href="/manifest.json">
+<meta property="og:title" content="Anastacio · Marisquería de Barrio">
+<meta property="og:description" content="Marisquería con sucursales en Guadalajara y Culiacán.">
+<meta property="og:image" content="https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/object/public/imagenes/anastaciologo512.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Anastacio · Marisquería de Barrio">
+<meta name="twitter:image" content="https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/object/public/imagenes/anastaciologo512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --dark:#071826;
+  --dark2:#0A1F33;
+  --gold:#C9A24D;
+  --gold-l:#E6C76B;
+  --cream:#F5F5F5;
+  --muted:#A0B4C0;
+  --accent:#C9A24D;
+}
+html,body{height:100%;}
+body{
+  background:linear-gradient(180deg,#071826 0%,#0A1F33 100%);
+  color:var(--cream);
+  font-family:"Montserrat",sans-serif;
+  min-height:100vh;
+  min-height:100dvh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:2rem 1.25rem;
+  text-align:center;
+  overflow-x:hidden;
+}
+.wrap{
+  width:100%;
+  max-width:840px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:2.2rem;
+}
+.brand-logo{
+  width:clamp(80px,14vw,120px);
+  height:auto;
+  animation:fadeUp 1s ease both;
+}
+.brand{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:.4rem;
+}
+.brand-title{
+  font-family:"Bebas Neue",sans-serif;
+  font-size:clamp(3.2rem,12vw,6rem);
+  letter-spacing:.08em;
+  line-height:.88;
+  color:var(--cream);
+  animation:fadeUp 1s .1s ease both;
+}
+.brand-sub{
+  font-family:"Montserrat",sans-serif;
+  font-style:italic;
+  font-size:clamp(.85rem,2.4vw,1.15rem);
+  color:var(--accent);
+  letter-spacing:.35em;
+  animation:fadeUp 1s .2s ease both;
+}
+.guide{
+  font-family:"Bebas Neue",sans-serif;
+  font-size:.78rem;
+  letter-spacing:.55em;
+  text-transform:uppercase;
+  color:var(--muted);
+  animation:fadeUp 1s .3s ease both;
+}
+.branches{
+  display:flex;
+  flex-direction:column;
+  gap:1rem;
+  width:100%;
+  max-width:480px;
+  animation:fadeUp 1s .4s ease both;
+}
+.branch-btn{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:.35rem;
+  min-height:88px;
+  padding:1.2rem 1.6rem;
+  background:rgba(10,31,51,.55);
+  border:1.5px solid rgba(201,162,77,.35);
+  border-radius:16px;
+  color:var(--cream);
+  text-decoration:none;
+  cursor:pointer;
+  transition:all .35s cubic-bezier(.23,1,.32,1);
+  -webkit-tap-highlight-color:transparent;
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+}
+.branch-btn:hover,.branch-btn:focus-visible{
+  background:rgba(201,162,77,.12);
+  border-color:var(--gold);
+  transform:translateY(-2px);
+  box-shadow:0 8px 30px rgba(201,162,77,.22);
+  outline:none;
+}
+.branch-btn:active{transform:translateY(0);}
+.branch-name{
+  font-family:"Bebas Neue",sans-serif;
+  font-size:1.6rem;
+  letter-spacing:.18em;
+  color:var(--gold);
+}
+.branch-meta{
+  font-size:.78rem;
+  color:var(--muted);
+  letter-spacing:.05em;
+  font-weight:400;
+}
+.footer{
+  margin-top:1rem;
+  font-size:.7rem;
+  letter-spacing:.25em;
+  text-transform:uppercase;
+  color:var(--muted);
+  opacity:.7;
+  animation:fadeUp 1s .5s ease both;
+}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(14px);}
+  to{opacity:1;transform:translateY(0);}
+}
+@media (min-width:768px){
+  .branches{flex-direction:row;max-width:720px;}
+  .branch-btn{flex:1;min-height:140px;padding:1.6rem 1.4rem;}
+  .branch-name{font-size:1.85rem;}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;}
+}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <img src="https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/object/public/imagenes/logooficial_cys7ex.webp" alt="Anastacio" class="brand-logo" width="120" height="120">
+  <div class="brand">
+    <h1 class="brand-title">ANASTACIO</h1>
+    <p class="brand-sub">Marisquería</p>
+  </div>
+  <p class="guide">Selecciona tu sucursal</p>
+  <nav class="branches" aria-label="Sucursales">
+    <a href="/gdl" class="branch-btn" aria-label="Ir a la sucursal de Guadalajara, Chapalita, Avenida Guadalupe 290">
+      <span class="branch-name">Guadalajara</span>
+      <span class="branch-meta">Chapalita · Av. Guadalupe 290</span>
+    </a>
+    <a href="/cln" class="branch-btn" aria-label="Ir a la sucursal de Culiacán">
+      <span class="branch-name">Culiacán</span>
+      <span class="branch-meta">Culiacán · Sinaloa</span>
+    </a>
+  </nav>
+  <p class="footer">Marisquería de Barrio</p>
+</main>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function(){
+    navigator.serviceWorker.register("/sw.js").catch(function(){});
+  });
+}
+</script>
+</body>
+</html>
