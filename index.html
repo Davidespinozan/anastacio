@@ -39,17 +39,12 @@ body>*{position:relative;z-index:1;}
 .nav-promo:hover{background:var(--cta);color:white;}
 
 /* HERO */
-.hero{position:relative;height:100svh;min-height:500px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding-top:15vh;overflow:hidden;}
-.hero-bg{position:absolute;inset:0;background-image:url("https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/object/public/imagenes/IMG_9816_if2blm.png");background-size:55% auto;background-position:center 20%;}
-@media(max-width:768px){.hero-bg{background-size:cover;background-position:center center;}}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 0%,transparent 35%,rgba(7,24,38,.5) 65%,rgba(7,24,38,.92) 100%);}
-.hero-content{position:relative;z-index:2;text-align:center;padding:1.5rem;display:flex;flex-direction:column;align-items:center;}
-.hero-logo{width:clamp(80px,14vw,130px);height:auto;margin-bottom:1rem;animation:fadeUp 1.2s ease both;}
-.hero-title{font-family:"Bebas Neue",sans-serif;font-size:clamp(4rem,18vw,10rem);letter-spacing:.08em;line-height:.88;color:var(--cream);animation:fadeUp 1.2s .15s ease both;opacity:1;}
-.hero-sub{font-family:"Montserrat",sans-serif;font-style:italic;font-size:clamp(.85rem,2.5vw,1.3rem);color:var(--accent);letter-spacing:.35em;margin-top:.5rem;animation:fadeUp 1.2s .3s ease both;opacity:1;}
-.hero-line{display:none;}
-.hero-cta{display:inline-block;padding:.9rem 2.5rem;background:var(--cta);color:white;text-decoration:none;font-family:"Bebas Neue",sans-serif;font-size:.9rem;letter-spacing:.3em;transition:all .3s;animation:fadeUp 1.2s .6s ease both;border:none;border-radius:50px;box-shadow:0 4px 25px rgba(242,107,29,.4);}
-.hero-cta:hover{transform:translateY(-3px) scale(1.05);box-shadow:0 8px 40px rgba(242,107,29,.6);}
+.branch-hero{position:relative;padding:7rem 1.25rem 2.5rem;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(180deg,#071826 0%,#0A1F33 100%);border-bottom:1px solid rgba(201,162,77,.08);}
+.branch-hero-content{position:relative;z-index:2;max-width:760px;width:100%;display:flex;flex-direction:column;align-items:center;}
+.branch-eyebrow{font-family:"Bebas Neue",sans-serif;font-size:.78rem;letter-spacing:.45em;text-transform:uppercase;color:var(--muted);margin-bottom:.7rem;animation:fadeUp 1s ease both;}
+.branch-title{font-family:"Bebas Neue",sans-serif;font-size:clamp(2.6rem,9vw,5rem);letter-spacing:.06em;line-height:.95;color:var(--cream);margin-bottom:1.6rem;animation:fadeUp 1s .1s ease both;display:flex;flex-direction:column;align-items:center;gap:.1em;}
+.branch-title-prefix{font-size:.55em;letter-spacing:.22em;color:var(--muted);font-weight:400;}
+.branch-title-city{color:var(--gold);text-shadow:0 0 30px rgba(201,162,77,.28);}
 
 /* ═══ 1️⃣ HERO ORDER MODE BUTTONS ═══ */
 .hero-order-modes{display:flex;gap:.7rem;margin-top:1rem;animation:fadeUp 1.2s .6s ease both;flex-wrap:wrap;justify-content:center;opacity:1;}
@@ -118,8 +113,6 @@ body>*{position:relative;z-index:1;}
 /* ═══ ORDER TYPE 3 MODES ═══ */
 .order-type-btn{display:flex;flex-direction:column;align-items:center;gap:.15rem;min-height:48px;justify-content:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
 .order-type-btn .ot-icon{font-size:1rem;line-height:1;}
-
-.scroll-hint{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);color:rgba(245,245,245,.35);font-size:.6rem;letter-spacing:.45em;text-transform:uppercase;animation:bounce 2s infinite;z-index:2;white-space:nowrap;}
 
 /* LEAD BAR */
 .lead-bar{background:var(--sand);color:var(--dark);padding:.85rem 1.2rem;display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;box-shadow:0 4px 20px rgba(0,0,0,.15);}
@@ -446,10 +439,8 @@ body>*{position:relative;z-index:1;}
 
 @media(max-width:768px){
 html{font-size:100%;}
-.hero-bg{background-size:cover!important;background-position:center center!important;background-repeat:no-repeat;}
-.hero{padding-top:8vh;}
-.hero-title{font-size:clamp(3.5rem,15vw,7rem);}
-.hero-sub{font-size:clamp(.75rem,3vw,1rem);}
+.branch-hero{padding:6rem 1rem 2rem;}
+.branch-title{font-size:clamp(2.4rem,11vw,4rem);}
 .nav-logo{height:60px;}
 .top-nav{padding:.4rem .8rem;}
 .menu-nav a{font-size:.8rem;padding:.65rem 1rem;}
@@ -536,14 +527,14 @@ var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSI
 var sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 </script>
 
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <h1 class="hero-title">ANASTACIO</h1>
-    <div class="hero-sub"><span class="es">marisquería de barrio</span><span class="en">neighborhood seafood</span></div>
-    <div class="hero-line"></div>
-    <!-- 1️⃣ HERO DECISION BUTTONS -->
+<section class="branch-hero">
+  <div class="branch-hero-content">
+    <p class="branch-eyebrow">Anastacio Marisquería</p>
+    <h1 class="branch-title">
+      <span class="branch-title-prefix">Sucursal</span>
+      <span class="branch-title-city" id="branch-name-display">Guadalajara</span>
+    </h1>
+    <!-- HERO DECISION BUTTONS -->
     <div class="hero-order-modes">
       <button class="hero-mode-btn" data-mode="domicilio" onclick="selectOrderMode('domicilio')">
         <span class="mode-icon">🛵</span>
@@ -559,7 +550,6 @@ var sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
       </button>
     </div>
   </div>
-  <div class="scroll-hint">↓ <span class="es">Desliza para ver menú</span><span class="en">Scroll to see menu</span></div>
 </section>
 
 <!-- 2️⃣ ORDER MODE PERSISTENT STRIP -->
@@ -1323,6 +1313,7 @@ document.addEventListener('DOMContentLoaded', function() {
   if ((el = document.getElementById('ig-float-link')))      el.href = BRANCH.instagramUrl;
   if ((el = document.getElementById('footer-text')))        el.textContent = '© 2025 · ANASTACIO · MARISQUERÍA DE BARRIO · ' + BRANCH.footerCity;
   if ((el = document.getElementById('branch-location-item'))) el.textContent = 'Sucursal ' + BRANCH.city;
+  if ((el = document.getElementById('branch-name-display')))  el.textContent = BRANCH.city;
 });
 
 // ═══ LANGUAGE ═══
