@@ -56,10 +56,23 @@ body{background:linear-gradient(180deg,#071826 0%,#0A1F33 100%);color:var(--text
 body>*{position:relative;z-index:1;}
 
 /* TOP NAV */
-.top-nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:.6rem 1.2rem;transition:background .4s;}
+.top-nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:.6rem 1rem;background:rgba(7,24,38,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:.5px solid rgba(201,162,77,.15);transition:background .4s;}
 .top-nav.scrolled{background:#071826;backdrop-filter:none;border-bottom:1px solid rgba(201,162,77,.1);box-shadow:0 4px 20px rgba(0,0,0,.4);}
-.nav-logo{height:96px;width:auto;}
-.nav-right{display:flex;align-items:center;gap:.5rem;}
+.top-nav-left{display:flex;align-items:center;gap:.8rem;min-width:0;flex:1;}
+.nav-logo{height:96px;width:auto;flex-shrink:0;}
+.nav-right{display:flex;align-items:center;gap:.5rem;flex-shrink:0;}
+.urgency-bar-inline{display:flex;align-items:center;gap:.4rem;font-size:.7rem;color:rgba(245,245,245,.85);font-family:"Montserrat",sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;margin:0;padding:0;flex-wrap:nowrap;background:transparent;justify-content:flex-start;}
+.urgency-bar-inline .urgency-status,.urgency-bar-inline .urgency-location{display:inline-flex;align-items:center;gap:.35rem;}
+.urgency-bar-inline .urgency-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+.urgency-bar-inline .urgency-divider{opacity:.4;}
+.urgency-bar-inline .urgency-pin{font-size:.75rem;}
+@media(max-width:480px){
+  .urgency-bar-inline{font-size:.62rem;gap:.3rem;}
+  .urgency-bar-inline .urgency-divider{display:none;}
+}
+@media(max-width:380px){
+  .urgency-bar-inline .urgency-location{display:none;}
+}
 .lang-toggle{display:flex;border:1px solid rgba(244,180,0,.4);overflow:hidden;border-radius:8px;}
 .lang-btn{padding:.35rem .65rem;font-family:"Bebas Neue",sans-serif;font-size:.8rem;letter-spacing:.1em;cursor:pointer;background:transparent;color:var(--muted);border:none;transition:all .2s;}
 .lang-btn.active{background:var(--gold);color:var(--dark);}
@@ -67,18 +80,39 @@ body>*{position:relative;z-index:1;}
 .nav-promo:hover{background:var(--cta);color:white;}
 
 /* HERO con imagen de fondo (caustics + mariscos) */
-.branch-hero{position:relative;padding:7rem 1.25rem 2.5rem;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:#071826;border-bottom:1px solid rgba(201,162,77,.08);overflow:hidden;}
-.branch-hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;z-index:0;}
-.branch-hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,24,38,.55) 0%,rgba(7,24,38,.3) 30%,rgba(7,24,38,.55) 70%,rgba(7,24,38,.92) 100%);z-index:1;pointer-events:none;}
-.branch-hero-content{position:relative;z-index:2;max-width:760px;width:100%;display:flex;flex-direction:column;align-items:center;}
-.branch-eyebrow{font-family:"Bebas Neue",sans-serif;font-size:.94rem;letter-spacing:.45em;text-transform:uppercase;color:var(--muted);margin-bottom:.7rem;animation:fadeUp 1s ease both;}
-.branch-title{font-family:"Bebas Neue",sans-serif;font-size:clamp(3.1rem,11vw,6rem);letter-spacing:.06em;line-height:.95;color:var(--cream);margin-bottom:1.6rem;animation:fadeUp 1s .1s ease both;display:flex;flex-direction:column;align-items:center;gap:.1em;}
-.branch-title-prefix{font-size:.55em;letter-spacing:.22em;color:var(--muted);font-weight:400;}
-.branch-title-city{color:var(--gold);text-shadow:0 0 30px rgba(201,162,77,.28);}
+/* Hero editorial asimétrico: texto izquierda, plato derecha */
+.branch-hero{position:relative;width:100%;min-height:580px;padding:4.5rem 0 2rem;background:#071826;border-bottom:1px solid rgba(201,162,77,.08);overflow:hidden;isolation:isolate;}
+.branch-hero-bg{position:absolute;inset:0;z-index:0;}
+.branch-hero-img{width:100%;height:100%;object-fit:cover;object-position:center center;display:block;}
+.branch-hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,24,38,.88) 0%,rgba(7,24,38,.7) 35%,rgba(7,24,38,.15) 60%,rgba(7,24,38,0) 100%),linear-gradient(180deg,rgba(7,24,38,.4) 0%,rgba(7,24,38,0) 25%,rgba(7,24,38,0) 75%,rgba(7,24,38,.95) 100%);}
+.branch-hero-content{position:relative;z-index:1;padding:1.5rem 1.25rem;max-width:60%;display:flex;flex-direction:column;align-items:flex-start;animation:fadeUp 1s ease both;}
+.branch-eyebrow{font-family:"Montserrat",sans-serif;font-size:.7rem;letter-spacing:.32em;color:rgba(245,245,245,.7);text-transform:uppercase;margin:0 0 .5rem;}
+.branch-title{display:flex;flex-direction:column;align-items:flex-start;margin:0 0 .8rem;line-height:.95;}
+.branch-title-prefix{font-family:"Bebas Neue",sans-serif;font-size:1.6rem;letter-spacing:.16em;color:rgba(245,245,245,.85);}
+.branch-title-name{font-family:"Bebas Neue",sans-serif;font-size:2.8rem;letter-spacing:.04em;color:#E6C76B;text-shadow:0 2px 24px rgba(7,24,38,.7);line-height:1;}
+.branch-wave{width:60px;height:12px;margin-bottom:2rem;display:inline-block;}
+.branch-wave svg{width:100%;height:100%;}
+@media(min-width:480px){
+  .branch-hero{min-height:620px;}
+  .branch-title-name{font-size:3.4rem;}
+  .branch-title-prefix{font-size:1.8rem;}
+}
+@media(min-width:768px){
+  .branch-hero{min-height:680px;padding-top:5rem;}
+  .branch-hero-content{padding:2rem 2.5rem;max-width:50%;}
+  .branch-title-name{font-size:4.5rem;}
+  .branch-title-prefix{font-size:2.2rem;}
+  .branch-eyebrow{font-size:.8rem;}
+}
+@media(min-width:1200px){
+  .branch-hero{min-height:720px;}
+  .branch-hero-content{max-width:45%;padding-left:4rem;}
+  .branch-title-name{font-size:5.5rem;}
+}
 
 /* ═══ 1️⃣ HERO ORDER MODE BUTTONS ═══ */
-.hero-order-modes{display:flex;gap:.7rem;margin-top:1rem;animation:fadeUp 1.2s .6s ease both;flex-wrap:wrap;justify-content:center;opacity:1;}
-.hero-mode-btn{display:flex;align-items:center;gap:.5rem;padding:.75rem 1.3rem;border:1.5px solid rgba(255,255,255,.2);background:rgba(7,24,38,.6);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--cream);font-family:"Bebas Neue",sans-serif;font-size:.85rem;letter-spacing:.15em;cursor:pointer;transition:all .35s cubic-bezier(.23,1,.32,1);border-radius:50px;-webkit-tap-highlight-color:transparent;touch-action:manipulation;min-height:48px;}
+.hero-order-modes{display:flex;flex-direction:column;gap:.7rem;margin-top:1rem;width:100%;max-width:280px;align-items:stretch;animation:fadeUp 1.2s .6s ease both;opacity:1;}
+.hero-mode-btn{display:flex;align-items:center;justify-content:flex-start;gap:.6rem;padding:.85rem 1.3rem;border:1.5px solid rgba(255,255,255,.2);background:rgba(7,24,38,.6);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--cream);font-family:"Bebas Neue",sans-serif;font-size:.85rem;letter-spacing:.15em;cursor:pointer;transition:all .35s cubic-bezier(.23,1,.32,1);border-radius:50px;-webkit-tap-highlight-color:transparent;touch-action:manipulation;min-height:48px;width:100%;text-align:left;}
 .hero-mode-btn .mode-icon{font-size:1.1rem;line-height:1;}
 .hero-mode-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,.3);}
 .hero-mode-btn[data-mode="domicilio"]{border-color:rgba(37,211,102,.4);}
@@ -469,8 +503,6 @@ body>*{position:relative;z-index:1;}
 
 @media(max-width:768px){
 html{font-size:100%;}
-.branch-hero{padding:6rem 1rem 2rem;}
-.branch-title{font-size:clamp(2.9rem,13vw,4.8rem);}
 .nav-logo{height:60px;}
 .top-nav{padding:.4rem .8rem;}
 .menu-nav a{font-size:.8rem;padding:.65rem 1rem;}
@@ -538,7 +570,22 @@ src="https://www.facebook.com/tr?id=1564615811495027&ev=PageView&noscript=1"
 <body data-lang="es">
 
 <header class="top-nav" id="top-nav">
-  <img src="https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/object/public/imagenes/logooficial_cys7ex.webp" alt="Anastacio" class="nav-logo">
+  <div class="top-nav-left">
+    <img src="https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/object/public/imagenes/logooficial_cys7ex.webp" alt="Anastacio" class="nav-logo">
+    <div class="urgency-bar urgency-bar-inline" id="urgency-bar">
+      <span class="urgency-status">
+        <span class="urgency-dot green" id="urgency-dot"></span>
+        <span id="urgency-status-text">
+          <span class="es">Cargando...</span><span class="en">Loading...</span>
+        </span>
+      </span>
+      <span class="urgency-divider">·</span>
+      <span class="urgency-location">
+        <span class="urgency-pin">📍</span>
+        <span id="branch-location-item">Sucursal Guadalajara</span>
+      </span>
+    </div>
+  </div>
   <div class="nav-right">
     <div class="lang-toggle">
       <button class="lang-btn active" id="btn-es" onclick="setLang('es')">ES</button>
@@ -558,39 +605,33 @@ var sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 </script>
 
 <section class="branch-hero">
-  <img
-    src="https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/object/public/imagenes/hero-interno.webp"
-    alt=""
-    class="branch-hero-bg"
-    aria-hidden="true"
-    loading="eager"
-    fetchpriority="high"
-    width="1200"
-    height="1200">
-  <div class="branch-hero-overlay" aria-hidden="true"></div>
-  <div class="branch-hero-content">
-    <p class="branch-eyebrow">Anastacio Marisquería</p>
-    <h1 class="branch-title">
-      <span class="branch-title-prefix">Sucursal</span>
-      <span class="branch-title-city" id="branch-name-display">Guadalajara</span>
-    </h1>
+  <div class="branch-hero-bg" aria-hidden="true">
+    <img
+      src="https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/object/public/imagenes/hero-interno.webp"
+      alt=""
+      class="branch-hero-img"
+      loading="eager"
+      fetchpriority="high"
+      width="1200"
+      height="1200">
+    <div class="branch-hero-overlay"></div>
+  </div>
 
-    <!-- 4️⃣ MICRO-URGENCY BAR (estado entre sucursal y modos de pedido) -->
-    <div class="urgency-bar" id="urgency-bar">
-      <div class="urgency-item">
-        <span class="urgency-dot green" id="urgency-dot"></span>
-        <span id="urgency-status-text">
-          <span class="es">Cargando...</span><span class="en">Loading...</span>
-        </span>
-      </div>
-      <div class="urgency-item" id="urgency-closes" style="display:none;">
-        <span class="es">⏱ Cierra en <strong id="urgency-mins-es"></strong></span>
-        <span class="en">⏱ Closes in <strong id="urgency-mins-en"></strong></span>
-      </div>
-      <div class="urgency-item" id="urgency-demand" style="display:none;">
-        <span class="es">🔥 Alta demanda ahora</span><span class="en">🔥 High demand now</span>
-      </div>
-    </div>
+  <div class="branch-hero-content">
+    <p class="branch-eyebrow">ANASTACIO MARISQUERÍA</p>
+    <h1 class="branch-title">
+      <span class="branch-title-prefix">SUCURSAL</span>
+      <span class="branch-title-name" id="branch-name-display">GUADALAJARA</span>
+    </h1>
+    <span class="branch-wave" aria-hidden="true">
+      <svg viewBox="0 0 60 12" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 6 Q 9 1 16 6 T 30 6 T 44 6 T 58 6"
+              fill="none"
+              stroke="#C9A24D"
+              stroke-width="2"
+              stroke-linecap="round"/>
+      </svg>
+    </span>
 
     <!-- HERO DECISION BUTTONS -->
     <div class="hero-order-modes">
@@ -1351,6 +1392,7 @@ document.addEventListener('DOMContentLoaded', function() {
   if ((el = document.getElementById('ig-float-link')))      el.href = BRANCH.instagramUrl;
   if ((el = document.getElementById('footer-text')))        el.textContent = '© 2025 · ANASTACIO · MARISQUERÍA DE BARRIO · ' + BRANCH.footerCity;
   if ((el = document.getElementById('branch-name-display')))  el.textContent = BRANCH.city;
+  if ((el = document.getElementById('branch-location-item'))) el.textContent = 'Sucursal ' + BRANCH.city;
 });
 
 // ═══ LANGUAGE ═══
@@ -1881,7 +1923,7 @@ function updateUrgencyBar() {
   var demandEl = document.getElementById('urgency-demand');
   var minsEs = document.getElementById('urgency-mins-es');
   var minsEn = document.getElementById('urgency-mins-en');
-  if(!dot || !statusText || !closesEl || !demandEl) return;
+  if(!dot || !statusText) return;
 
   var esSpan = statusText.querySelector('.es');
   var enSpan = statusText.querySelector('.en');
@@ -1890,23 +1932,23 @@ function updateUrgencyBar() {
     dot.className = 'urgency-dot red';
     if(esSpan) esSpan.textContent = 'Cocina cerrada';
     if(enSpan) enSpan.textContent = 'Kitchen closed';
-    closesEl.style.display = 'none';
-    demandEl.style.display = 'none';
+    if(closesEl) closesEl.style.display = 'none';
+    if(demandEl) demandEl.style.display = 'none';
   } else {
     var minsLeft = Math.round((sched.close - hour) * 60);
     if(esSpan) esSpan.textContent = 'Cocina abierta';
     if(enSpan) enSpan.textContent = 'Kitchen open';
     if (minsLeft <= 60) {
       dot.className = 'urgency-dot amber';
-      closesEl.style.display = '';
+      if(closesEl) closesEl.style.display = '';
       if(minsEs) minsEs.textContent = minsLeft + ' min';
       if(minsEn) minsEn.textContent = minsLeft + ' min';
     } else {
       dot.className = 'urgency-dot green';
-      closesEl.style.display = 'none';
+      if(closesEl) closesEl.style.display = 'none';
     }
     var isPeak = (hour >= 13 && hour <= 15) || (hour >= 19 && hour <= 22);
-    demandEl.style.display = isPeak ? '' : 'none';
+    if(demandEl) demandEl.style.display = isPeak ? '' : 'none';
   }
 }
 updateUrgencyBar();

@@ -56,13 +56,15 @@ agregar `streetAddress` real al Schema.org de Culiacán en
   - Actualizar `og:image` de landing.html a un frame del video desktop
     (composición landscape funciona mejor en previews de WhatsApp/X)
 
-## Mejoras visuales menú interno (post-lanzamiento)
+## Hero menú interno — pulidos posteriores
 
-- [ ] Reducir tamaño del hero de sucursal (ANASTACIO MARISQUERÍA / SUCURSAL / X) — ocupa demasiado real estate sin aportar acción.
-- [ ] Reemplazar emojis 🛵🥡🍽️ de los 3 botones de modo por iconografía SVG consistente con la paleta de marca.
-- [ ] Unificar colores de bordes de los 3 botones de modo (actualmente: verde / dorado / naranja). Usar paleta de marca dorado uniforme.
-- [ ] Cambiar botón "PROMOS" de naranja brillante a dorado de marca para consistencia.
-- [ ] Considerar reducir altura de urgency-bar y hero combinados a máx 30% del viewport para que el menú esté visible al instante.
+- [ ] Reemplazar emojis 🛵🥡🍽️ de los 3 botones de modo por iconografía SVG consistente con la paleta dorada
+- [ ] Unificar bordes de los 3 botones de modo (actualmente verde/dorado/naranja → solo dorado uniforme)
+- [ ] Cambiar botón "PROMOS" de naranja a dorado de marca para consistencia
+- [ ] Versión específica del wave dorado por sucursal (variación visual sutil GDL vs CLN)
+- [ ] A/B test posición del plato en hero (right vs left) para conversión
+- [ ] Generar versión horizontal nítida 1920x1080 de la imagen para desktop ≥1200px
+- [ ] Considerar feature de "cierra en X min" y "alta demanda" — actualmente desactivadas en la urgency-bar inline del top-nav (los IDs urgency-closes/urgency-demand fueron removidos al compactar al header). Si se quiere restaurar, agregar como tooltip o subline al hover
 
 ## Otras mejoras
 
