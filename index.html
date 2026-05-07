@@ -67,42 +67,57 @@ body>*{position:relative;z-index:1;}
 .nav-promo:hover{background:var(--cta);color:white;}
 
 /* HERO con imagen de fondo (caustics + mariscos) — texto centrado, overlay sutil */
-.branch-hero{position:relative;width:100%;padding:6rem 1.5rem 5rem;background:#071826;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+.branch-hero{position:relative;width:100%;padding:6rem 1.5rem 5rem;background:#071826;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;text-align:left;}
 .branch-hero-bg{position:absolute;inset:0;z-index:0;}
 .branch-hero-img{width:100%;height:100%;object-fit:cover;object-position:center bottom;display:block;}
 .branch-hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,24,38,.35) 0%,rgba(7,24,38,.05) 22%,rgba(7,24,38,.05) 55%,rgba(7,24,38,.45) 72%,rgba(7,24,38,.85) 88%,#071826 100%);}
-.branch-hero-content{position:relative;z-index:1;max-width:760px;width:100%;display:flex;flex-direction:column;align-items:center;}
+.branch-hero-content{position:relative;z-index:1;max-width:760px;width:100%;display:flex;flex-direction:column;align-items:flex-start;}
+.branch-eyebrow{font-family:"Bebas Neue",sans-serif;font-size:.85rem;letter-spacing:.45em;text-transform:uppercase;color:rgba(245,245,245,.85);margin-bottom:.6rem;animation:fadeUp 1s ease both;}
+.branch-wave{display:inline-block;width:50px;height:10px;margin-top:.4rem;margin-bottom:1.4rem;animation:fadeUp 1s .25s ease both;}
+.branch-wave svg{width:100%;height:100%;display:block;}
 .branch-eyebrow{font-family:"Bebas Neue",sans-serif;font-size:.85rem;letter-spacing:.45em;text-transform:uppercase;color:var(--cream);margin-bottom:.5rem;animation:fadeUp 1s ease both;}
-.branch-title{font-family:"Bebas Neue",sans-serif;font-size:clamp(3rem,11vw,5.5rem);letter-spacing:.06em;line-height:.95;color:var(--cream);margin-bottom:.7rem;animation:fadeUp 1s .1s ease both;display:flex;flex-direction:column;align-items:center;gap:.1em;}
+.branch-title{font-family:"Bebas Neue",sans-serif;font-size:clamp(3rem,11vw,5.5rem);letter-spacing:.06em;line-height:.95;color:var(--cream);margin-bottom:.4rem;animation:fadeUp 1s .1s ease both;display:flex;flex-direction:column;align-items:flex-start;gap:.1em;}
 .branch-title-prefix{font-size:.55em;letter-spacing:.22em;color:var(--cream);font-weight:400;}
 .branch-title-city{color:var(--gold);}
 
 /* ═══ 1️⃣ HERO ORDER MODE BUTTONS ═══ */
-/* Botones de modo de pedido — paleta dorada unificada con SVG icons (viven en .hero-order-modes) */
-.hero-order-modes{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem;margin-top:1.4rem;width:100%;animation:fadeUp 1s .2s ease both;}
-.hero-mode-btn{display:flex;align-items:center;gap:.6rem;padding:.7rem 1.1rem;background:rgba(7,24,38,.55);border:.5px solid rgba(201,162,77,.35);border-radius:999px;color:#E6C76B;font-family:"Bebas Neue",sans-serif;font-size:.85rem;letter-spacing:.14em;cursor:pointer;transition:transform .15s ease,background .25s ease,border-color .25s ease,color .25s ease;-webkit-tap-highlight-color:transparent;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);text-align:left;flex-shrink:0;}
-.hero-mode-btn .mode-icon{width:22px;height:22px;flex-shrink:0;color:#C9A24D;display:flex;align-items:center;justify-content:center;transition:color .25s ease;}
+/* Botones de modo de pedido — columna izquierda con borders coloreados por modo */
+.hero-order-modes{display:flex;flex-direction:column;gap:.7rem;margin-top:.8rem;width:100%;max-width:340px;animation:fadeUp 1s .35s ease both;}
+.hero-mode-btn{display:flex;align-items:center;gap:.8rem;padding:.9rem 1.3rem;background:rgba(7,24,38,.45);border:1.5px solid rgba(255,255,255,.15);border-radius:999px;color:var(--cream);font-family:"Bebas Neue",sans-serif;font-size:.92rem;letter-spacing:.15em;cursor:pointer;transition:transform .15s ease,background .25s ease,border-color .25s ease,color .25s ease;-webkit-tap-highlight-color:transparent;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);text-align:left;width:100%;}
+.hero-mode-btn .mode-icon{width:22px;height:22px;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:color .25s ease;}
 .hero-mode-btn .mode-icon svg{width:100%;height:100%;}
 .hero-mode-btn .mode-label{flex:1;display:flex;align-items:center;}
-.hero-mode-btn .mode-arrow{font-size:.95rem;color:rgba(201,162,77,.6);font-family:"Montserrat",sans-serif;transition:transform .2s ease,opacity .2s ease,color .2s ease;}
-.hero-mode-btn:active{transform:scale(.98);background:rgba(201,162,77,.15);border-color:rgba(201,162,77,.7);}
-.hero-mode-btn:active .mode-arrow{transform:translateX(4px);color:#E6C76B;}
-.hero-mode-btn:active .mode-icon{color:#E6C76B;}
-.hero-mode-btn.selected{background:rgba(201,162,77,.2);border-color:rgba(201,162,77,.8);color:#fff;}
-.hero-mode-btn.selected .mode-arrow{transform:translateX(4px);color:#E6C76B;}
-.hero-mode-btn.selected .mode-icon{color:#E6C76B;}
+.hero-mode-btn .mode-arrow{font-size:1.05rem;color:rgba(255,255,255,.5);font-family:"Montserrat",sans-serif;transition:transform .2s ease,color .2s ease;}
+.hero-mode-btn:active{transform:scale(.98);}
+.hero-mode-btn:active .mode-arrow{transform:translateX(4px);}
+/* Borders coloreados por modo */
+.hero-mode-btn[data-mode="domicilio"]{border-color:rgba(37,211,102,.6);}
+.hero-mode-btn[data-mode="domicilio"] .mode-icon{color:#25D366;}
+.hero-mode-btn[data-mode="domicilio"]:active,.hero-mode-btn[data-mode="domicilio"].selected{background:rgba(37,211,102,.15);border-color:#25D366;}
+.hero-mode-btn[data-mode="domicilio"]:active .mode-arrow,.hero-mode-btn[data-mode="domicilio"].selected .mode-arrow{color:#25D366;}
+.hero-mode-btn[data-mode="recoger"]{border-color:rgba(201,162,77,.6);}
+.hero-mode-btn[data-mode="recoger"] .mode-icon{color:#E6C76B;}
+.hero-mode-btn[data-mode="recoger"]:active,.hero-mode-btn[data-mode="recoger"].selected{background:rgba(201,162,77,.15);border-color:var(--gold);}
+.hero-mode-btn[data-mode="recoger"]:active .mode-arrow,.hero-mode-btn[data-mode="recoger"].selected .mode-arrow{color:#E6C76B;}
+.hero-mode-btn[data-mode="mesa"]{border-color:rgba(242,107,29,.6);}
+.hero-mode-btn[data-mode="mesa"] .mode-icon{color:#F26B1D;}
+.hero-mode-btn[data-mode="mesa"]:active,.hero-mode-btn[data-mode="mesa"].selected{background:rgba(242,107,29,.15);border-color:var(--cta);}
+.hero-mode-btn[data-mode="mesa"]:active .mode-arrow,.hero-mode-btn[data-mode="mesa"].selected .mode-arrow{color:#F26B1D;}
 @media(hover:hover){
-  .hero-mode-btn:hover{background:rgba(201,162,77,.12);border-color:rgba(201,162,77,.6);}
-  .hero-mode-btn:hover .mode-arrow{transform:translateX(4px);color:#E6C76B;}
-  .hero-mode-btn:hover .mode-icon{color:#E6C76B;}
+  .hero-mode-btn[data-mode="domicilio"]:hover{background:rgba(37,211,102,.12);border-color:#25D366;}
+  .hero-mode-btn[data-mode="domicilio"]:hover .mode-arrow{color:#25D366;transform:translateX(4px);}
+  .hero-mode-btn[data-mode="recoger"]:hover{background:rgba(201,162,77,.12);border-color:var(--gold);}
+  .hero-mode-btn[data-mode="recoger"]:hover .mode-arrow{color:#E6C76B;transform:translateX(4px);}
+  .hero-mode-btn[data-mode="mesa"]:hover{background:rgba(242,107,29,.12);border-color:var(--cta);}
+  .hero-mode-btn[data-mode="mesa"]:hover .mode-arrow{color:#F26B1D;transform:translateX(4px);}
 }
 @media(min-width:768px){
-  .hero-mode-btn{padding:1rem 1.3rem;font-size:1.05rem;}
+  .hero-mode-btn{padding:1rem 1.5rem;font-size:1rem;}
   .hero-mode-btn .mode-icon{width:26px;height:26px;}
 }
 
 /* ═══ 4️⃣ MICRO-URGENCY BAR ═══ */
-.urgency-bar{background:transparent;padding:.4rem 0 .8rem;margin:.6rem 0 .2rem;display:flex;align-items:center;justify-content:center;gap:1.2rem;flex-wrap:wrap;}
+.urgency-bar{background:transparent;padding:.4rem 0 .8rem;margin:.2rem 0 .2rem;display:flex;align-items:center;justify-content:flex-start;gap:1.2rem;flex-wrap:wrap;}
 .urgency-item{display:flex;align-items:center;gap:.4rem;font-size:.78rem;color:var(--cream);font-weight:500;}
 .urgency-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
 .urgency-dot.green{background:#25D366;box-shadow:0 0 8px rgba(37,211,102,.5);animation:urgPulse 2s ease-in-out infinite;}
@@ -580,10 +595,16 @@ var sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
   </div>
 
   <div class="branch-hero-content">
+    <p class="branch-eyebrow">Anastacio Marisquería</p>
     <h1 class="branch-title">
       <span class="branch-title-prefix">Sucursal</span>
       <span class="branch-title-city" id="branch-name-display">Guadalajara</span>
     </h1>
+    <span class="branch-wave" aria-hidden="true">
+      <svg viewBox="0 0 60 12" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 6 Q 9 1 16 6 T 30 6 T 44 6 T 58 6" fill="none" stroke="#C9A24D" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </span>
 
     <!-- 4️⃣ MICRO-URGENCY BAR (estado entre sucursal y modos de pedido) -->
     <div class="urgency-bar" id="urgency-bar">
@@ -615,8 +636,9 @@ var sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
           </svg>
         </span>
         <span class="mode-label">
-          <span class="es">Domicilio</span><span class="en">Delivery</span>
+          <span class="es">Pedir a Domicilio</span><span class="en">Delivery</span>
         </span>
+        <span class="mode-arrow" aria-hidden="true">›</span>
       </button>
       <button class="hero-mode-btn" data-mode="recoger" onclick="selectOrderMode('recoger')">
         <span class="mode-icon" aria-hidden="true">
@@ -627,8 +649,9 @@ var sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
           </svg>
         </span>
         <span class="mode-label">
-          <span class="es">Recoger</span><span class="en">Pickup</span>
+          <span class="es">Recoger en Local</span><span class="en">Pickup</span>
         </span>
+        <span class="mode-arrow" aria-hidden="true">›</span>
       </button>
       <button class="hero-mode-btn" data-mode="mesa" onclick="selectOrderMode('mesa')">
         <span class="mode-icon" aria-hidden="true">
@@ -640,8 +663,9 @@ var sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
           </svg>
         </span>
         <span class="mode-label">
-          <span class="es">Desde mesa</span><span class="en">At table</span>
+          <span class="es">Pedir desde Mesa</span><span class="en">Order at Table</span>
         </span>
+        <span class="mode-arrow" aria-hidden="true">›</span>
       </button>
     </div>
 
