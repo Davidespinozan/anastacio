@@ -2072,7 +2072,7 @@ async function payWithStripe() {
         msg += "\n💰 *Total: $" + order.total.toLocaleString("es-MX") + "* ✅ PAGADO\n";
 
         var encoded = encodeURIComponent(msg);
-        var waURL = "https://wa.me/523318916060?text=" + encoded;
+        var waURL = "https://wa.me/" + WA_NUMBER + "?text=" + encoded;
 
         // Create success modal
         var overlay = document.createElement("div");
