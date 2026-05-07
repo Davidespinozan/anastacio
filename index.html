@@ -67,10 +67,10 @@ body>*{position:relative;z-index:1;}
 .nav-promo:hover{background:var(--cta);color:white;}
 
 /* HERO con imagen de fondo (caustics + mariscos) — texto centrado, overlay sutil */
-.branch-hero{position:relative;width:100%;padding:6rem 1.5rem 12rem;background:#071826;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+.branch-hero{position:relative;width:100%;padding:6rem 1.5rem 5rem;background:#071826;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
 .branch-hero-bg{position:absolute;inset:0;z-index:0;}
 .branch-hero-img{width:100%;height:100%;object-fit:cover;object-position:center bottom;display:block;}
-.branch-hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,24,38,.35) 0%,rgba(7,24,38,.05) 25%,rgba(7,24,38,.05) 75%,rgba(7,24,38,.5) 92%,#071826 100%);}
+.branch-hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,24,38,.35) 0%,rgba(7,24,38,.05) 22%,rgba(7,24,38,.05) 55%,rgba(7,24,38,.45) 72%,rgba(7,24,38,.85) 88%,#071826 100%);}
 .branch-hero-content{position:relative;z-index:1;max-width:760px;width:100%;display:flex;flex-direction:column;align-items:center;}
 .branch-eyebrow{font-family:"Bebas Neue",sans-serif;font-size:.85rem;letter-spacing:.45em;text-transform:uppercase;color:var(--cream);margin-bottom:.5rem;animation:fadeUp 1s ease both;}
 .branch-title{font-family:"Bebas Neue",sans-serif;font-size:clamp(3rem,11vw,5.5rem);letter-spacing:.06em;line-height:.95;color:var(--cream);margin-bottom:.7rem;animation:fadeUp 1s .1s ease both;display:flex;flex-direction:column;align-items:center;gap:.1em;}
@@ -78,8 +78,9 @@ body>*{position:relative;z-index:1;}
 .branch-title-city{color:var(--gold);}
 
 /* ═══ 1️⃣ HERO ORDER MODE BUTTONS ═══ */
-/* Botones de modo de pedido — paleta dorada unificada con SVG icons (viven en .menu-nav-modes) */
-.hero-mode-btn{display:flex;align-items:center;gap:.9rem;padding:.85rem 1.1rem;background:rgba(7,24,38,.55);border:.5px solid rgba(201,162,77,.35);border-radius:999px;color:#E6C76B;font-family:"Bebas Neue",sans-serif;font-size:.95rem;letter-spacing:.14em;cursor:pointer;transition:transform .15s ease,background .25s ease,border-color .25s ease,color .25s ease;-webkit-tap-highlight-color:transparent;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);text-align:left;}
+/* Botones de modo de pedido — paleta dorada unificada con SVG icons (viven en .hero-order-modes) */
+.hero-order-modes{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem;margin-top:1.4rem;width:100%;animation:fadeUp 1s .2s ease both;}
+.hero-mode-btn{display:flex;align-items:center;gap:.6rem;padding:.7rem 1.1rem;background:rgba(7,24,38,.55);border:.5px solid rgba(201,162,77,.35);border-radius:999px;color:#E6C76B;font-family:"Bebas Neue",sans-serif;font-size:.85rem;letter-spacing:.14em;cursor:pointer;transition:transform .15s ease,background .25s ease,border-color .25s ease,color .25s ease;-webkit-tap-highlight-color:transparent;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);text-align:left;flex-shrink:0;}
 .hero-mode-btn .mode-icon{width:22px;height:22px;flex-shrink:0;color:#C9A24D;display:flex;align-items:center;justify-content:center;transition:color .25s ease;}
 .hero-mode-btn .mode-icon svg{width:100%;height:100%;}
 .hero-mode-btn .mode-label{flex:1;display:flex;align-items:center;}
@@ -164,16 +165,10 @@ body>*{position:relative;z-index:1;}
 .lead-bar button:hover{transform:translateY(-1px);box-shadow:0 4px 15px rgba(0,0,0,.4);}
 
 /* MENU NAV */
-.menu-nav{position:fixed;top:-120px;left:0;right:0;z-index:150;background:#071826;border-bottom:1px solid rgba(201,162,77,.08);display:flex;flex-direction:column;box-shadow:0 4px 15px rgba(0,0,0,.4);transition:top .3s ease;}
-.menu-nav-modes{display:flex;justify-content:center;gap:.4rem;padding:.5rem .75rem;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;border-bottom:.5px solid rgba(201,162,77,.1);}
-.menu-nav-modes::-webkit-scrollbar{display:none;}
-.menu-nav-categories{display:flex;justify-content:center;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
-.menu-nav-categories::-webkit-scrollbar{display:none;}
-.menu-nav-categories a{flex-shrink:0;padding:.9rem 1.8rem;color:var(--muted);text-decoration:none;font-family:"Bebas Neue",sans-serif;font-size:1.05rem;letter-spacing:.1em;border-bottom:2px solid transparent;transition:all .3s;white-space:nowrap;}
-.menu-nav-categories a:hover,.menu-nav-categories a.active{color:var(--gold);border-bottom-color:var(--gold);text-shadow:0 0 12px rgba(244,180,0,.3);}
-.menu-nav-modes .hero-mode-btn{padding:.45rem .85rem;font-size:.78rem;margin-top:0;flex-shrink:0;letter-spacing:.1em;}
-.menu-nav-modes .hero-mode-btn .mode-icon{width:16px;height:16px;}
-.menu-nav-modes .hero-mode-btn .mode-arrow{display:none;}
+.menu-nav{position:fixed;top:-60px;left:0;right:0;z-index:150;background:#071826;border-bottom:1px solid rgba(201,162,77,.08);display:flex;justify-content:center;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;box-shadow:0 4px 15px rgba(0,0,0,.4);transition:top .3s ease;}
+.menu-nav::-webkit-scrollbar{display:none;}
+.menu-nav a{flex-shrink:0;padding:.9rem 1.8rem;color:var(--muted);text-decoration:none;font-family:"Bebas Neue",sans-serif;font-size:1.05rem;letter-spacing:.1em;border-bottom:2px solid transparent;transition:all .3s;white-space:nowrap;}
+.menu-nav a:hover,.menu-nav a.active{color:var(--gold);border-bottom-color:var(--gold);text-shadow:0 0 12px rgba(244,180,0,.3);}
 
 /* SECTIONS */
 .menu-section{padding:3rem 1.2rem;max-width:860px;margin:0 auto;scroll-margin-top:110px;position:relative;}
@@ -485,7 +480,7 @@ body>*{position:relative;z-index:1;}
 
 @media(max-width:768px){
 html{font-size:100%;}
-.branch-hero{padding:5.5rem 1rem 10rem;}
+.branch-hero{padding:5.5rem 1rem 4rem;}
 .branch-title{font-size:clamp(2.8rem,13vw,4.6rem);}
 .nav-logo{height:60px;}
 .top-nav{padding:.4rem .8rem;}
@@ -607,6 +602,49 @@ var sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
       </div>
     </div>
 
+    <!-- HERO DECISION BUTTONS -->
+    <div class="hero-order-modes">
+      <button class="hero-mode-btn" data-mode="domicilio" onclick="selectOrderMode('domicilio')">
+        <span class="mode-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="6" cy="17" r="2"/>
+            <circle cx="17" cy="17" r="2"/>
+            <path d="M4 17h-1a1 1 0 0 1-1-1v-3l1-3h6l3 5h6"/>
+            <path d="M14 9l-2-5h-3"/>
+            <path d="M19 17l-1-7"/>
+          </svg>
+        </span>
+        <span class="mode-label">
+          <span class="es">Domicilio</span><span class="en">Delivery</span>
+        </span>
+      </button>
+      <button class="hero-mode-btn" data-mode="recoger" onclick="selectOrderMode('recoger')">
+        <span class="mode-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 8h14l-1 13a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2z"/>
+            <path d="M9 8V5a3 3 0 0 1 6 0v3"/>
+            <path d="M5 8l1-2h12l1 2"/>
+          </svg>
+        </span>
+        <span class="mode-label">
+          <span class="es">Recoger</span><span class="en">Pickup</span>
+        </span>
+      </button>
+      <button class="hero-mode-btn" data-mode="mesa" onclick="selectOrderMode('mesa')">
+        <span class="mode-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 4v8a4 4 0 0 0 4 4h0a4 4 0 0 0 4-4V4"/>
+            <line x1="9" y1="4" x2="9" y2="16"/>
+            <line x1="9" y1="16" x2="9" y2="22"/>
+            <path d="M17 4v6a2 2 0 0 0 2 2h0v10"/>
+          </svg>
+        </span>
+        <span class="mode-label">
+          <span class="es">Desde mesa</span><span class="en">At table</span>
+        </span>
+      </button>
+    </div>
+
   </div>
 </section>
 
@@ -663,60 +701,14 @@ var sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 <div class="gold-sep"></div>
 
 <nav class="menu-nav" id="menu">
-  <div class="menu-nav-modes" role="tablist" aria-label="Modo de pedido">
-    <button class="hero-mode-btn" data-mode="domicilio" onclick="selectOrderMode('domicilio')">
-      <span class="mode-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="6" cy="17" r="2"/>
-          <circle cx="17" cy="17" r="2"/>
-          <path d="M4 17h-1a1 1 0 0 1-1-1v-3l1-3h6l3 5h6"/>
-          <path d="M14 9l-2-5h-3"/>
-          <path d="M19 17l-1-7"/>
-        </svg>
-      </span>
-      <span class="mode-label">
-        <span class="es">Domicilio</span><span class="en">Delivery</span>
-      </span>
-      <span class="mode-arrow" aria-hidden="true">→</span>
-    </button>
-    <button class="hero-mode-btn" data-mode="recoger" onclick="selectOrderMode('recoger')">
-      <span class="mode-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M5 8h14l-1 13a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2z"/>
-          <path d="M9 8V5a3 3 0 0 1 6 0v3"/>
-          <path d="M5 8l1-2h12l1 2"/>
-        </svg>
-      </span>
-      <span class="mode-label">
-        <span class="es">Recoger</span><span class="en">Pickup</span>
-      </span>
-      <span class="mode-arrow" aria-hidden="true">→</span>
-    </button>
-    <button class="hero-mode-btn" data-mode="mesa" onclick="selectOrderMode('mesa')">
-      <span class="mode-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M5 4v8a4 4 0 0 0 4 4h0a4 4 0 0 0 4-4V4"/>
-          <line x1="9" y1="4" x2="9" y2="16"/>
-          <line x1="9" y1="16" x2="9" y2="22"/>
-          <path d="M17 4v6a2 2 0 0 0 2 2h0v10"/>
-        </svg>
-      </span>
-      <span class="mode-label">
-        <span class="es">Desde mesa</span><span class="en">At table</span>
-      </span>
-      <span class="mode-arrow" aria-hidden="true">→</span>
-    </button>
-  </div>
-  <div class="menu-nav-categories">
-    <a href="#aguachiles"><span class="es">Aguachiles</span><span class="en">Aguachiles</span></a>
-    <a href="#taquitos"><span class="es">Taquitos</span><span class="en">Tacos</span></a>
-    <a href="#tostaditas"><span class="es">Tostaditas</span><span class="en">Tostadas</span></a>
-    <a href="#platillos"><span class="es">Platillos</span><span class="en">Dishes</span></a>
-    <a href="#snacks">Snacks</a>
-    <a href="#traguitos"><span class="es">Traguitos</span><span class="en">Cocktails</span></a>
-    <a href="#cervezas"><span class="es">Cheves</span><span class="en">Beers</span></a>
-    <a href="#destilados"><span class="es">Destilados</span><span class="en">Spirits</span></a>
-  </div>
+  <a href="#aguachiles"><span class="es">Aguachiles</span><span class="en">Aguachiles</span></a>
+  <a href="#taquitos"><span class="es">Taquitos</span><span class="en">Tacos</span></a>
+  <a href="#tostaditas"><span class="es">Tostaditas</span><span class="en">Tostadas</span></a>
+  <a href="#platillos"><span class="es">Platillos</span><span class="en">Dishes</span></a>
+  <a href="#snacks">Snacks</a>
+  <a href="#traguitos"><span class="es">Traguitos</span><span class="en">Cocktails</span></a>
+  <a href="#cervezas"><span class="es">Cheves</span><span class="en">Beers</span></a>
+  <a href="#destilados"><span class="es">Destilados</span><span class="en">Spirits</span></a>
 </nav>
 
 <!-- AGUACHILES -->
@@ -1435,7 +1427,7 @@ window.addEventListener("scroll", function() {
     var zoneTop = lightZone.getBoundingClientRect().top;
     var zoneBottom = lightZone.getBoundingClientRect().bottom;
     var inMenu = zoneTop <= navHeight && zoneBottom > navHeight + 60;
-    var newTop = inMenu ? navHeight + "px" : "-120px";
+    var newTop = inMenu ? navHeight + "px" : "-60px";
     if (menuNav.style.top !== newTop) {
       menuNav.style.top = newTop;
       updateScrollMargins();
