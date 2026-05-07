@@ -69,7 +69,9 @@ body>*{position:relative;z-index:1;}
 /* HERO con imagen de fondo (caustics + mariscos) — texto centrado, overlay sutil */
 .branch-hero{position:relative;width:100%;padding:4.5rem 1.5rem 3rem;background:#071826;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;text-align:left;}
 .branch-hero-bg{position:absolute;inset:0;z-index:0;}
+.branch-hero-bg picture{display:block;width:100%;height:100%;}
 .branch-hero-img{width:100%;height:100%;object-fit:cover;object-position:center bottom;display:block;}
+@media(min-width:768px){.branch-hero-img{object-position:center center;}}
 .branch-hero-overlay{position:absolute;inset:0;background:radial-gradient(ellipse 65% 55% at 75% 80%,transparent 0%,transparent 32%,rgba(7,24,38,.55) 75%,rgba(7,24,38,.85) 100%),linear-gradient(180deg,rgba(7,24,38,.3) 0%,rgba(7,24,38,.1) 30%,rgba(7,24,38,.1) 70%,rgba(7,24,38,.6) 92%,#071826 100%);}
 .branch-hero-content{position:relative;z-index:1;max-width:760px;width:100%;display:flex;flex-direction:column;align-items:flex-start;}
 .branch-eyebrow{font-family:"Bebas Neue",sans-serif;font-size:.85rem;letter-spacing:.45em;text-transform:uppercase;color:rgba(245,245,245,.85);margin:0 0 .6rem;animation:fadeUp 1s .15s ease both;}
@@ -583,14 +585,18 @@ var sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 <section class="branch-hero">
   <div class="branch-hero-bg" aria-hidden="true">
-    <img
-      src="https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/object/public/imagenes/hero-interno.webp"
-      alt=""
-      class="branch-hero-img"
-      loading="eager"
-      fetchpriority="high"
-      width="1200"
-      height="1200">
+    <picture>
+      <source media="(min-width: 768px)" srcset="https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/object/public/imagenes/hero-interno-desktop.webp">
+      <source media="(max-width: 767px)" srcset="https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/object/public/imagenes/hero-interno.webp">
+      <img
+        src="https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/object/public/imagenes/hero-interno.webp"
+        alt=""
+        class="branch-hero-img"
+        loading="eager"
+        fetchpriority="high"
+        width="1200"
+        height="1200">
+    </picture>
     <div class="branch-hero-overlay"></div>
   </div>
 

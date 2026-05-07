@@ -295,6 +295,10 @@ html, body {
 }
 
 @media (min-width: 768px) {
+  .hero-video {
+    object-position: center center;
+  }
+
   .hero-content {
     padding: 0 2rem 3rem;
   }
@@ -340,7 +344,11 @@ html, body {
       playsinline
       preload="metadata"
       poster="https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/object/public/imagenes/pulpo-hero-mobile-poster.jpg"
+      data-poster-mobile="https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/object/public/imagenes/pulpo-hero-mobile-poster.jpg"
+      data-poster-desktop="https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/object/public/imagenes/pulpo-hero-desktop-poster.jpg"
       aria-label="Pulpo de Anastacio Marisquería">
+      <source src="https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/object/public/imagenes/pulpo-hero-desktop.webm" type="video/webm" media="(min-width: 768px)">
+      <source src="https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/object/public/imagenes/pulpo-hero-desktop.mp4" type="video/mp4" media="(min-width: 768px)">
       <source src="https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/object/public/imagenes/pulpo-hero-mobile.webm" type="video/webm">
       <source src="https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/object/public/imagenes/pulpo-hero-mobile.mp4" type="video/mp4">
     </video>
@@ -476,6 +484,21 @@ window.addEventListener("pageshow", function(){
   document.body.style.transition = "";
   document.body.style.opacity = "";
 });
+
+// Cambiar poster del video según viewport (mobile vertical / desktop horizontal)
+(function(){
+  var video = document.querySelector(".hero-video");
+  if (!video) return;
+  function updatePoster(){
+    var isDesktop = window.matchMedia("(min-width: 768px)").matches;
+    var newPoster = isDesktop ? video.dataset.posterDesktop : video.dataset.posterMobile;
+    if (newPoster && video.poster !== newPoster) video.poster = newPoster;
+  }
+  updatePoster();
+  var mq = window.matchMedia("(min-width: 768px)");
+  if (mq.addEventListener) mq.addEventListener("change", updatePoster);
+  else if (mq.addListener) mq.addListener(updatePoster);
+})();
 </script>
 </body>
 </html>
