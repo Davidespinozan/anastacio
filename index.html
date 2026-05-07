@@ -71,7 +71,8 @@ body>*{position:relative;z-index:1;}
 .branch-hero-bg{position:absolute;inset:0;z-index:0;}
 .branch-hero-bg picture{display:block;width:100%;height:100%;}
 .branch-hero-img{width:100%;height:100%;object-fit:cover;object-position:center bottom;display:block;}
-@media(min-width:768px){.branch-hero-img{object-position:center center;}}
+@media(min-width:768px){.branch-hero-img{object-position:right center;}}
+@media(min-width:1600px){.branch-hero-img{object-position:75% center;}}
 .branch-hero-overlay{position:absolute;inset:0;background:radial-gradient(ellipse 65% 55% at 75% 80%,transparent 0%,transparent 32%,rgba(7,24,38,.55) 75%,rgba(7,24,38,.85) 100%),linear-gradient(180deg,rgba(7,24,38,.3) 0%,rgba(7,24,38,.1) 30%,rgba(7,24,38,.1) 70%,rgba(7,24,38,.6) 92%,#071826 100%);}
 .branch-hero-content{position:relative;z-index:1;max-width:760px;width:100%;display:flex;flex-direction:column;align-items:flex-start;}
 .branch-eyebrow{font-family:"Bebas Neue",sans-serif;font-size:.85rem;letter-spacing:.45em;text-transform:uppercase;color:rgba(245,245,245,.85);margin:0 0 .6rem;animation:fadeUp 1s .15s ease both;}
@@ -92,30 +93,24 @@ body>*{position:relative;z-index:1;}
 .hero-mode-btn .mode-arrow{font-size:1.05rem;color:rgba(255,255,255,.5);font-family:"Montserrat",sans-serif;transition:transform .2s ease,color .2s ease;}
 .hero-mode-btn:active{transform:scale(.98);}
 .hero-mode-btn:active .mode-arrow{transform:translateX(4px);}
-/* Borders coloreados por modo */
-.hero-mode-btn[data-mode="domicilio"]{border-color:rgba(37,211,102,.6);}
-.hero-mode-btn[data-mode="domicilio"] .mode-icon{color:#25D366;}
-.hero-mode-btn[data-mode="domicilio"]:active,.hero-mode-btn[data-mode="domicilio"].selected{background:rgba(37,211,102,.15);border-color:#25D366;}
-.hero-mode-btn[data-mode="domicilio"]:active .mode-arrow,.hero-mode-btn[data-mode="domicilio"].selected .mode-arrow{color:#25D366;}
-.hero-mode-btn[data-mode="recoger"]{border-color:rgba(201,162,77,.6);}
-.hero-mode-btn[data-mode="recoger"] .mode-icon{color:#E6C76B;}
-.hero-mode-btn[data-mode="recoger"]:active,.hero-mode-btn[data-mode="recoger"].selected{background:rgba(201,162,77,.15);border-color:var(--gold);}
-.hero-mode-btn[data-mode="recoger"]:active .mode-arrow,.hero-mode-btn[data-mode="recoger"].selected .mode-arrow{color:#E6C76B;}
-.hero-mode-btn[data-mode="mesa"]{border-color:rgba(242,107,29,.6);}
-.hero-mode-btn[data-mode="mesa"] .mode-icon{color:#F26B1D;}
-.hero-mode-btn[data-mode="mesa"]:active,.hero-mode-btn[data-mode="mesa"].selected{background:rgba(242,107,29,.15);border-color:var(--cta);}
-.hero-mode-btn[data-mode="mesa"]:active .mode-arrow,.hero-mode-btn[data-mode="mesa"].selected .mode-arrow{color:#F26B1D;}
+/* Estados unificados — paleta dorada para los 3 botones */
+.hero-mode-btn{border-color:rgba(201,162,77,.5);}
+.hero-mode-btn .mode-icon{color:#C9A24D;}
+.hero-mode-btn:active,.hero-mode-btn.selected{background:rgba(201,162,77,.15);border-color:var(--gold);}
+.hero-mode-btn:active .mode-arrow,.hero-mode-btn.selected .mode-arrow{color:#E6C76B;transform:translateX(4px);}
+.hero-mode-btn:active .mode-icon,.hero-mode-btn.selected .mode-icon{color:#E6C76B;}
 @media(hover:hover){
-  .hero-mode-btn[data-mode="domicilio"]:hover{background:rgba(37,211,102,.12);border-color:#25D366;}
-  .hero-mode-btn[data-mode="domicilio"]:hover .mode-arrow{color:#25D366;transform:translateX(4px);}
-  .hero-mode-btn[data-mode="recoger"]:hover{background:rgba(201,162,77,.12);border-color:var(--gold);}
-  .hero-mode-btn[data-mode="recoger"]:hover .mode-arrow{color:#E6C76B;transform:translateX(4px);}
-  .hero-mode-btn[data-mode="mesa"]:hover{background:rgba(242,107,29,.12);border-color:var(--cta);}
-  .hero-mode-btn[data-mode="mesa"]:hover .mode-arrow{color:#F26B1D;transform:translateX(4px);}
+  .hero-mode-btn:hover{background:rgba(201,162,77,.12);border-color:var(--gold);}
+  .hero-mode-btn:hover .mode-arrow{color:#E6C76B;transform:translateX(4px);}
+  .hero-mode-btn:hover .mode-icon{color:#E6C76B;}
 }
 @media(min-width:768px){
   .hero-mode-btn{padding:.7rem 1.1rem;font-size:.72rem;}
   .hero-mode-btn .mode-icon{width:19px;height:19px;}
+  .branch-hero-content{padding:3rem 4rem;max-width:50%;align-self:center;justify-content:center;}
+}
+@media(min-width:1200px){
+  .branch-hero-content{padding:4rem 6rem;max-width:45%;}
 }
 
 /* ═══ 4️⃣ MICRO-URGENCY BAR ═══ */
