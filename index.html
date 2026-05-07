@@ -67,7 +67,7 @@ body>*{position:relative;z-index:1;}
 .nav-promo:hover{background:var(--cta);color:white;}
 
 /* HERO */
-.branch-hero{position:relative;padding:2rem 1.25rem 2.5rem;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(180deg,#071826 0%,#0A1F33 100%);border-bottom:1px solid rgba(201,162,77,.08);}
+.branch-hero{position:relative;padding:7rem 1.25rem 2.5rem;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(180deg,#071826 0%,#0A1F33 100%);border-bottom:1px solid rgba(201,162,77,.08);}
 .branch-hero-content{position:relative;z-index:2;max-width:760px;width:100%;display:flex;flex-direction:column;align-items:center;}
 .branch-eyebrow{font-family:"Bebas Neue",sans-serif;font-size:.78rem;letter-spacing:.45em;text-transform:uppercase;color:var(--muted);margin-bottom:.7rem;animation:fadeUp 1s ease both;}
 .branch-title{font-family:"Bebas Neue",sans-serif;font-size:clamp(2.6rem,9vw,5rem);letter-spacing:.06em;line-height:.95;color:var(--cream);margin-bottom:1.6rem;animation:fadeUp 1s .1s ease both;display:flex;flex-direction:column;align-items:center;gap:.1em;}
@@ -88,7 +88,7 @@ body>*{position:relative;z-index:1;}
 .hero-mode-btn.selected{transform:scale(1.05);font-weight:600;}
 
 /* ═══ 4️⃣ MICRO-URGENCY BAR ═══ */
-.urgency-bar{background:linear-gradient(90deg,rgba(7,24,38,.95),rgba(10,31,51,.95));padding:7rem 1.2rem .6rem;display:flex;align-items:center;justify-content:center;gap:1.5rem;flex-wrap:wrap;border-bottom:1px solid rgba(201,162,77,.08);}
+.urgency-bar{background:transparent;padding:.4rem 0 .8rem;margin:.6rem 0 .2rem;display:flex;align-items:center;justify-content:center;gap:1.2rem;flex-wrap:wrap;}
 .urgency-item{display:flex;align-items:center;gap:.4rem;font-size:.78rem;color:var(--muted);font-weight:500;}
 .urgency-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
 .urgency-dot.green{background:#25D366;box-shadow:0 0 8px rgba(37,211,102,.5);animation:urgPulse 2s ease-in-out infinite;}
@@ -467,7 +467,7 @@ body>*{position:relative;z-index:1;}
 
 @media(max-width:768px){
 html{font-size:100%;}
-.branch-hero{padding:1.5rem 1rem 2rem;}
+.branch-hero{padding:6rem 1rem 2rem;}
 .branch-title{font-size:clamp(2.4rem,11vw,4rem);}
 .nav-logo{height:60px;}
 .top-nav{padding:.4rem .8rem;}
@@ -505,7 +505,7 @@ html{font-size:100%;}
 .trending-grid{gap:.6rem;}
 .trending-card .card-body{padding:.55rem .5rem;}
 .trending-card .card-name{font-size:.76rem;}
-.urgency-bar{padding:5rem .8rem .45rem;gap:.7rem;}
+.urgency-bar{padding:.3rem 0 .7rem;gap:.7rem;}
 .urgency-item{font-size:.68rem;}
 .order-mode-strip{font-size:.9rem;padding:.45rem 1rem;}
 }
@@ -555,23 +555,6 @@ var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSI
 var sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 </script>
 
-<!-- 4️⃣ MICRO-URGENCY BAR (status arriba del todo) -->
-<div class="urgency-bar" id="urgency-bar">
-  <div class="urgency-item">
-    <span class="urgency-dot green" id="urgency-dot"></span>
-    <span id="urgency-status-text">
-      <span class="es">Cargando...</span><span class="en">Loading...</span>
-    </span>
-  </div>
-  <div class="urgency-item" id="urgency-closes" style="display:none;">
-    <span class="es">⏱ Cierra en <strong id="urgency-mins-es"></strong></span>
-    <span class="en">⏱ Closes in <strong id="urgency-mins-en"></strong></span>
-  </div>
-  <div class="urgency-item" id="urgency-demand" style="display:none;">
-    <span class="es">🔥 Alta demanda ahora</span><span class="en">🔥 High demand now</span>
-  </div>
-</div>
-
 <section class="branch-hero">
   <div class="branch-hero-content">
     <p class="branch-eyebrow">Anastacio Marisquería</p>
@@ -579,6 +562,24 @@ var sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
       <span class="branch-title-prefix">Sucursal</span>
       <span class="branch-title-city" id="branch-name-display">Guadalajara</span>
     </h1>
+
+    <!-- 4️⃣ MICRO-URGENCY BAR (estado entre sucursal y modos de pedido) -->
+    <div class="urgency-bar" id="urgency-bar">
+      <div class="urgency-item">
+        <span class="urgency-dot green" id="urgency-dot"></span>
+        <span id="urgency-status-text">
+          <span class="es">Cargando...</span><span class="en">Loading...</span>
+        </span>
+      </div>
+      <div class="urgency-item" id="urgency-closes" style="display:none;">
+        <span class="es">⏱ Cierra en <strong id="urgency-mins-es"></strong></span>
+        <span class="en">⏱ Closes in <strong id="urgency-mins-en"></strong></span>
+      </div>
+      <div class="urgency-item" id="urgency-demand" style="display:none;">
+        <span class="es">🔥 Alta demanda ahora</span><span class="en">🔥 High demand now</span>
+      </div>
+    </div>
+
     <!-- HERO DECISION BUTTONS -->
     <div class="hero-order-modes">
       <button class="hero-mode-btn" data-mode="domicilio" onclick="selectOrderMode('domicilio')">
