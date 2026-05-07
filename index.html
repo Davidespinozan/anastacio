@@ -73,12 +73,12 @@ body>*{position:relative;z-index:1;}
 .branch-hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,24,38,.35) 0%,rgba(7,24,38,.05) 25%,rgba(7,24,38,.05) 75%,rgba(7,24,38,.5) 92%,#071826 100%);}
 .branch-hero-content{position:relative;z-index:1;max-width:760px;width:100%;display:flex;flex-direction:column;align-items:center;}
 .branch-eyebrow{font-family:"Bebas Neue",sans-serif;font-size:.85rem;letter-spacing:.45em;text-transform:uppercase;color:var(--cream);margin-bottom:.5rem;animation:fadeUp 1s ease both;}
-.branch-title{font-family:"Bebas Neue",sans-serif;font-size:clamp(2.4rem,9vw,4rem);letter-spacing:.06em;line-height:.95;color:var(--cream);margin:.5rem 0 0;animation:fadeUp 1s .1s ease both;display:flex;flex-direction:column;align-items:center;gap:.1em;}
+.branch-title{font-family:"Bebas Neue",sans-serif;font-size:clamp(2.4rem,9vw,4rem);letter-spacing:.06em;line-height:.95;color:var(--cream);margin-bottom:.7rem;animation:fadeUp 1s .1s ease both;display:flex;flex-direction:column;align-items:center;gap:.1em;}
 .branch-title-prefix{font-size:.55em;letter-spacing:.22em;color:var(--cream);font-weight:400;}
 .branch-title-city{color:var(--gold);}
 
 /* ═══ 1️⃣ HERO ORDER MODE BUTTONS ═══ */
-.hero-order-modes{display:flex;gap:.7rem;margin:0 0 1rem;animation:fadeUp 1.2s ease both;flex-wrap:wrap;justify-content:center;opacity:1;}
+.hero-order-modes{display:flex;gap:.7rem;margin-top:1.8rem;animation:fadeUp 1.2s .6s ease both;flex-wrap:wrap;justify-content:center;opacity:1;}
 .hero-mode-btn{display:flex;align-items:center;gap:.5rem;padding:.75rem 1.3rem;border:1.5px solid rgba(255,255,255,.2);background:rgba(7,24,38,.6);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--cream);font-family:"Bebas Neue",sans-serif;font-size:.85rem;letter-spacing:.15em;cursor:pointer;transition:all .35s cubic-bezier(.23,1,.32,1);border-radius:50px;-webkit-tap-highlight-color:transparent;touch-action:manipulation;min-height:48px;}
 .hero-mode-btn .mode-icon{font-size:1.1rem;line-height:1;}
 .hero-mode-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,.3);}
@@ -572,23 +572,12 @@ var sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
   </div>
 
   <div class="branch-hero-content">
-    <!-- HERO DECISION BUTTONS (arriba) -->
-    <div class="hero-order-modes">
-      <button class="hero-mode-btn" data-mode="domicilio" onclick="selectOrderMode('domicilio')">
-        <span class="mode-icon">🛵</span>
-        <span class="es">Pedir a Domicilio</span><span class="en">Delivery</span>
-      </button>
-      <button class="hero-mode-btn" data-mode="recoger" onclick="selectOrderMode('recoger')">
-        <span class="mode-icon">🥡</span>
-        <span class="es">Recoger en Local</span><span class="en">Pickup</span>
-      </button>
-      <button class="hero-mode-btn" data-mode="mesa" onclick="selectOrderMode('mesa')">
-        <span class="mode-icon">🍽</span>
-        <span class="es">Pedir desde Mesa</span><span class="en">Order at Table</span>
-      </button>
-    </div>
+    <h1 class="branch-title">
+      <span class="branch-title-prefix">Sucursal</span>
+      <span class="branch-title-city" id="branch-name-display">Guadalajara</span>
+    </h1>
 
-    <!-- 4️⃣ MICRO-URGENCY BAR (estado en el medio) -->
+    <!-- 4️⃣ MICRO-URGENCY BAR (estado entre sucursal y modos de pedido) -->
     <div class="urgency-bar" id="urgency-bar">
       <div class="urgency-item">
         <span class="urgency-dot green" id="urgency-dot"></span>
@@ -605,11 +594,21 @@ var sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
       </div>
     </div>
 
-    <!-- TÍTULO SUCURSAL (abajo) -->
-    <h1 class="branch-title">
-      <span class="branch-title-prefix">Sucursal</span>
-      <span class="branch-title-city" id="branch-name-display">Guadalajara</span>
-    </h1>
+    <!-- HERO DECISION BUTTONS -->
+    <div class="hero-order-modes">
+      <button class="hero-mode-btn" data-mode="domicilio" onclick="selectOrderMode('domicilio')">
+        <span class="mode-icon">🛵</span>
+        <span class="es">Pedir a Domicilio</span><span class="en">Delivery</span>
+      </button>
+      <button class="hero-mode-btn" data-mode="recoger" onclick="selectOrderMode('recoger')">
+        <span class="mode-icon">🥡</span>
+        <span class="es">Recoger en Local</span><span class="en">Pickup</span>
+      </button>
+      <button class="hero-mode-btn" data-mode="mesa" onclick="selectOrderMode('mesa')">
+        <span class="mode-icon">🍽</span>
+        <span class="es">Pedir desde Mesa</span><span class="en">Order at Table</span>
+      </button>
+    </div>
   </div>
 </section>
 
