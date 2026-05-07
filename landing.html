@@ -52,215 +52,301 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
-:root{
-  --dark:#071826;
-  --dark2:#0A1F33;
-  --gold:#C9A24D;
-  --gold-l:#E6C76B;
-  --cream:#F5F5F5;
-  --muted:#A0B4C0;
-  --accent:#C9A24D;
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-html,body{height:100%;}
-body{
-  background:linear-gradient(180deg,#071826 0%,#0A1F33 100%);
-  color:var(--cream);
-  font-family:"Montserrat",sans-serif;
-  min-height:100vh;
-  min-height:100dvh;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  padding:2rem 1.25rem;
-  text-align:center;
-  overflow-x:hidden;
-}
-.wrap{
-  width:100%;
-  max-width:840px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:2.2rem;
-}
-/* HERO MOBILE — video del pulpo (solo ≤767px) */
-.hero-mobile{
-  position:relative;
-  width:100%;
-  max-width:480px;
-  margin:0 auto;
-  border-radius:20px;
-  overflow:hidden;
-  isolation:isolate;
-  aspect-ratio:9/14;
-  max-height:65vh;
-  background:var(--dark);
-  animation:fadeIn 1s ease both;
-}
-.hero-video{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-}
-.hero-overlay{
-  position:absolute;
-  inset:0;
-  background:radial-gradient(ellipse at center bottom,transparent 30%,rgba(7,24,38,.65) 90%),linear-gradient(180deg,transparent 60%,rgba(7,24,38,.5) 100%);
-  pointer-events:none;
-  z-index:1;
-}
-.hero-content{
-  position:absolute;
-  bottom:1.5rem;
-  left:0;
-  right:0;
-  z-index:2;
-  text-align:center;
-  padding:0 1.5rem;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:.35rem;
-}
-.brand-eyebrow{
-  font-family:"Bebas Neue",sans-serif;
-  font-size:clamp(.75rem,2.4vw,.95rem);
-  letter-spacing:.45em;
-  text-transform:uppercase;
-  color:rgba(245,245,245,.85);
-  text-shadow:0 2px 12px rgba(7,24,38,.85);
-  animation:fadeUp 1s .4s ease both;
-}
-.hero-mobile-title{
-  font-family:"Bebas Neue",sans-serif;
-  font-size:clamp(2.6rem,11vw,4.5rem);
-  letter-spacing:.1em;
-  line-height:.9;
-  color:var(--cream);
-  text-shadow:0 4px 24px rgba(7,24,38,.75);
-  animation:fadeUp 1s .55s ease both;
-}
-.hero-mobile-tagline{
-  font-family:"Montserrat",sans-serif;
-  font-style:italic;
-  font-size:clamp(.85rem,2.4vw,1.05rem);
-  letter-spacing:.32em;
-  color:var(--gold);
-  text-shadow:0 2px 12px rgba(7,24,38,.75);
-  animation:fadeUp 1s .7s ease both;
-}
-@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
 
-.brand-logo{
-  width:clamp(80px,14vw,120px);
-  height:auto;
-  animation:fadeUp 1s ease both;
+:root {
+  --bg: #051420;
+  --bg-2: #0A1F33;
+  --gold: #C9A24D;
+  --gold-l: #E6C76B;
+  --cream: #F5F5F5;
+  --muted: #A0B4C0;
+  --line: rgba(201, 162, 77, 0.18);
+  --line-strong: rgba(201, 162, 77, 0.32);
 }
-.brand{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:.4rem;
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--bg);
+  color: var(--cream);
+  font-family: "Montserrat", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
-.brand-title{
-  font-family:"Bebas Neue",sans-serif;
-  font-size:clamp(3.2rem,12vw,6rem);
-  letter-spacing:.08em;
-  line-height:.88;
-  color:var(--cream);
-  animation:fadeUp 1s .1s ease both;
+
+.landing {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
 }
-.brand-sub{
-  font-family:"Montserrat",sans-serif;
-  font-style:italic;
-  font-size:clamp(.85rem,2.4vw,1.15rem);
-  color:var(--accent);
-  letter-spacing:.35em;
-  animation:fadeUp 1s .2s ease both;
+
+.hero {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
 }
-.guide{
-  font-family:"Bebas Neue",sans-serif;
-  font-size:.78rem;
-  letter-spacing:.55em;
-  text-transform:uppercase;
-  color:var(--muted);
-  animation:fadeUp 1s .3s ease both;
+
+.hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+  z-index: 0;
 }
-.branches{
-  display:flex;
-  flex-direction:column;
-  gap:1rem;
-  width:100%;
-  max-width:480px;
-  animation:fadeUp 1s .4s ease both;
+
+.hero-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(5, 20, 32, 0) 0%,
+    rgba(5, 20, 32, 0) 35%,
+    rgba(5, 20, 32, 0.7) 60%,
+    rgba(5, 20, 32, 0.95) 85%,
+    var(--bg) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
 }
-.branch-btn{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:.35rem;
-  min-height:88px;
-  padding:1.2rem 1.6rem;
-  background:rgba(10,31,51,.55);
-  border:1.5px solid rgba(201,162,77,.35);
-  border-radius:16px;
-  color:var(--cream);
-  text-decoration:none;
-  cursor:pointer;
-  transition:all .35s cubic-bezier(.23,1,.32,1);
-  -webkit-tap-highlight-color:transparent;
-  backdrop-filter:blur(10px);
-  -webkit-backdrop-filter:blur(10px);
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 1.5rem 2rem;
+  padding-bottom: max(2rem, env(safe-area-inset-bottom, 1rem) + 1.5rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
-.branch-btn:hover,.branch-btn:focus-visible{
-  background:rgba(201,162,77,.12);
-  border-color:var(--gold);
-  transform:translateY(-2px);
-  box-shadow:0 8px 30px rgba(201,162,77,.22);
-  outline:none;
+
+.hero-eyebrow {
+  font-family: "Montserrat", serif;
+  font-style: italic;
+  font-size: 0.78rem;
+  letter-spacing: 0.32em;
+  color: var(--gold);
+  text-transform: lowercase;
+  margin-bottom: 0.4rem;
+  animation: fadeUp 1s 0.3s ease both;
 }
-.branch-btn:active{transform:translateY(0);}
-.branch-name{
-  font-family:"Bebas Neue",sans-serif;
-  font-size:1.6rem;
-  letter-spacing:.18em;
-  color:var(--gold);
+
+.hero-title {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: clamp(2.6rem, 11vw, 3.8rem);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--cream);
+  line-height: 0.95;
+  margin-bottom: 1rem;
+  text-shadow: 0 4px 32px rgba(5, 20, 32, 0.7);
+  animation: fadeUp 1s 0.45s ease both;
 }
-.branch-meta{
-  font-size:.78rem;
-  color:var(--muted);
-  letter-spacing:.05em;
-  font-weight:400;
+
+.hero-subtitle {
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.32em;
+  color: var(--muted);
+  text-transform: lowercase;
+  margin-bottom: 1.5rem;
+  opacity: 0.8;
+  animation: fadeUp 1s 0.6s ease both;
 }
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(14px);}
-  to{opacity:1;transform:translateY(0);}
+
+.branches {
+  width: 100%;
+  max-width: 380px;
+  border-top: 0.5px solid var(--line);
+  border-bottom: 0.5px solid var(--line);
+  animation: fadeUp 1s 0.75s ease both;
 }
-/* Mobile (≤767px): mostrar hero del pulpo, ocultar branding clásico */
-@media (max-width:767px){
-  .brand-logo,.brand{display:none;}
+
+.branch {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 0.5rem;
+  text-decoration: none;
+  color: inherit;
+  transition: padding 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
 }
-/* Desktop (≥768px): ocultar hero mobile, mostrar branding clásico */
-@media (min-width:768px){
-  .hero-mobile{display:none;}
-  .branches{flex-direction:row;max-width:720px;}
-  .branch-btn{flex:1;min-height:140px;padding:1.6rem 1.4rem;}
-  .branch-name{font-size:1.85rem;}
+
+.branch + .branch {
+  border-top: 0.5px solid var(--line);
 }
-@media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;}
+
+.branch::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(201, 162, 77, 0.05), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.branch:hover::before,
+.branch:active::before {
+  opacity: 1;
+}
+
+.branch:hover,
+.branch:active {
+  padding-left: 0.8rem;
+  padding-right: 0.2rem;
+}
+
+.branch-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
+}
+
+.branch-name {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.14em;
+  color: var(--gold-l);
+  line-height: 1;
+}
+
+.branch-meta {
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.7rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  opacity: 0.75;
+}
+
+.branch-arrow {
+  font-size: 1rem;
+  color: var(--gold);
+  font-family: "Montserrat", sans-serif;
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.branch:hover .branch-arrow,
+.branch:active .branch-arrow {
+  transform: translateX(4px);
+}
+
+.footer {
+  padding: 1.2rem 1.5rem;
+  padding-bottom: max(1.2rem, env(safe-area-inset-bottom, 0.5rem) + 0.7rem);
+  text-align: center;
+  background: var(--bg);
+  border-top: 0.5px solid rgba(160, 180, 192, 0.08);
+}
+
+.footer-credit {
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: 0.5;
+  margin: 0;
+}
+
+.footer-stryv-link {
+  color: var(--gold);
+  text-decoration: none;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.footer-stryv-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 0.5px;
+  background: var(--gold-l);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.footer-stryv-link:hover {
+  color: var(--gold-l);
+}
+
+.footer-stryv-link:hover::after {
+  transform: scaleX(1);
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-content {
+    padding: 0 2rem 3rem;
+  }
+
+  .hero-title {
+    font-size: 5rem;
+  }
+
+  .branches {
+    max-width: 480px;
+  }
+
+  .branch {
+    padding: 1.4rem 0.5rem;
+  }
+
+  .branch-name {
+    font-size: 1.7rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
 }
 </style>
 </head>
 <body>
-<main class="wrap">
-  <!-- HERO MOBILE: video del pulpo con texto encima (solo ≤767px) -->
-  <section class="hero-mobile" aria-label="Bienvenida a Anastacio Marisquería">
+<main class="landing">
+
+  <section class="hero">
+
     <video
       class="hero-video"
       autoplay
@@ -269,35 +355,51 @@ body{
       playsinline
       preload="metadata"
       poster="https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/object/public/imagenes/pulpo-hero-mobile-poster.jpg"
-      aria-label="Pulpo mascota de Anastacio Marisquería en escena submarina">
+      aria-label="Pulpo de Anastacio Marisquería">
       <source src="https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/object/public/imagenes/pulpo-hero-mobile.webm" type="video/webm">
       <source src="https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/object/public/imagenes/pulpo-hero-mobile.mp4" type="video/mp4">
     </video>
-    <div class="hero-overlay" aria-hidden="true"></div>
+
+    <div class="hero-gradient"></div>
+
     <div class="hero-content">
-      <p class="brand-eyebrow">¿Dónde te antojas?</p>
-      <h1 class="hero-mobile-title">ANASTACIO</h1>
-      <p class="hero-mobile-tagline">Marisquería de Barrio</p>
+      <p class="hero-eyebrow">marisquería de barrio</p>
+      <h1 class="hero-title">ANASTACIO</h1>
+      <p class="hero-subtitle">elige tu sucursal</p>
+
+      <nav class="branches" aria-label="Sucursales">
+        <a href="/gdl" class="branch" aria-label="Ir a Anastacio Guadalajara, Chapalita">
+          <div class="branch-text">
+            <span class="branch-name">Guadalajara</span>
+            <span class="branch-meta">Chapalita · Av. Guadalupe 290</span>
+          </div>
+          <span class="branch-arrow" aria-hidden="true">→</span>
+        </a>
+        <a href="/cln" class="branch" aria-label="Ir a Anastacio Culiacán">
+          <div class="branch-text">
+            <span class="branch-name">Culiacán</span>
+            <span class="branch-meta">Sinaloa</span>
+          </div>
+          <span class="branch-arrow" aria-hidden="true">→</span>
+        </a>
+      </nav>
     </div>
+
   </section>
 
-  <!-- BRANDING CLÁSICO: logo + título estático (solo desktop ≥768px) -->
-  <img src="https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/object/public/imagenes/logooficial_cys7ex.webp" alt="Anastacio" class="brand-logo" width="120" height="120">
-  <div class="brand">
-    <h1 class="brand-title">ANASTACIO</h1>
-    <p class="brand-sub">Marisquería</p>
-  </div>
-  <p class="guide">Selecciona tu sucursal</p>
-  <nav class="branches" aria-label="Sucursales">
-    <a href="/gdl" class="branch-btn" aria-label="Ir a la sucursal de Guadalajara, Chapalita, Avenida Guadalupe 290">
-      <span class="branch-name">Guadalajara</span>
-      <span class="branch-meta">Chapalita · Av. Guadalupe 290</span>
-    </a>
-    <a href="/cln" class="branch-btn" aria-label="Ir a la sucursal de Culiacán">
-      <span class="branch-name">Culiacán</span>
-      <span class="branch-meta">Culiacán · Sinaloa</span>
-    </a>
-  </nav>
+  <footer class="footer">
+    <p class="footer-credit">
+      Sitio creado por
+      <a href="https://stryvstudio.com?utm_source=anastacio&utm_medium=footer&utm_campaign=landing"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="footer-stryv-link"
+         aria-label="STRYV Studio">
+        STRYV
+      </a>
+    </p>
+  </footer>
+
 </main>
 <script type="application/ld+json">
 {
