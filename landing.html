@@ -85,6 +85,77 @@ body{
   align-items:center;
   gap:2.2rem;
 }
+/* HERO MOBILE — video del pulpo (solo ≤767px) */
+.hero-mobile{
+  position:relative;
+  width:100%;
+  max-width:480px;
+  margin:0 auto;
+  border-radius:20px;
+  overflow:hidden;
+  isolation:isolate;
+  aspect-ratio:9/16;
+  max-height:70vh;
+  background:var(--dark);
+  animation:fadeIn 1s ease both;
+}
+.hero-video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse at center bottom,transparent 30%,rgba(7,24,38,.65) 90%),linear-gradient(180deg,transparent 60%,rgba(7,24,38,.5) 100%);
+  pointer-events:none;
+  z-index:1;
+}
+.hero-content{
+  position:absolute;
+  bottom:1.5rem;
+  left:0;
+  right:0;
+  z-index:2;
+  text-align:center;
+  padding:0 1.5rem;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:.35rem;
+}
+.brand-eyebrow{
+  font-family:"Bebas Neue",sans-serif;
+  font-size:clamp(.75rem,2.4vw,.95rem);
+  letter-spacing:.45em;
+  text-transform:uppercase;
+  color:rgba(245,245,245,.85);
+  text-shadow:0 2px 12px rgba(7,24,38,.85);
+  animation:fadeUp 1s .4s ease both;
+}
+.hero-mobile-title{
+  font-family:"Bebas Neue",sans-serif;
+  font-size:clamp(2.6rem,11vw,4.5rem);
+  letter-spacing:.1em;
+  line-height:.9;
+  color:var(--cream);
+  text-shadow:0 4px 24px rgba(7,24,38,.75);
+  animation:fadeUp 1s .55s ease both;
+}
+.hero-mobile-tagline{
+  font-family:"Montserrat",sans-serif;
+  font-style:italic;
+  font-size:clamp(.85rem,2.4vw,1.05rem);
+  letter-spacing:.32em;
+  color:var(--gold);
+  text-shadow:0 2px 12px rgba(7,24,38,.75);
+  animation:fadeUp 1s .7s ease both;
+}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+
 .brand-logo{
   width:clamp(80px,14vw,120px);
   height:auto;
@@ -179,7 +250,13 @@ body{
   from{opacity:0;transform:translateY(14px);}
   to{opacity:1;transform:translateY(0);}
 }
+/* Mobile (≤767px): mostrar hero del pulpo, ocultar branding clásico */
+@media (max-width:767px){
+  .brand-logo,.brand{display:none;}
+}
+/* Desktop (≥768px): ocultar hero mobile, mostrar branding clásico */
 @media (min-width:768px){
+  .hero-mobile{display:none;}
   .branches{flex-direction:row;max-width:720px;}
   .branch-btn{flex:1;min-height:140px;padding:1.6rem 1.4rem;}
   .branch-name{font-size:1.85rem;}
@@ -191,6 +268,29 @@ body{
 </head>
 <body>
 <main class="wrap">
+  <!-- HERO MOBILE: video del pulpo con texto encima (solo ≤767px) -->
+  <section class="hero-mobile" aria-label="Bienvenida a Anastacio Marisquería">
+    <video
+      class="hero-video"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      poster="https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/object/public/imagenes/pulpo-hero-mobile-poster.jpg"
+      aria-label="Pulpo mascota de Anastacio Marisquería en escena submarina">
+      <source src="https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/object/public/imagenes/pulpo-hero-mobile.webm" type="video/webm">
+      <source src="https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/object/public/imagenes/pulpo-hero-mobile.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="hero-content">
+      <p class="brand-eyebrow">¿Dónde te antojas?</p>
+      <h1 class="hero-mobile-title">ANASTACIO</h1>
+      <p class="hero-mobile-tagline">Marisquería de Barrio</p>
+    </div>
+  </section>
+
+  <!-- BRANDING CLÁSICO: logo + título estático (solo desktop ≥768px) -->
   <img src="https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/object/public/imagenes/logooficial_cys7ex.webp" alt="Anastacio" class="brand-logo" width="120" height="120">
   <div class="brand">
     <h1 class="brand-title">ANASTACIO</h1>
@@ -259,6 +359,15 @@ if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("/sw.js").catch(function(){});
   });
 }
+// Pausar video del hero en conexiones lentas o save-data
+(function(){
+  if (!navigator.connection) return;
+  var c = navigator.connection;
+  if (c.saveData === true || c.effectiveType === "slow-2g" || c.effectiveType === "2g") {
+    var v = document.querySelector(".hero-video");
+    if (v) { v.removeAttribute("autoplay"); v.pause(); }
+  }
+})();
 </script>
 </body>
 </html>

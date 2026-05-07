@@ -41,6 +41,21 @@ Cuando lleguen los datos del cliente, actualizar en commit limpio +
 agregar `streetAddress` real al Schema.org de Culiacán en
 `landing.html`.
 
+## Hero desktop (pendiente del asset)
+
+- **Generar video horizontal 16:9 del pulpo** (Higgsfield Kling 2.5
+  Turbo o equivalente). El hero mobile ya está integrado con el video
+  vertical 9:16 del pulpo; en desktop se sigue mostrando la composición
+  clásica (logo + título estático) hasta que exista asset horizontal.
+  - Comprimir con ffmpeg a `pulpo-hero-desktop.webm` + `pulpo-hero-desktop.mp4`
+  - Generar `pulpo-hero-desktop-poster.jpg`
+  - Subir los 3 a Supabase Storage (`bucket imagenes`)
+  - Reemplazar el bloque `.brand-logo + .brand` (HTML) por un
+    `<section class="hero-desktop">` con `<video>` análogo al de mobile
+  - Toggle responsive: mobile usa `.hero-mobile`, desktop usa `.hero-desktop`
+  - Actualizar `og:image` de landing.html a un frame del video desktop
+    (composición landscape funciona mejor en previews de WhatsApp/X)
+
 ## Otras mejoras
 
 - Validar Schema.org en https://validator.schema.org/ tras el primer push
