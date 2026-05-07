@@ -78,17 +78,28 @@ body>*{position:relative;z-index:1;}
 .branch-title-city{color:var(--gold);}
 
 /* ═══ 1️⃣ HERO ORDER MODE BUTTONS ═══ */
-.hero-order-modes{display:flex;flex-direction:column;gap:.6rem;margin-top:1.2rem;width:fit-content;align-items:stretch;align-self:flex-start;animation:fadeUp 1s ease both;opacity:1;}
-.hero-mode-btn{display:flex;align-items:center;justify-content:flex-start;gap:.6rem;padding:.75rem 1.4rem;border:1.5px solid rgba(255,255,255,.2);background:transparent;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--cream);font-family:"Bebas Neue",sans-serif;font-size:.85rem;letter-spacing:.15em;cursor:pointer;transition:all .35s cubic-bezier(.23,1,.32,1);border-radius:50px;-webkit-tap-highlight-color:transparent;touch-action:manipulation;min-height:44px;text-align:left;}
-.hero-mode-btn .mode-icon{font-size:1.1rem;line-height:1;}
-.hero-mode-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,.3);}
-.hero-mode-btn[data-mode="domicilio"]{border-color:rgba(37,211,102,.7);background:rgba(37,211,102,.6);}
-.hero-mode-btn[data-mode="domicilio"]:hover,.hero-mode-btn[data-mode="domicilio"].selected{background:rgba(37,211,102,.88);border-color:#25D366;color:white;box-shadow:0 4px 20px rgba(37,211,102,.35);}
-.hero-mode-btn[data-mode="recoger"]{border-color:rgba(201,162,77,.7);background:rgba(201,162,77,.6);}
-.hero-mode-btn[data-mode="recoger"]:hover,.hero-mode-btn[data-mode="recoger"].selected{background:rgba(201,162,77,.88);border-color:var(--gold);color:white;box-shadow:0 4px 20px rgba(201,162,77,.35);}
-.hero-mode-btn[data-mode="mesa"]{border-color:rgba(242,107,29,.7);background:rgba(242,107,29,.6);}
-.hero-mode-btn[data-mode="mesa"]:hover,.hero-mode-btn[data-mode="mesa"].selected{background:rgba(242,107,29,.88);border-color:var(--cta);color:white;box-shadow:0 4px 20px rgba(242,107,29,.35);}
-.hero-mode-btn.selected{transform:scale(1.05);font-weight:600;}
+/* Botones de modo de pedido — paleta dorada unificada con SVG icons */
+.hero-order-modes{display:flex;flex-direction:column;gap:.6rem;margin-top:1.2rem;width:100%;max-width:320px;align-self:flex-start;animation:fadeUp 1s ease both;opacity:1;}
+.hero-mode-btn{display:flex;align-items:center;gap:.9rem;padding:.85rem 1.1rem;background:rgba(7,24,38,.55);border:.5px solid rgba(201,162,77,.35);border-radius:999px;color:#E6C76B;font-family:"Bebas Neue",sans-serif;font-size:.95rem;letter-spacing:.14em;cursor:pointer;transition:transform .15s ease,background .25s ease,border-color .25s ease,color .25s ease;-webkit-tap-highlight-color:transparent;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);text-align:left;}
+.hero-mode-btn .mode-icon{width:22px;height:22px;flex-shrink:0;color:#C9A24D;display:flex;align-items:center;justify-content:center;transition:color .25s ease;}
+.hero-mode-btn .mode-icon svg{width:100%;height:100%;}
+.hero-mode-btn .mode-label{flex:1;display:flex;align-items:center;}
+.hero-mode-btn .mode-arrow{font-size:.95rem;color:rgba(201,162,77,.6);font-family:"Montserrat",sans-serif;transition:transform .2s ease,opacity .2s ease,color .2s ease;}
+.hero-mode-btn:active{transform:scale(.98);background:rgba(201,162,77,.15);border-color:rgba(201,162,77,.7);}
+.hero-mode-btn:active .mode-arrow{transform:translateX(4px);color:#E6C76B;}
+.hero-mode-btn:active .mode-icon{color:#E6C76B;}
+.hero-mode-btn.selected{background:rgba(201,162,77,.2);border-color:rgba(201,162,77,.8);color:#fff;}
+.hero-mode-btn.selected .mode-arrow{transform:translateX(4px);color:#E6C76B;}
+.hero-mode-btn.selected .mode-icon{color:#E6C76B;}
+@media(hover:hover){
+  .hero-mode-btn:hover{background:rgba(201,162,77,.12);border-color:rgba(201,162,77,.6);}
+  .hero-mode-btn:hover .mode-arrow{transform:translateX(4px);color:#E6C76B;}
+  .hero-mode-btn:hover .mode-icon{color:#E6C76B;}
+}
+@media(min-width:768px){
+  .hero-mode-btn{padding:1rem 1.3rem;font-size:1.05rem;}
+  .hero-mode-btn .mode-icon{width:26px;height:26px;}
+}
 
 /* ═══ 4️⃣ MICRO-URGENCY BAR ═══ */
 .urgency-bar{background:transparent;padding:.4rem 0 .8rem;margin:.6rem 0 .2rem;display:flex;align-items:center;justify-content:center;gap:1.2rem;flex-wrap:wrap;}
@@ -502,8 +513,8 @@ html{font-size:100%;}
 .info-section{padding:2rem .8rem;gap:1.5rem;}
 .info-block h3{font-size:.85rem;}
 .info-block p,.info-block a{font-size:.78rem;}
-.hero-order-modes{gap:.45rem;}
-.hero-mode-btn{padding:.6rem .9rem;font-size:.72rem;min-height:44px;}
+.hero-order-modes{gap:.5rem;}
+.hero-mode-btn{padding:.75rem 1rem;font-size:.9rem;}
 .trending-grid{gap:.6rem;}
 .trending-card .card-body{padding:.55rem .5rem;}
 .trending-card .card-name{font-size:.76rem;}
@@ -596,16 +607,46 @@ var sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
     <!-- HERO DECISION BUTTONS (dentro del hero, columna vertical alineados izquierda) -->
     <div class="hero-order-modes">
       <button class="hero-mode-btn" data-mode="domicilio" onclick="selectOrderMode('domicilio')">
-        <span class="mode-icon">🛵</span>
-        <span class="es">Pedir a Domicilio</span><span class="en">Delivery</span>
+        <span class="mode-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="6" cy="17" r="2"/>
+            <circle cx="17" cy="17" r="2"/>
+            <path d="M4 17h-1a1 1 0 0 1-1-1v-3l1-3h6l3 5h6"/>
+            <path d="M14 9l-2-5h-3"/>
+            <path d="M19 17l-1-7"/>
+          </svg>
+        </span>
+        <span class="mode-label">
+          <span class="es">Domicilio</span><span class="en">Delivery</span>
+        </span>
+        <span class="mode-arrow" aria-hidden="true">→</span>
       </button>
       <button class="hero-mode-btn" data-mode="recoger" onclick="selectOrderMode('recoger')">
-        <span class="mode-icon">🥡</span>
-        <span class="es">Recoger en Local</span><span class="en">Pickup</span>
+        <span class="mode-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 8h14l-1 13a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2z"/>
+            <path d="M9 8V5a3 3 0 0 1 6 0v3"/>
+            <path d="M5 8l1-2h12l1 2"/>
+          </svg>
+        </span>
+        <span class="mode-label">
+          <span class="es">Recoger</span><span class="en">Pickup</span>
+        </span>
+        <span class="mode-arrow" aria-hidden="true">→</span>
       </button>
       <button class="hero-mode-btn" data-mode="mesa" onclick="selectOrderMode('mesa')">
-        <span class="mode-icon">🍽</span>
-        <span class="es">Pedir desde Mesa</span><span class="en">Order at Table</span>
+        <span class="mode-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 4v8a4 4 0 0 0 4 4h0a4 4 0 0 0 4-4V4"/>
+            <line x1="9" y1="4" x2="9" y2="16"/>
+            <line x1="9" y1="16" x2="9" y2="22"/>
+            <path d="M17 4v6a2 2 0 0 0 2 2h0v10"/>
+          </svg>
+        </span>
+        <span class="mode-label">
+          <span class="es">Desde mesa</span><span class="en">At table</span>
+        </span>
+        <span class="mode-arrow" aria-hidden="true">→</span>
       </button>
     </div>
   </div>
