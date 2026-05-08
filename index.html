@@ -988,7 +988,7 @@ var sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
       <div class="card-body">
         <div class="card-name">Osito Rojo</div>
         <div class="card-desc"><span class="es">Gin, Limón, Frutos Rojos y Menta</span><span class="en">Gin, Lime, Red Berries and Mint</span></div>
-        <div class="card-footer"><div class="card-price">$140</div><button class="add-btn" data-price-cln="120" onclick="addToCart('Osito Rojo',140)">+</button></div>
+        <div class="card-footer"><div class="card-price">$140</div><button class="add-btn" data-price-cln="120" data-name-cln="Frutos Rojos Smash" onclick="addToCart('Osito Rojo',140)">+</button></div>
       </div>
     </div>
     <div class="featured-card">
@@ -996,12 +996,12 @@ var sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
       <div class="card-body">
         <div class="card-name">Pica Flor 🔥</div>
         <div class="card-desc"><span class="es">Whiskey, Limón, Maracuyá, Tónica y VITAFER</span><span class="en">Whiskey, Lime, Passion Fruit, Tonic and VITAFER</span></div>
-        <div class="card-footer"><div class="card-price">$195</div><button class="add-btn" data-price-cln="160" onclick="addToCart('Pica Flor',195)">+</button></div>
+        <div class="card-footer"><div class="card-price">$195</div><button class="add-btn" data-price-cln="160" data-name-cln="Sr. Arturo" onclick="addToCart('Pica Flor',195)">+</button></div>
       </div>
     </div>
     <div class="featured-card"><div class="card-img-wrap"><img src="https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/object/public/imagenes/mezcalita_nhmtez.png" alt="Mezcalita" loading="lazy"></div><div class="card-body"><div class="card-name">Mezcalita</div><div class="card-desc"><span class="es">Mezcal, Tamarindo, Naranja, Limón, IPA</span><span class="en">Mezcal, Tamarind, Orange, Lime, IPA</span></div><div class="card-footer"><div class="card-price">$150</div><button class="add-btn" data-price-cln="130" onclick="addToCart('Mezcalita',150)">+</button></div></div></div>
     <div class="featured-card"><div class="card-img-wrap"><img src="https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/object/public/imagenes/tachosour_uohegy.png" alt="Tacho Sour" loading="lazy"></div><div class="card-body"><div class="card-name">Tacho Sour</div><div class="card-desc"><span class="es">Whiskey, Limón y Tamarindo</span><span class="en">Whiskey, Lime and Tamarind</span></div><div class="card-footer"><div class="card-price">$160</div><button class="add-btn" data-price-cln="140" onclick="addToCart('Tacho Sour',160)">+</button></div></div></div>
-    <div class="featured-card"><div class="card-img-wrap"><img src="https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/object/public/imagenes/ballenita_eqqo6e.png" alt="Ballenita" loading="lazy"></div><div class="card-body"><div class="card-name">Ballenita</div><div class="card-desc"><span class="es">Tequila, Piña, Toronja y Tónica</span><span class="en">Tequila, Pineapple, Grapefruit and Tonic</span></div><div class="card-footer"><div class="card-price">$150</div><button class="add-btn" data-price-cln="130" onclick="addToCart('Ballenita',150)">+</button></div></div></div>
+    <div class="featured-card"><div class="card-img-wrap"><img src="https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/object/public/imagenes/ballenita_eqqo6e.png" alt="Ballenita" loading="lazy"></div><div class="card-body"><div class="card-name">Ballenita</div><div class="card-desc"><span class="es">Tequila, Piña, Toronja y Tónica</span><span class="en">Tequila, Pineapple, Grapefruit and Tonic</span></div><div class="card-footer"><div class="card-price">$150</div><button class="add-btn" data-price-cln="130" data-name-cln="Cantarito Anastacio" onclick="addToCart('Ballenita',150)">+</button></div></div></div>
     <div class="featured-card"><div class="card-img-wrap"><img src="https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/object/public/imagenes/batanga_yqy8yi.png" alt="Batanga Anastacio" loading="lazy"></div><div class="card-body"><div class="card-name">Batanga Anastacio</div><div class="card-desc"><span class="es">Tequila, Limón, Tamarindo y Coca</span><span class="en">Tequila, Lime, Tamarind and Coke</span></div><div class="card-footer"><div class="card-price">$150</div><button class="add-btn" data-price-cln="120" onclick="addToCart('Batanga Anastacio',150)">+</button></div></div></div>
   </div>
 
@@ -1448,18 +1448,36 @@ document.addEventListener('DOMContentLoaded', function() {
   // los productos exclusivos de CLN (data-cln-only). Guadalajara mantiene los
   // precios default y los productos exclusivos de CLN quedan ocultos por CSS.
   if (BRANCH.slug === 'cln') {
-    document.querySelectorAll('.add-btn[data-price-cln]').forEach(function(btn) {
-      var newPrice = parseInt(btn.dataset.priceCln, 10);
-      if (isNaN(newPrice)) return;
-      // Actualizar el elemento de precio visible (.card-price o .item-price hermano)
-      var priceEl = btn.parentElement && btn.parentElement.querySelector('.card-price, .item-price');
-      if (priceEl) priceEl.textContent = '$' + newPrice;
-      // Actualizar el onclick para que addToCart use el nuevo precio
+    document.querySelectorAll('.add-btn[data-price-cln], .add-btn[data-name-cln]').forEach(function(btn) {
+      var newPrice = btn.dataset.priceCln ? parseInt(btn.dataset.priceCln, 10) : null;
+      var newName = btn.dataset.nameCln || null;
+
+      // Actualizar precio visible (.card-price o .item-price hermano)
+      if (newPrice !== null && !isNaN(newPrice)) {
+        var priceEl = btn.parentElement && btn.parentElement.querySelector('.card-price, .item-price');
+        if (priceEl) priceEl.textContent = '$' + newPrice;
+      }
+
+      // Actualizar nombre visible (.card-name / .item-name / .cc-name del card ancestro)
+      if (newName) {
+        var card = btn.closest('.featured-card, .menu-item, .cocktail-card');
+        if (card) {
+          var nameEl = card.querySelector('.card-name, .item-name, .cc-name');
+          if (nameEl) nameEl.textContent = newName;
+        }
+      }
+
+      // Actualizar onclick: nombre y/o precio para que addToCart guarde lo correcto
       var current = btn.getAttribute('onclick');
       if (current) {
-        // addToCart('Nombre', 230) → addToCart('Nombre', 185)
-        var updated = current.replace(/(addToCart\(['"][^'"]+['"]\s*,\s*)\d+(\s*\))/, '$1' + newPrice + '$2');
-        btn.setAttribute('onclick', updated);
+        var updated = current;
+        if (newName) {
+          updated = updated.replace(/addToCart\(['"][^'"]+['"]/, "addToCart('" + newName.replace(/'/g, "\\'") + "'");
+        }
+        if (newPrice !== null && !isNaN(newPrice)) {
+          updated = updated.replace(/(addToCart\(['"][^'"]+['"]\s*,\s*)\d+(\s*\))/, '$1' + newPrice + '$2');
+        }
+        if (updated !== current) btn.setAttribute('onclick', updated);
       }
     });
     // Revelar productos exclusivos de Culiacán (ocultos por CSS por default)
