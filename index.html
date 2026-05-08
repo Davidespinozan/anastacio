@@ -228,6 +228,8 @@ body>*{position:relative;z-index:1;}
 
 /* LIST */
 .menu-list{display:flex;flex-direction:column;gap:.7rem;}
+/* Productos exclusivos de Culiacán: ocultos por default, JS los muestra si BRANCH.slug==='cln' */
+[data-cln-only]{display:none!important;}
 .menu-item{display:flex;justify-content:space-between;align-items:flex-start;gap:.8rem;padding:1.2rem 1.3rem;border-bottom:none;background:rgba(15,47,79,.55);border:1.5px solid rgba(201,162,77,.1);border-radius:14px;transition:transform .35s cubic-bezier(.23,1,.32,1),box-shadow .35s;box-shadow:0 3px 15px rgba(0,0,0,.12);}
 .menu-item:last-child{border-bottom:none;}
 .menu-item:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,0,0,.2);}
@@ -830,6 +832,7 @@ var sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 <div class="menu-list">
     <div class="menu-item"><div class="item-info"><div class="item-name">Quesito</div><div class="item-desc es">Costra de queso con camarón roca, salsa spicy y aguacate.</div><div class="item-desc en">Cheese crust with rock shrimp, spicy sauce and avocado.</div></div><div class="item-row"><div class="item-price">$135</div><button class="add-btn" data-price-cln="127" onclick="addToCart('Quesito',135)">+</button></div></div>
     <div class="menu-item"><div class="item-info"><div class="item-name">Crujiente</div><div class="item-desc es">Tortilla de maíz, camarones crujientes, ensalada de col, pico de gallo y aguacate.</div><div class="item-desc en">Corn tortilla, crispy shrimp, coleslaw, pico de gallo and avocado.</div></div><div class="item-row"><div class="item-price">$65</div><button class="add-btn" data-price-cln="79" onclick="addToCart('Crujiente',65)">+</button></div></div>
+    <div class="menu-item" data-cln-only="true"><div class="item-info"><div class="item-name"><span class="es">Taco Zarandeado</span><span class="en">Zarandeado Taco</span></div><div class="item-desc es">Lonja de pescado zarandeado en tortilla de harina sonorense.</div><div class="item-desc en">Zarandeado fish fillet on Sonoran flour tortilla.</div></div><div class="item-row"><div class="item-price">$130</div><button class="add-btn" onclick="addToCart('Taco Zarandeado',130)">+</button></div></div>
     
   </div>
 </section>
@@ -886,6 +889,7 @@ var sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
     
     
     <div class="menu-item"><div class="item-info"><div class="item-name"><span class="es">La de Ceviche</span><span class="en">The Ceviche</span></div><div class="item-desc es">Ceviche tradicional de pescado, cebolla, tomate, pepino y aguacate.</div><div class="item-desc en">Traditional fish ceviche, onion, tomato, cucumber and avocado.</div></div><div class="item-row"><div class="item-price">$160</div><button class="add-btn" data-price-cln="149" onclick="addToCart('La de Ceviche',160)">+</button></div></div>
+    <div class="menu-item" data-cln-only="true"><div class="item-info"><div class="item-name"><span class="es">Aguachile Tostadita</span><span class="en">Aguachile Tostada</span></div><div class="item-desc es">Camarón en aguachile, pepino, cebolla, salsa negra de la casa, chiltepín y aguacate.</div><div class="item-desc en">Aguachile shrimp, cucumber, onion, house black sauce, chiltepín and avocado.</div></div><div class="item-row"><div class="item-price">$150</div><button class="add-btn" onclick="addToCart('Aguachile Tostadita',150)">+</button></div></div>
   </div>
 </section>
 <div class="gold-sep"></div>
@@ -926,6 +930,9 @@ var sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
     <div class="menu-item"><div class="item-info"><div class="item-name">Ceviche Speak</div><div class="item-desc es">Atún, jícama, mango, aguacate y fritura de poro bañado con salsas negras.</div><div class="item-desc en">Tuna, jicama, mango, avocado and crispy leek with black sauces.</div></div><div class="item-row"><div class="item-price">$210</div><button class="add-btn" onclick="addToCart('Ceviche Speak',210)">+</button></div></div>
     <div class="menu-item"><div class="item-info"><div class="item-name"><span class="es">Ceviche Mixto</span><span class="en">Mixed Ceviche</span></div><div class="item-desc es">Camarón crudo y cocido con cebolla, pepino, tomate, aguacate y caldito preparado.</div><div class="item-desc en">Raw and cooked shrimp, onion, cucumber, tomato and avocado in house broth.</div></div><div class="item-row"><div class="item-price">$190</div><button class="add-btn" onclick="addToCart('Ceviche Mixto',190)">+</button></div></div>
     <div class="menu-item"><div class="item-info"><div class="item-name"><span class="es">Alitas / Boneless</span><span class="en">Wings / Boneless</span></div><div class="item-desc es">Bañados en salsa especial de la casa, papas gajo al cajun y aderezo ranch.</div><div class="item-desc en">Tossed in house special sauce, cajun wedge fries and ranch dressing.</div></div><div class="item-row"><div class="item-price">$190</div><button class="add-btn" onclick="addToCart('Alitas / Boneless',190)">+</button></div></div>
+    <div class="menu-item" data-cln-only="true"><div class="item-info"><div class="item-name"><span class="es">Sashimi Tuna</span><span class="en">Tuna Sashimi</span></div><div class="item-desc es">Sashimi de atún coronado con ceviche de vegetales.</div><div class="item-desc en">Tuna sashimi crowned with vegetable ceviche.</div></div><div class="item-row"><div class="item-price">$170</div><button class="add-btn" onclick="addToCart('Sashimi Tuna',170)">+</button></div></div>
+    <div class="menu-item" data-cln-only="true"><div class="item-info"><div class="item-name">Doña Cuca</div><div class="item-desc es">Camarones fritos acompañados con salsa negra.</div><div class="item-desc en">Fried shrimp served with house black sauce.</div></div><div class="item-row"><div class="item-price">$140</div><button class="add-btn" onclick="addToCart('Doña Cuca',140)">+</button></div></div>
+    <div class="menu-item" data-cln-only="true"><div class="item-info"><div class="item-name"><span class="es">Coctel de Camarón</span><span class="en">Shrimp Cocktail</span></div><div class="item-desc es">Caldo de camarón obviamente frío, camarón cocido, chiltepín y sus verduras que no pueden faltar.</div><div class="item-desc en">Cold shrimp broth, cooked shrimp, chiltepín and the must-have vegetables.</div></div><div class="item-row"><div class="item-price">$180</div><button class="add-btn" onclick="addToCart('Coctel de Camarón',180)">+</button></div></div>
   </div>
 </section>
 <div class="gold-sep"></div>
@@ -951,6 +958,7 @@ var sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 <div class="menu-list">
     <div class="menu-item"><div class="item-info"><div class="item-name"><span class="es">Orden de Papas</span><span class="en">French Fries</span></div><div class="item-desc es">Papas fritas tipo gajo al cajun con aderezo ranch.</div><div class="item-desc en">Cajun wedge fries with ranch dressing.</div></div><div class="item-row"><div class="item-price">$80</div><button class="add-btn" onclick="addToCart('Orden de Papas',80)">+</button></div></div>
     <div class="menu-item"><div class="item-info"><div class="item-name"><span class="es">Cacahuatadas</span><span class="en">Spiced Peanuts</span></div><div class="item-desc es">Cacahuates japoneses con salsa de la casa y clamato.</div><div class="item-desc en">Japanese peanuts with house sauce and clamato.</div></div><div class="item-row"><div class="item-price">$60</div><button class="add-btn" onclick="addToCart('Cacahuatadas',60)">+</button></div></div>
+    <div class="menu-item" data-cln-only="true"><div class="item-info"><div class="item-name"><span class="es">Carne Seca</span><span class="en">Carne Seca</span></div><div class="item-desc es">Directo desde Jalisco, preparada con salsas negras.</div><div class="item-desc en">Straight from Jalisco, prepared with black sauces.</div></div><div class="item-row"><div class="item-price">$150</div><button class="add-btn" onclick="addToCart('Carne Seca',150)">+</button></div></div>
   </div>
   <div style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(244,180,0,.08);">
     <div class="section-label" style="text-align:center;margin-bottom:1rem;"><span class="es">Para los peques</span><span class="en">Kids menu</span></div>
@@ -1435,9 +1443,10 @@ document.addEventListener('DOMContentLoaded', function() {
   if ((el = document.getElementById('footer-text')))        el.textContent = '© 2025 · ANASTACIO · MARISQUERÍA DE BARRIO · ' + BRANCH.footerCity;
   if ((el = document.getElementById('branch-name-display')))  el.textContent = BRANCH.city;
 
-  // Aplicar precios específicos por sucursal: si BRANCH es Culiacán, sobreescribir
-  // los productos que tienen data-price-cln con ese precio nuevo. Guadalajara
-  // mantiene los precios default del HTML.
+  // Aplicar precios y productos específicos por sucursal: si BRANCH es Culiacán,
+  // sobreescribir los productos con data-price-cln con ese precio nuevo Y revelar
+  // los productos exclusivos de CLN (data-cln-only). Guadalajara mantiene los
+  // precios default y los productos exclusivos de CLN quedan ocultos por CSS.
   if (BRANCH.slug === 'cln') {
     document.querySelectorAll('.add-btn[data-price-cln]').forEach(function(btn) {
       var newPrice = parseInt(btn.dataset.priceCln, 10);
@@ -1452,6 +1461,10 @@ document.addEventListener('DOMContentLoaded', function() {
         var updated = current.replace(/(addToCart\(['"][^'"]+['"]\s*,\s*)\d+(\s*\))/, '$1' + newPrice + '$2');
         btn.setAttribute('onclick', updated);
       }
+    });
+    // Revelar productos exclusivos de Culiacán (ocultos por CSS por default)
+    document.querySelectorAll('[data-cln-only]').forEach(function(el) {
+      el.style.setProperty('display', 'flex', 'important');
     });
   }
 });
