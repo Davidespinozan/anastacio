@@ -445,17 +445,6 @@ body>*{position:relative;z-index:1;}
 .checkout-btn svg { width:22px; height:22px; fill:white; flex-shrink:0; }
 .checkout-btn:disabled { background:var(--muted); cursor:not-allowed; box-shadow:none; }
 
-.scroll-top {
-  position:fixed; bottom:5rem; right:1.5rem; z-index:499;
-  width:40px; height:40px; border-radius:12px;
-  background:rgba(244,180,0,.15); border:1px solid rgba(244,180,0,.3);
-  color:var(--gold); font-size:1.1rem; cursor:pointer;
-  display:none; align-items:center; justify-content:center;
-  transition:all .3s; 
-  -webkit-tap-highlight-color:transparent;
-}
-.scroll-top.visible { display:flex; }
-.scroll-top:hover { background:var(--gold); color:var(--dark); }
 
 .card-img-wrap img, .photo-strip img {
   background:var(--dark3);
@@ -1172,7 +1161,6 @@ var sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 <!-- MAIN SCRIPT MOVED TO END -->
 
-<button class="scroll-top" id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">↑</button>
 <!-- CART BUBBLE -->
 <div class="cart-bubble" id="cart-bubble" onclick="openCart()">
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
@@ -2057,11 +2045,6 @@ updateCheckout();
 // Re-apply saved language now that all functions exist
 var savedLang2 = safeStorage.get("anastacio_lang");
 if (savedLang2) setLang(savedLang2);
-
-// Scroll top
-window.addEventListener("scroll", function() {
-  document.getElementById("scroll-top").classList.toggle("visible", window.scrollY > 400);
-});
 
 // ═══ STRIPE PAYMENT ═══
 async function payWithStripe() {
