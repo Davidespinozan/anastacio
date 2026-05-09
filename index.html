@@ -1078,7 +1078,7 @@ var sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
     <a id="google-review-link" href="https://maps.app.goo.gl/Lcn5kNqrHzQY8cMr6" class="btn-gold" target="_blank"><span class="es">Reseña en Google</span><span class="en">Review on Google</span></a>
     <br><br>
     <a href="#" class="btn-outline" onclick="openModal('promo-modal'); return false;"><span class="es">Recibir Promociones</span><span class="en">Get Deals</span></a>
-    <a href="https://instagram.com/anastacio_gdl" class="btn-outline" target="_blank">@anastacio_gdl</a>
+    <a id="ig-reviews-link" href="https://instagram.com/anastacio_marisqueriadebarrio" class="btn-outline" target="_blank">@anastacio_marisqueriadebarrio</a>
   </div>
 </section>
 
@@ -1432,6 +1432,7 @@ document.addEventListener('DOMContentLoaded', function() {
   if ((el = document.getElementById('maps-open-link')))     el.href = BRANCH.googleMapsUrl;
   if ((el = document.getElementById('branch-address')))     el.textContent = BRANCH.address;
   if ((el = document.getElementById('ig-info-link')))       { el.href = BRANCH.instagramUrl; el.textContent = BRANCH.instagram; }
+  if ((el = document.getElementById('ig-reviews-link')))    { el.href = BRANCH.instagramUrl; el.textContent = BRANCH.instagram; }
   if ((el = document.getElementById('ig-float-link')))      el.href = BRANCH.instagramUrl;
   if ((el = document.getElementById('footer-text')))        el.textContent = '© 2025 · ANASTACIO · MARISQUERÍA DE BARRIO · ' + BRANCH.footerCity;
   if ((el = document.getElementById('branch-name-display')))  el.textContent = BRANCH.city;
