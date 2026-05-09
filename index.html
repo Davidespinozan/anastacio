@@ -1996,7 +1996,7 @@ var SCHEDULE = {
 
 function updateUrgencyBar() {
   if(typeof SCHEDULE === 'undefined' || !SCHEDULE) return;
-  var nowStr = new Date().toLocaleString('en-US', {timeZone: 'America/Mexico_City'});
+  var nowStr = new Date().toLocaleString('en-US', {timeZone: BRANCH.timeZone});
   var mxTime = new Date(nowStr);
   var day = mxTime.getDay();
   var hour = mxTime.getHours() + mxTime.getMinutes() / 60;
