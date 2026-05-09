@@ -29,7 +29,14 @@ serve(async (req) => {
       items,
       total,
       status,
+      sucursal,
     } = record;
+
+    const branchLabel: Record<string, string> = {
+      gdl: "GUADALAJARA",
+      cln: "CULIACÁN",
+    };
+    const branchName = branchLabel[sucursal] || (sucursal ? sucursal.toUpperCase() : "");
 
     // Build plain text version for Formspree
     const itemsList = items
@@ -45,6 +52,7 @@ serve(async (req) => {
     };
 
     let message = `✅ PEDIDO PAGADO CON TARJETA\n\n`;
+    if (branchName) message += `🏠 Sucursal: ${branchName}\n`;
     message += `📋 Tipo: ${modeLabel[orderType] || orderType}\n`;
     if (customerName) message += `👤 Cliente: ${customerName}\n`;
     if (customerPhone) message += `📞 Tel: ${customerPhone}\n`;
@@ -55,12 +63,15 @@ serve(async (req) => {
     message += `\n🛒 Pedido:\n${itemsList}\n`;
     message += `\n💰 Total: $${total.toLocaleString("es-MX")} MXN ✅ PAGADO`;
 
+    const subjectPrefix = branchName ? `[${branchName}] ` : "";
+
     const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        _subject: `✅ Pedido Pagado — ${customerName || "Mesa " + tableNumber} — $${total} MXN`,
+        _subject: `${subjectPrefix}✅ Pedido Pagado — ${customerName || "Mesa " + tableNumber} — $${total} MXN`,
         pedido: message,
+        sucursal: branchName,
         tipo: orderType,
         cliente: customerName || "",
         telefono: customerPhone || "",
