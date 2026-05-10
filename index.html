@@ -176,6 +176,11 @@ body>*{position:relative;z-index:1;}
 .dynamic-form label{display:block;font-size:.7rem;letter-spacing:.1em;color:var(--gold);font-family:"Bebas Neue",sans-serif;margin-bottom:.3rem;}
 .dynamic-form input{width:100%;padding:.6rem .85rem;background:transparent;border:1px solid rgba(244,180,0,.18);color:var(--cream);font-family:"Montserrat",sans-serif;font-size:.9rem;margin-bottom:.5rem;outline:none;border-radius:10px;}
 .dynamic-form input:focus{border-color:var(--gold);box-shadow:0 0 10px rgba(244,180,0,.12);}
+.dynamic-form .time-input{display:flex;align-items:center;justify-content:space-between;gap:.6rem;width:100%;padding:.6rem .85rem;background:transparent;border:1px solid rgba(244,180,0,.18);font-family:"Montserrat",sans-serif;font-size:.9rem;letter-spacing:normal;margin-bottom:.5rem;border-radius:10px;cursor:pointer;}
+.dynamic-form .time-input:focus-within{border-color:var(--gold);box-shadow:0 0 10px rgba(244,180,0,.12);}
+.dynamic-form .time-input-text{font-size:.9rem;color:rgba(245,245,245,.5);font-family:"Montserrat",sans-serif;}
+.dynamic-form .time-input input[type="time"]{width:auto;padding:0;margin:0;border:none;background:transparent;color:var(--cream);font-size:.9rem;font-family:inherit;flex-shrink:0;}
+.dynamic-form .time-input input[type="time"]:focus{box-shadow:none;border:none;}
 
 /* ═══ 5️⃣ CHECKOUT SUMMARY ═══ */
 .checkout-summary{padding:.6rem 0;margin-bottom:.5rem;}
@@ -1206,7 +1211,10 @@ var sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
       <label><span class="es">DATOS PARA RECOGER</span><span class="en">PICKUP INFO</span></label>
       <input type="text" id="pick-name" placeholder="Tu nombre / Your name">
       <input type="tel" id="pick-phone" placeholder="WhatsApp">
-      <input type="time" id="pick-time" placeholder="Hora de recogida / Pickup time">
+      <label class="time-input" for="pick-time">
+        <span class="time-input-text"><span class="es">Hora de recogida</span><span class="en">Pickup time</span></span>
+        <input type="time" id="pick-time">
+      </label>
     </div>
 
     <!-- 2️⃣ DYNAMIC FORM: MESA -->
