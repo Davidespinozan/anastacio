@@ -2187,23 +2187,8 @@ async function payWithStripe() {
         var order = JSON.parse(pending);
         safeStorage.remove("anastacio_pending_order");
 
-        // NOW save order to Supabase (only after payment confirmed)
-        var orderData = {
-          order_type: order.orderType,
-          customer_name: order.customerName,
-          customer_phone: order.customerPhone,
-          delivery_address: order.deliveryAddress || "",
-          table_number: order.tableNumber || "",
-          pickup_time: order.pickupTime || "",
-          items: order.items,
-          total: order.total,
-          status: "confirmed",
-          sucursal: BRANCH.slug
-        };
-        sbClient.from("orders").insert([orderData]).then(function(res){
-          if(res.error) console.error("Order save error:", JSON.stringify(res.error));
-          else console.log("Order saved after payment");
-        });
+        // INSERT a Supabase ahora lo hace stripe-webhook (edge function smart-function)
+        // server-side cuando Stripe confirma el pago. No hacer INSERT desde aquí.
 
         // Track Meta Pixel Purchase
         trackEvent('Purchase', {value: order.total, currency: 'MXN', content_name: order.items.map(function(i){return i.name}).join(', '), method: 'stripe'});
