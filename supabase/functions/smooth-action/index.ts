@@ -88,37 +88,14 @@ const PRICE_MAP_GDL: Record<string, number> = {
 };
 
 // ═══ SERVER-SIDE PRICE MAP — CULIACÁN ═══
-// Hereda todo de GDL y aplica overrides + productos exclusivos + tragos renombrados
+// Precios iguales a GDL. CLN solo agrega tragos renombrados (a precio del
+// producto original GDL) y productos exclusivos que no existen en GDL.
 const PRICE_MAP_CLN: Record<string, number> = {
   ...PRICE_MAP_GDL,
-  // Overrides de precio (mismos productos, precio distinto)
-  "Tuna Macha": 149,
-  "Aguachile de Picaña": 220,
-  "Tío Juanito": 135,
-  "Diva": 170,
-  "Camarones Roca": 160,
-  "Aguachile Mixto": 185,
-  "Aguachile Tropical": 185,
-  "Vaquita": 140,
-  "Volvancito": 140,
-  "Don Arturo": 135,
-  "Fresa": 145,
-  "Quesito": 127,
-  "Crujiente": 79,
-  "Tataki": 162,
-  "Doña Julia": 162,
-  "Chava": 145,
-  "La de Ceviche": 149,
-  "Aguachile de Papada": 185,
-  "Ceviche Speak": 170,
-  "Ceviche Mixto": 170,
-  "Mezcalita": 130,
-  "Tacho Sour": 140,
-  "Batanga Anastacio": 120,
-  // Tragos renombrados en CLN (el frontend manda el nombre nuevo)
-  "Frutos Rojos Smash": 120,
-  "Sr. Arturo": 160,
-  "Cantarito Anastacio": 130,
+  // Tragos renombrados en CLN (el frontend manda el nombre nuevo, precio = original GDL)
+  "Frutos Rojos Smash": 140,   // = Osito Rojo
+  "Sr. Arturo": 195,            // = Pica Flor
+  "Cantarito Anastacio": 150,   // = Ballenita
   // Productos exclusivos de CLN
   "Taco Zarandeado": 130,
   "Aguachile Tostadita": 150,
