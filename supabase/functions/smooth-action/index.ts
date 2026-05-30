@@ -94,7 +94,6 @@ const PRICE_MAP_CLN: Record<string, number> = {
   ...PRICE_MAP_GDL,
   // Tragos renombrados en CLN (el frontend manda el nombre nuevo, precio = original GDL)
   "Frutos Rojos Smash": 140,   // = Osito Rojo
-  "Sr. Arturo": 195,            // = Pica Flor
   "Cantarito Anastacio": 150,   // = Ballenita
   // Productos exclusivos de CLN
   "Taco Zarandeado": 130,
