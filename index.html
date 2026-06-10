@@ -970,7 +970,7 @@ var sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
   <div class="featured-grid">
     <div class="featured-card">
-      <div class="card-img-wrap"><img src="https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/object/public/imagenes/ositorojo1_ip3u9c.png" alt="Osito Rojo" loading="lazy"></div>
+      <div class="card-img-wrap"><img src="https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/object/public/imagenes/FRUTOS%20ROJOS%20SMASH.jpg" alt="Osito Rojo" loading="lazy"></div>
       <div class="card-body">
         <div class="card-name">Osito Rojo</div>
         <div class="card-desc"><span class="es">Gin, Limón, Frutos Rojos y Menta</span><span class="en">Gin, Lime, Red Berries and Mint</span></div>
@@ -1300,7 +1300,7 @@ document.querySelectorAll('.card-img-wrap img').forEach(function(img){
   img.addEventListener('click', function(){ openLightbox(this.src, this.alt); });
 });
 window.addEventListener('load', function(){
-  ['ositorojo1_ip3u9c'].forEach(preloadImg);
+  [].forEach(preloadImg);
   document.querySelectorAll('.card-img-wrap img').forEach(function(img){ var hi = new Image(); hi.src = img.src.replace(/w_\d+/, 'w_1400'); });
 });
 
