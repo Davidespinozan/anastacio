@@ -554,6 +554,14 @@ html{font-size:100%;}
 .urgency-item{font-size:.68rem;}
 .order-mode-strip{font-size:.9rem;padding:.45rem 1rem;}
 }
+/* Móvil 1 columna: separación vertical IDÉNTICA entre todas las tarjetas.
+   En móvil cada sección apila varios .featured-grid; igualamos el row-gap interno
+   con el margen entre grids (que colapsa) para que no haya saltos de espacio. */
+@media(max-width:599.98px){
+  .featured-grid{row-gap:1rem;margin-top:0;margin-bottom:1rem;}
+  .featured-grid[style*="margin-top"]{margin-top:0!important;}
+  .featured-grid > .featured-card{margin:0!important;}
+}
 </style>
 
 <!-- Branch Config (debe ir antes del Pixel) -->
