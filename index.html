@@ -169,13 +169,13 @@ body>*{position:relative;z-index:1;}
 /* ═══ 3️⃣ TRENDING SECTION ═══ */
 .trending-section{padding:1.2rem 1.2rem 1rem;max-width:860px;margin:0 auto;}
 .trending-header{text-align:center;margin-bottom:1.5rem;}
-.trending-label{display:inline-flex;align-items:center;gap:.4rem;background:linear-gradient(135deg,rgba(242,107,29,.15),rgba(201,162,77,.1));border:1px solid rgba(242,107,29,.25);padding:.35rem 1rem;border-radius:50px;font-size:.7rem;letter-spacing:.15em;color:var(--cta);font-family:"Bebas Neue",sans-serif;margin-bottom:.6rem;animation:trendPulse 3s ease-in-out infinite;}
+.trending-label{display:inline-flex;align-items:center;gap:.4rem;background:linear-gradient(135deg,rgba(242,107,29,.15),rgba(201,162,77,.1));border:1px solid rgba(242,107,29,.25);padding:.35rem 1rem;border-radius:50px;font-size:.7rem;letter-spacing:.15em;color:var(--cta);font-family:"Bebas Neue",sans-serif;margin-bottom:.6rem;}
 @keyframes trendPulse{0%,100%{box-shadow:0 0 0 0 rgba(242,107,29,.15);}50%{box-shadow:0 0 0 8px rgba(242,107,29,0);}}
 .trending-title{font-family:"Bebas Neue",sans-serif;font-size:clamp(1.6rem,5vw,2.5rem);letter-spacing:.05em;color:var(--accent);line-height:1;}
 .trending-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem;}
 @media(min-width:600px){.trending-grid{grid-template-columns:repeat(3,1fr);}}
 .trending-card{background:var(--surf-1)!important;border:1px solid var(--line)!important;border-radius:var(--r-md);overflow:hidden;transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease),border-color var(--dur) var(--ease);position:relative;flex-direction:column!important;}
-.trending-card::before{content:"🔥";position:absolute;top:.5rem;right:.5rem;font-size:.7rem;z-index:2;background:rgba(7,24,38,.8);padding:.2rem .4rem;border-radius:6px;}
+.trending-card::before{content:none;}
 .trending-card:hover{transform:translateY(-2px);box-shadow:var(--sh-lg),var(--edge);border-color:var(--line-strong)!important;}
 .trending-card .card-img-wrap{aspect-ratio:1;width:auto!important;min-width:0!important;margin:.4rem .4rem 0!important;}
 .trending-card .card-body{padding:.7rem .6rem;background:transparent!important;}
@@ -207,7 +207,14 @@ body>*{position:relative;z-index:1;}
 
 /* ═══ ORDER TYPE 3 MODES ═══ */
 .order-type-btn{display:flex;flex-direction:column;align-items:center;gap:.15rem;min-height:48px;justify-content:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
-.order-type-btn .ot-icon{font-size:1rem;line-height:1;}
+.order-type-btn .ot-icon{line-height:0;}
+.order-type-btn .ot-svg{width:21px;height:21px;display:block;opacity:.9;}
+.order-type-btn.active .ot-svg{opacity:1;}
+/* Íconos de línea dentro de texto (reemplazan emojis) */
+.tico{width:1em;height:1em;display:inline-block;vertical-align:-.13em;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;opacity:.85;}
+.drink-btns button svg.dk{width:13px;height:13px;vertical-align:-2px;margin-right:3px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;opacity:.9;}
+.live-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--cta);vertical-align:middle;margin-right:.5em;box-shadow:0 0 0 0 rgba(242,107,29,.55);animation:livePulse 1.8s ease-out infinite;}
+@keyframes livePulse{0%{box-shadow:0 0 0 0 rgba(242,107,29,.5);}70%{box-shadow:0 0 0 6px rgba(242,107,29,0);}100%{box-shadow:0 0 0 0 rgba(242,107,29,0);}}
 
 /* LEAD BAR */
 .lead-bar{background:var(--sand);color:var(--dark);padding:.85rem 1.2rem;display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;box-shadow:0 4px 20px rgba(0,0,0,.15);}
@@ -289,7 +296,7 @@ body>*{position:relative;z-index:1;}
 .stars{font-size:1.8rem;color:var(--accent);letter-spacing:.2em;margin:.8rem 0;}
 .review-text{font-size:.95rem;color:var(--muted);max-width:380px;line-height:1.7;margin:0 auto 1.8rem;}
 .btn-gold{padding:.9rem 2.2rem;background:var(--cta);color:white;border:none;font-family:"Bebas Neue",sans-serif;font-size:1rem;letter-spacing:.15em;cursor:pointer;text-decoration:none;transition:all .3s;display:inline-block;box-shadow:0 4px 20px rgba(242,107,29,.3);border-radius:50px;}
-.btn-gold:hover{transform:translateY(-3px);box-shadow:0 8px 35px rgba(242,107,29,.5);}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:var(--glow-cta);}
 .btn-outline{padding:.75rem 1.4rem;background:transparent;color:var(--accent);border:1px solid var(--accent);font-family:"Bebas Neue",sans-serif;font-size:.85rem;letter-spacing:.15em;cursor:pointer;text-decoration:none;transition:all .3s;display:inline-block;margin:.3rem;border-radius:50px;}
 .btn-outline:hover{background:var(--accent);color:var(--dark);transform:translateY(-2px);}
 
@@ -660,11 +667,11 @@ var sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
         </span>
       </div>
       <div class="urgency-item" id="urgency-closes" style="display:none;">
-        <span class="es">⏱ Cierra en <strong id="urgency-mins-es"></strong></span>
-        <span class="en">⏱ Closes in <strong id="urgency-mins-en"></strong></span>
+        <span class="es"><svg class="tico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Cierra en <strong id="urgency-mins-es"></strong></span>
+        <span class="en"><svg class="tico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Closes in <strong id="urgency-mins-en"></strong></span>
       </div>
       <div class="urgency-item" id="urgency-demand" style="display:none;">
-        <span class="es">🔥 Alta demanda ahora</span><span class="en">🔥 High demand now</span>
+        <span class="es"><span class="live-dot"></span>Alta demanda ahora</span><span class="en"><span class="live-dot"></span>High demand now</span>
       </div>
     </div>
 
@@ -728,7 +735,7 @@ var sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 <div class="trending-section fade-in" id="trending">
   <div class="trending-header">
     <div class="trending-label">
-      <span>🔥</span>
+      <span><svg class="tico" viewBox="0 0 24 24" style="width:1.05em;height:1.05em;"><path d="M3 17l6-6 4 4 7-7"/><path d="M17 8h4v4"/></svg></span>
       <span class="es">LO QUE TODOS ESTÁN PIDIENDO</span>
       <span class="en">WHAT EVERYONE'S ORDERING</span>
     </div>
@@ -1002,7 +1009,7 @@ var sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
     <div class="featured-card">
       <div class="card-img-wrap"><img src="https://hqrwjlrqzslkwhwqcmnh.supabase.co/storage/v1/object/public/imagenes/PICA%20FLOR.jpg" alt="Pica Flor" loading="lazy"></div>
       <div class="card-body">
-        <div class="card-name">Pica Flor 🔥</div>
+        <div class="card-name">Pica Flor</div>
         <div class="card-desc"><span class="es">Whiskey, Limón, Maracuyá, Tónica y VITAFER</span><span class="en">Whiskey, Lime, Passion Fruit, Tonic and VITAFER</span></div>
         <div class="card-footer"><div class="card-price">$195</div><button class="add-btn" onclick="addToCart('Pica Flor',195)">+</button></div>
       </div>
@@ -1063,16 +1070,16 @@ var sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
   </div>
   <p style="text-align:center;color:var(--muted);font-size:.75rem;margin-bottom:1.2rem;letter-spacing:.12em;"><span class="es">COPA 2oz · BOTELLA CON 4 SERVICIOS</span><span class="en">2oz POUR · BOTTLE WITH 4 SERVINGS</span></p>
   <div class="drinks-cols">
-    <div class="drink-row"><span>Bacardi</span><div class="drink-btns"><button aria-label="Agregar Bacardi copa" onclick="addToCart('Bacardi (copa)',70)">🥃 $70</button><button aria-label="Agregar Bacardi botella" onclick="addToCart('Bacardi (botella)',700)">🍾 $700</button></div></div>
-    <div class="drink-row"><span>Havana 7 <span class="es">años</span><span class="en">yr</span></span><div class="drink-btns"><button aria-label="Agregar Havana 7 años copa" onclick="addToCart('Havana 7 años (copa)',90)">🥃 $90</button><button aria-label="Agregar Havana 7 años botella" onclick="addToCart('Havana 7 años (botella)',960)">🍾 $960</button></div></div>
-    <div class="drink-row"><span>Cascahuin</span><div class="drink-btns"><button aria-label="Agregar Cascahuin copa" onclick="addToCart('Cascahuin (copa)',110)">🥃 $110</button><button aria-label="Agregar Cascahuin botella" onclick="addToCart('Cascahuin (botella)',1100)">🍾 $1,100</button></div></div>
-    <div class="drink-row"><span>Herradura</span><div class="drink-btns"><button aria-label="Agregar Herradura copa" onclick="addToCart('Herradura (copa)',130)">🥃 $130</button><button aria-label="Agregar Herradura botella" onclick="addToCart('Herradura (botella)',1400)">🍾 $1,400</button></div></div>
-    <div class="drink-row"><span>Maestro Dobel</span><div class="drink-btns"><button aria-label="Agregar Maestro Dobel copa" onclick="addToCart('Maestro Dobel (copa)',150)">🥃 $150</button><button aria-label="Agregar Maestro Dobel botella" onclick="addToCart('Maestro Dobel (botella)',1700)">🍾 $1,700</button></div></div>
-    <div class="drink-row"><span>400 Conejos</span><div class="drink-btns"><button aria-label="Agregar 400 Conejos copa" onclick="addToCart('400 Conejos (copa)',110)">🥃 $110</button><button aria-label="Agregar 400 Conejos botella" onclick="addToCart('400 Conejos (botella)',1100)">🍾 $1,100</button></div></div>
-    <div class="drink-row"><span>Montelobos Espadín</span><div class="drink-btns"><button aria-label="Agregar Montelobos copa" onclick="addToCart('Montelobos (copa)',120)">🥃 $120</button><button aria-label="Agregar Montelobos botella" onclick="addToCart('Montelobos (botella)',1300)">🍾 $1,300</button></div></div>
-    <div class="drink-row"><span>Buchanans 12</span><div class="drink-btns"><button aria-label="Agregar Buchanans 12 copa" onclick="addToCart('Buchanans 12 (copa)',200)">🥃 $200</button><button aria-label="Agregar Buchanans 12 botella" onclick="addToCart('Buchanans 12 (botella)',2200)">🍾 $2,200</button></div></div>
-    <div class="drink-row"><span>Etiqueta Negra</span><div class="drink-btns"><button aria-label="Agregar Etiqueta Negra copa" onclick="addToCart('Etiqueta Negra (copa)',220)">🥃 $220</button><button aria-label="Agregar Etiqueta Negra botella" onclick="addToCart('Etiqueta Negra (botella)',2600)">🍾 $2,600</button></div></div>
-    <div class="drink-row"><span>Macallan 12</span><div class="drink-btns"><button aria-label="Agregar Macallan 12 copa" onclick="addToCart('Macallan 12 (copa)',340)">🥃 $340</button><button aria-label="Agregar Macallan 12 botella" onclick="addToCart('Macallan 12 (botella)',3600)">🍾 $3,600</button></div></div>
+    <div class="drink-row"><span>Bacardi</span><div class="drink-btns"><button aria-label="Agregar Bacardi copa" onclick="addToCart('Bacardi (copa)',70)"><svg class="dk" viewBox="0 0 24 24"><path d="M6 4h12l-1 9a4 4 0 0 1-10 0L6 4Z"/><path d="M12 17v3M8 20h8"/></svg>$70</button><button aria-label="Agregar Bacardi botella" onclick="addToCart('Bacardi (botella)',700)"><svg class="dk" viewBox="0 0 24 24"><path d="M10 3h4v3l1 3v10a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2V9l1-3z"/><path d="M9 12h6"/></svg>$700</button></div></div>
+    <div class="drink-row"><span>Havana 7 <span class="es">años</span><span class="en">yr</span></span><div class="drink-btns"><button aria-label="Agregar Havana 7 años copa" onclick="addToCart('Havana 7 años (copa)',90)"><svg class="dk" viewBox="0 0 24 24"><path d="M6 4h12l-1 9a4 4 0 0 1-10 0L6 4Z"/><path d="M12 17v3M8 20h8"/></svg>$90</button><button aria-label="Agregar Havana 7 años botella" onclick="addToCart('Havana 7 años (botella)',960)"><svg class="dk" viewBox="0 0 24 24"><path d="M10 3h4v3l1 3v10a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2V9l1-3z"/><path d="M9 12h6"/></svg>$960</button></div></div>
+    <div class="drink-row"><span>Cascahuin</span><div class="drink-btns"><button aria-label="Agregar Cascahuin copa" onclick="addToCart('Cascahuin (copa)',110)"><svg class="dk" viewBox="0 0 24 24"><path d="M6 4h12l-1 9a4 4 0 0 1-10 0L6 4Z"/><path d="M12 17v3M8 20h8"/></svg>$110</button><button aria-label="Agregar Cascahuin botella" onclick="addToCart('Cascahuin (botella)',1100)"><svg class="dk" viewBox="0 0 24 24"><path d="M10 3h4v3l1 3v10a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2V9l1-3z"/><path d="M9 12h6"/></svg>$1,100</button></div></div>
+    <div class="drink-row"><span>Herradura</span><div class="drink-btns"><button aria-label="Agregar Herradura copa" onclick="addToCart('Herradura (copa)',130)"><svg class="dk" viewBox="0 0 24 24"><path d="M6 4h12l-1 9a4 4 0 0 1-10 0L6 4Z"/><path d="M12 17v3M8 20h8"/></svg>$130</button><button aria-label="Agregar Herradura botella" onclick="addToCart('Herradura (botella)',1400)"><svg class="dk" viewBox="0 0 24 24"><path d="M10 3h4v3l1 3v10a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2V9l1-3z"/><path d="M9 12h6"/></svg>$1,400</button></div></div>
+    <div class="drink-row"><span>Maestro Dobel</span><div class="drink-btns"><button aria-label="Agregar Maestro Dobel copa" onclick="addToCart('Maestro Dobel (copa)',150)"><svg class="dk" viewBox="0 0 24 24"><path d="M6 4h12l-1 9a4 4 0 0 1-10 0L6 4Z"/><path d="M12 17v3M8 20h8"/></svg>$150</button><button aria-label="Agregar Maestro Dobel botella" onclick="addToCart('Maestro Dobel (botella)',1700)"><svg class="dk" viewBox="0 0 24 24"><path d="M10 3h4v3l1 3v10a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2V9l1-3z"/><path d="M9 12h6"/></svg>$1,700</button></div></div>
+    <div class="drink-row"><span>400 Conejos</span><div class="drink-btns"><button aria-label="Agregar 400 Conejos copa" onclick="addToCart('400 Conejos (copa)',110)"><svg class="dk" viewBox="0 0 24 24"><path d="M6 4h12l-1 9a4 4 0 0 1-10 0L6 4Z"/><path d="M12 17v3M8 20h8"/></svg>$110</button><button aria-label="Agregar 400 Conejos botella" onclick="addToCart('400 Conejos (botella)',1100)"><svg class="dk" viewBox="0 0 24 24"><path d="M10 3h4v3l1 3v10a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2V9l1-3z"/><path d="M9 12h6"/></svg>$1,100</button></div></div>
+    <div class="drink-row"><span>Montelobos Espadín</span><div class="drink-btns"><button aria-label="Agregar Montelobos copa" onclick="addToCart('Montelobos (copa)',120)"><svg class="dk" viewBox="0 0 24 24"><path d="M6 4h12l-1 9a4 4 0 0 1-10 0L6 4Z"/><path d="M12 17v3M8 20h8"/></svg>$120</button><button aria-label="Agregar Montelobos botella" onclick="addToCart('Montelobos (botella)',1300)"><svg class="dk" viewBox="0 0 24 24"><path d="M10 3h4v3l1 3v10a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2V9l1-3z"/><path d="M9 12h6"/></svg>$1,300</button></div></div>
+    <div class="drink-row"><span>Buchanans 12</span><div class="drink-btns"><button aria-label="Agregar Buchanans 12 copa" onclick="addToCart('Buchanans 12 (copa)',200)"><svg class="dk" viewBox="0 0 24 24"><path d="M6 4h12l-1 9a4 4 0 0 1-10 0L6 4Z"/><path d="M12 17v3M8 20h8"/></svg>$200</button><button aria-label="Agregar Buchanans 12 botella" onclick="addToCart('Buchanans 12 (botella)',2200)"><svg class="dk" viewBox="0 0 24 24"><path d="M10 3h4v3l1 3v10a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2V9l1-3z"/><path d="M9 12h6"/></svg>$2,200</button></div></div>
+    <div class="drink-row"><span>Etiqueta Negra</span><div class="drink-btns"><button aria-label="Agregar Etiqueta Negra copa" onclick="addToCart('Etiqueta Negra (copa)',220)"><svg class="dk" viewBox="0 0 24 24"><path d="M6 4h12l-1 9a4 4 0 0 1-10 0L6 4Z"/><path d="M12 17v3M8 20h8"/></svg>$220</button><button aria-label="Agregar Etiqueta Negra botella" onclick="addToCart('Etiqueta Negra (botella)',2600)"><svg class="dk" viewBox="0 0 24 24"><path d="M10 3h4v3l1 3v10a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2V9l1-3z"/><path d="M9 12h6"/></svg>$2,600</button></div></div>
+    <div class="drink-row"><span>Macallan 12</span><div class="drink-btns"><button aria-label="Agregar Macallan 12 copa" onclick="addToCart('Macallan 12 (copa)',340)"><svg class="dk" viewBox="0 0 24 24"><path d="M6 4h12l-1 9a4 4 0 0 1-10 0L6 4Z"/><path d="M12 17v3M8 20h8"/></svg>$340</button><button aria-label="Agregar Macallan 12 botella" onclick="addToCart('Macallan 12 (botella)',3600)"><svg class="dk" viewBox="0 0 24 24"><path d="M10 3h4v3l1 3v10a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2V9l1-3z"/><path d="M9 12h6"/></svg>$3,600</button></div></div>
   </div>
 </section>
 <div class="gold-sep"></div>
@@ -1099,7 +1106,7 @@ var sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 <!-- INFO -->
 <section class="info-section fade-in">
   <div class="info-block" style="text-align:left;">
-    <h3 style="text-align:center;">📍 <span class="es">Dónde estamos</span><span class="en">Find us</span></h3>
+    <h3 style="text-align:center;"><svg class="tico" viewBox="0 0 24 24"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg> <span class="es">Dónde estamos</span><span class="en">Find us</span></h3>
     <iframe
       id="maps-embed" src="https://maps.google.com/maps?q=Anastacio+Marisqueria+de+Barrio,+Cdad+de+Puebla+1318,+Las+Quintas,+Culiacan&output=embed&z=16"
       width="100%" height="200" style="border:0;margin-top:.5rem;border-radius:4px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
@@ -1108,12 +1115,12 @@ var sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
     <a id="maps-open-link" href="https://maps.app.goo.gl/Lcn5kNqrHzQY8cMr6" target="_blank" style="text-align:center;display:block;margin-top:.3rem;"><span class="es">Abrir en Maps →</span><span class="en">Open in Maps →</span></a>
   </div>
   <div class="info-block">
-    <h3>📱 <span class="es">Síguenos</span><span class="en">Follow us</span></h3>
+    <h3><svg class="tico" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg> <span class="es">Síguenos</span><span class="en">Follow us</span></h3>
     <a id="ig-info-link" href="https://instagram.com/anastacio_marisqueriadebarrio" target="_blank">@anastacio_marisqueriadebarrio</a>
     
   </div>
   <div class="info-block">
-    <h3>🕐 <span class="es">Horario</span><span class="en">Hours</span></h3>
+    <h3><svg class="tico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> <span class="es">Horario</span><span class="en">Hours</span></h3>
     <p><span class="es">Dom – Jue: 12pm – 11pm</span><span class="en">Sun – Thu: 12pm – 11pm</span></p>
     <p><span class="es">Vie – Sáb: 12pm – 11:30pm</span><span class="en">Fri – Sat: 12pm – 11:30pm</span></p>
   </div>
@@ -1187,22 +1194,22 @@ var sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 <div class="cart-overlay" id="cart-overlay" onclick="handleOverlayClick(event)">
   <div class="cart-drawer">
     <div class="cart-header">
-      <h3 id="cart-title">🛒 Tu Orden</h3>
+      <h3 id="cart-title"><svg class="tico" viewBox="0 0 24 24" style="width:.9em;height:.9em;"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> Tu Orden</h3>
       <button class="cart-close" onclick="closeCart()">×</button>
     </div>
 
     <!-- 2️⃣ ORDER TYPE: 3 MODES -->
     <div class="order-type">
       <button class="order-type-btn" id="btn-domicilio" onclick="setOrderType('domicilio')">
-        <span class="ot-icon">🛵</span>
+        <span class="ot-icon"><svg class="ot-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="18.5" cy="17.5" r="3.5"/><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="15" cy="5" r="1"/><path d="M12 17.5V14l-3-3 4-3 2 3h2"/></svg></span>
         <span class="es">Domicilio</span><span class="en">Delivery</span>
       </button>
       <button class="order-type-btn" id="btn-recoger" onclick="setOrderType('recoger')">
-        <span class="ot-icon">🥡</span>
+        <span class="ot-icon"><svg class="ot-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></span>
         <span class="es">Recoger</span><span class="en">Pickup</span>
       </button>
       <button class="order-type-btn" id="btn-mesa" onclick="setOrderType('mesa')">
-        <span class="ot-icon">🍽</span>
+        <span class="ot-icon"><svg class="ot-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg></span>
         <span class="es">Mesa</span><span class="en">Table</span>
       </button>
     </div>
@@ -1248,7 +1255,7 @@ var sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
         <div class="checkout-detail" id="checkout-detail"></div>
       </div>
       <div id="delivery-fee-line" style="display:none;justify-content:space-between;padding:.3rem 0;font-size:.78rem;color:var(--muted);border-top:1px dashed rgba(255,255,255,.08);margin-top:.3rem;padding-top:.4rem;">
-        <span>🛵 <span class="es">Envío a domicilio</span><span class="en">Delivery fee</span></span>
+        <span><span class="es">Envío a domicilio</span><span class="en">Delivery fee</span></span>
         <span style="color:var(--cream);">+$50</span>
       </div>
       <div class="cart-total">
@@ -1709,9 +1716,9 @@ function updateModeStrip() {
   var isEn = lang === 'en';
   strip.className = 'order-mode-strip visible ' + orderType;
   var labels = {
-    domicilio: {es: '🛵 MODO DOMICILIO — Toca para ver tu orden', en: '🛵 DELIVERY MODE — Tap to view order'},
-    recoger: {es: '🥡 MODO RECOGER — Toca para ver tu orden', en: '🥡 PICKUP MODE — Tap to view order'},
-    mesa: {es: '🍽 PIDIENDO DESDE MESA — Toca para ver tu orden', en: '🍽 TABLE ORDER — Tap to view order'}
+    domicilio: {es: 'MODO DOMICILIO — Toca para ver tu orden', en: 'DELIVERY MODE — Tap to view order'},
+    recoger: {es: 'MODO RECOGER — Toca para ver tu orden', en: 'PICKUP MODE — Tap to view order'},
+    mesa: {es: 'PIDIENDO DESDE MESA — Toca para ver tu orden', en: 'TABLE ORDER — Tap to view order'}
   };
   text.textContent = labels[orderType][isEn ? 'en' : 'es'];
   // Push nav below the strip
@@ -1745,7 +1752,7 @@ function getCheckoutMessage() {
   var lang = document.body.getAttribute("data-lang");
   var isEn = lang === 'en';
   if (cart.length === 0) return '';
-  if (!orderType) return isEn ? '⚠ Select an order mode above to continue' : '⚠ Selecciona un modo de pedido arriba para continuar';
+  if (!orderType) return isEn ? 'Select an order mode above to continue' : 'Selecciona un modo de pedido arriba para continuar';
   if (orderType === 'domicilio') {
     var dn = document.getElementById('del-name');
     var dp = document.getElementById('del-phone');
@@ -1754,17 +1761,17 @@ function getCheckoutMessage() {
     if (!dn || !dn.value.trim()) missing.push(isEn ? 'name' : 'nombre');
     if (!dp || !dp.value.trim()) missing.push('WhatsApp');
     if (!da || !da.value.trim()) missing.push(isEn ? 'address' : 'dirección');
-    if (missing.length > 0) return (isEn ? '⚠ Missing: ' : '⚠ Falta: ') + missing.join(', ');
+    if (missing.length > 0) return (isEn ? 'Missing: ' : 'Falta: ') + missing.join(', ');
   } else if (orderType === 'recoger') {
     var pn = document.getElementById('pick-name');
     var pp = document.getElementById('pick-phone');
     var missing = [];
     if (!pn || !pn.value.trim()) missing.push(isEn ? 'name' : 'nombre');
     if (!pp || !pp.value.trim()) missing.push('WhatsApp');
-    if (missing.length > 0) return (isEn ? '⚠ Missing: ' : '⚠ Falta: ') + missing.join(', ');
+    if (missing.length > 0) return (isEn ? 'Missing: ' : 'Falta: ') + missing.join(', ');
   } else if (orderType === 'mesa') {
     var mn = document.getElementById('mesa-num');
-    if (!mn || !mn.value.trim()) return isEn ? '⚠ Enter table number' : '⚠ Ingresa número de mesa';
+    if (!mn || !mn.value.trim()) return isEn ? 'Enter table number' : 'Ingresa número de mesa';
   }
   return '';
 }
@@ -1796,9 +1803,9 @@ function updateCheckout() {
   // Badge
   badge.className = 'checkout-mode-badge ' + orderType;
   var badgeLabels = {
-    domicilio: {es: '🛵 Pedido a domicilio', en: '🛵 Delivery order'},
-    recoger: {es: '🥡 Pedido para recoger', en: '🥡 Pickup order'},
-    mesa: {es: '🍽 Pedido en mesa', en: '🍽 Table order'}
+    domicilio: {es: 'Pedido a domicilio', en: 'Delivery order'},
+    recoger: {es: 'Pedido para recoger', en: 'Pickup order'},
+    mesa: {es: 'Pedido en mesa', en: 'Table order'}
   };
   badge.textContent = badgeLabels[orderType][isEn ? 'en' : 'es'];
 
@@ -1822,7 +1829,7 @@ function updateCheckout() {
       var dn = document.getElementById('del-name').value.trim();
       var addr = document.getElementById('del-address').value.trim();
       detailText = dn;
-      if (addr) detailText += ' · 📍 ' + addr;
+      if (addr) detailText += ' · ' + addr;
     }
     detail.textContent = detailText;
   }
@@ -1899,7 +1906,7 @@ function renderCart() {
   btn.style.opacity = isCheckoutValid() ? '1' : '0.5';
   if(!orderType && summary){
     var lang = document.body.getAttribute("data-lang");
-    summary.textContent = lang === 'en' ? '⚠ Select an order mode above to continue' : '⚠ Selecciona un modo de pedido arriba para continuar';
+    summary.textContent = lang === 'en' ? 'Select an order mode above to continue' : 'Selecciona un modo de pedido arriba para continuar';
   }
   body.querySelectorAll(".cart-item").forEach(function(el) { el.remove(); });
 
@@ -1907,8 +1914,7 @@ function renderCart() {
     var div = document.createElement("div"); div.className = "cart-item";
     var nameDiv = document.createElement("div"); nameDiv.className = "cart-item-name"; nameDiv.textContent = item.name;
     var qtyDiv = document.createElement("div"); qtyDiv.className = "cart-item-qty";
-    var minusBtn = document.createElement("button"); minusBtn.className = "qty-btn"; minusBtn.textContent = item.qty === 1 ? "🗑" : "−";
-    if(item.qty === 1) minusBtn.style.fontSize = ".85rem";
+    var minusBtn = document.createElement("button"); minusBtn.className = "qty-btn"; minusBtn.innerHTML = item.qty === 1 ? '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M9 7V5h6v2M6 7l1 13h10l1-13"/></svg>' : "−";
     (function(n){ minusBtn.onclick = function(){ removeFromCart(n); }; })(item.name);
     var qtySpan = document.createElement("span"); qtySpan.className = "qty-num"; qtySpan.textContent = item.qty;
     var plusBtn = document.createElement("button"); plusBtn.className = "qty-btn"; plusBtn.textContent = "+";
@@ -2220,7 +2226,7 @@ async function payWithStripe() {
         var modal = document.createElement("div");
         modal.style.cssText = "background:#0A1F33;border:1px solid rgba(201,162,77,.2);border-radius:16px;padding:2rem;max-width:380px;width:100%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.5);animation:fadeInUp .4s ease;";
         
-        modal.innerHTML = '<div style="font-size:3.5rem;margin-bottom:.8rem;">✅</div>'
+        modal.innerHTML = '<div style="margin-bottom:.9rem;line-height:0;"><svg viewBox="0 0 24 24" width="58" height="58" fill="none" stroke="#25D366" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.5 2.5L16 9"/></svg></div>'
           + '<h2 style="font-family:Bebas Neue,sans-serif;font-size:1.6rem;color:#C9A24D;letter-spacing:.1em;margin-bottom:.4rem;">¡PAGO EXITOSO!</h2>'
           + '<p style="color:#A0B4C0;font-size:.85rem;margin-bottom:.3rem;">Tu pedido ha sido confirmado</p>'
           + '<p style="color:#F5F5F5;font-size:1.1rem;font-family:Bebas Neue,sans-serif;margin-bottom:1.2rem;">Total: $' + order.total.toLocaleString("es-MX") + ' MXN</p>'
@@ -2342,7 +2348,7 @@ if ('serviceWorker' in navigator) {
     } else if (isIOS) {
       // iOS: highlight the share button with a visual hint
       banner.querySelector('#pwa-action-btn').style.display = 'none';
-      subEl.innerHTML = '<span class="es">1️⃣ Toca el ícono <b style="font-size:1.1em">⎋</b> de compartir abajo<br>2️⃣ Busca <b>"Agregar a Inicio"</b> ➕</span><span class="en">1️⃣ Tap the <b style="font-size:1.1em">⎋</b> share icon below<br>2️⃣ Find <b>"Add to Home Screen"</b> ➕</span>';
+      subEl.innerHTML = '<span class="es">1 · Toca el ícono <b style="font-size:1.1em">⎋</b> de compartir abajo<br>2 · Busca <b>"Agregar a Inicio"</b></span><span class="en">1 · Tap the <b style="font-size:1.1em">⎋</b> share icon below<br>2 · Find <b>"Add to Home Screen"</b></span>';
       if (typeof setLang === 'function') setLang(document.documentElement.lang === 'en' ? 'en' : 'es');
       trackEvent('Lead', { content_name: 'PWA iOS Guide' });
     } else if (isSafariDesktop) {
