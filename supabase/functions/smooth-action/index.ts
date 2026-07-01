@@ -1,5 +1,5 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
-import Stripe from "https://esm.sh/stripe@14.14.0?target=deno";
+import Stripe from "https://esm.sh/stripe@14.14.0?target=denonext";
 
 const stripe = new Stripe(Deno.env.get("STRIPE_SECRET_KEY")!, {
   apiVersion: "2023-10-16",
@@ -131,9 +131,10 @@ Deno.serve(async (req: Request) => {
       throw new Error("Invalid order type");
     }
 
-    // ═══ ELEGIR PRICE_MAP SEGÚN SUCURSAL ═══
-    const branchSlug = branch === "cln" ? "cln" : "gdl";
-    const PRICE_MAP = branchSlug === "cln" ? PRICE_MAP_CLN : PRICE_MAP_GDL;
+    // ═══ SUCURSAL ÚNICA: CULIACÁN (Guadalajara cerró) ═══
+    // Cualquier valor entrante (incl. cachés viejos con "gdl") se normaliza a CLN.
+    const branchSlug = "cln";
+    const PRICE_MAP = PRICE_MAP_CLN;
 
     // ═══ BUILD LINE ITEMS WITH SERVER PRICES ═══
     const line_items = [];

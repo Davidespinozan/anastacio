@@ -1,10 +1,9 @@
 # Anastacio — Routing principal
-# Raíz exacta sirve el selector de sucursal (rewrite forzado con `!`
-# para que tenga prioridad sobre el index.html existente)
+# Raíz exacta sirve la landing (hub: Ver menú / Reservación)
 /             /landing.html  200!
 
-# Sucursales — sirven el menú con su branch detectada por JS
-/gdl          /index.html    200
-/gdl/*        /index.html    200
+# Culiacán es la única sucursal. Links viejos de Guadalajara → Culiacán.
+/gdl          /cln           301
+/gdl/*        /cln           301
 /cln          /index.html    200
 /cln/*        /index.html    200
